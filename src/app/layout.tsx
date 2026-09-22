@@ -15,7 +15,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
   icons: { icon: '/icono-afcademia.webp' },
-  robots: { index: false, follow: false },
 }
 
 export const viewport = {
