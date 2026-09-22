@@ -1,0 +1,20 @@
+node_modules
+.next
+out
+build
+.DS_Store
+*.pem
+.env*
+!.env.example
+next-env.d.ts
+.vercel
+
+# Copia de trabajo del rediseño
+_copia-antes-de-remodelar-*/
+
+# Documentos internos: no van a un repositorio público
+COMISIONES-STRIPE.html
+FICHA-PRODUCTO-WOOCOMMERCE.md
+
+# Compilación de TypeScript
+tsconfig.tsbuildinfo
