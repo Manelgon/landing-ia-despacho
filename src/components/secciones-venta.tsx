@@ -1,7 +1,7 @@
 import { DOLORES, CIRCUITOS, REGLA, BLOQUES, ESTUDIO, REQUISITOS } from '@/content/curso'
 import { Seccion, Titulo } from './ui'
 
-const iconosCircuito = ['correo', 'llamadas', 'documentos', 'facturas', 'archivo']
+const iconosFlujo = ['correo', 'llamadas', 'documentos', 'facturas', 'archivo']
 const iconosBloque = ['fundamentos', 'conexiones', 'correo', 'llamadas', 'documentos', 'vivir-con-esto', 'gestor-documental']
 
 /** Retraso en cascada para las listas. Nunca se monta todo a la vez. */
@@ -51,19 +51,19 @@ export function Problema() {
 }
 
 /**
- * Bento asimétrico: el primer circuito ocupa el doble y marca la jerarquía.
+ * Bento asimétrico: el primer flujo ocupa el doble y marca la jerarquía.
  * Cinco tarjetas idénticas en fila estaban prohibidas por DESIGN.md.
  */
-export function Circuitos() {
+export function Flujos() {
   return (
-    <section id="circuitos" className="scroll-mt-20 border-y border-line-soft bg-card py-24 sm:py-28">
+    <section id="flujos" className="scroll-mt-20 border-y border-line-soft bg-card py-24 sm:py-28">
       {/* Cabecera y regla van en el contenedor; el mosaico, a sangre. */}
       <div className="mx-auto w-full max-w-[1060px] px-5 sm:px-8">
         <Titulo
           eyebrow="Lo que te llevas montado"
-          sub="No cinco demostraciones vistas: cinco circuitos funcionando en tus cuentas, con tus comunidades, tus categorías y tus plantillas."
+          sub="No cinco demostraciones vistas: cinco flujos funcionando en tus cuentas, con tus comunidades, tus categorías y tus plantillas."
         >
-          Cinco circuitos, no cinco demostraciones
+          Cinco flujos, no cinco demostraciones
         </Titulo>
 
         <ul className="mt-16 grid list-none grid-cols-1 overflow-hidden rounded-[10px] sm:grid-cols-2 lg:grid-cols-6">
@@ -80,7 +80,7 @@ export function Circuitos() {
             >
               <div
                 className="absolute inset-0 bg-cover bg-right"
-                style={{ backgroundImage: `url('/circuitos/circuito-${n}-${iconosCircuito[i]}-fondo.webp')` }}
+                style={{ backgroundImage: `url('/circuitos/circuito-${n}-${iconosFlujo[i]}-fondo.webp')` }}
                 aria-hidden="true"
               />
               <div
@@ -90,12 +90,12 @@ export function Circuitos() {
 
               <div className="relative p-7 sm:p-8">
                 <p className="font-mono text-[10.5px] font-semibold tracking-[0.16em] text-amber uppercase">
-                  Circuito {n}
+                  Flujo {n}
                 </p>
 
                 <div className="mt-3 flex items-center gap-3">
                   <img
-                    src={`/recursos-web/iconos/${iconosCircuito[i]}.svg`}
+                    src={`/recursos-web/iconos/${iconosFlujo[i]}.svg`}
                     alt=""
                     width="28"
                     height="28"
@@ -122,7 +122,7 @@ export function Circuitos() {
         })}
         </ul>
 
-        {/* La regla es la coda de los cinco circuitos, no una sección aparte. */}
+        {/* La regla es la coda de los cinco flujos, no una sección aparte. */}
         <aside className="reveal mt-12 grid gap-5 border-l-2 border-amber pl-5 sm:pl-7 md:grid-cols-[0.9fr_1.1fr] md:items-center md:gap-12">
           <div>
             <p className="font-mono text-[11px] font-semibold tracking-[0.14em] text-amber uppercase">

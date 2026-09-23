@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Cta } from './cta'
 
 const ENLACES = [
-  { href: '#circuitos', texto: 'Circuitos' },
+  { href: '#flujos', texto: 'Flujos' },
   { href: '#temario', texto: 'Temario' },
   { href: '#docente', texto: 'El docente' },
   { href: '#testimonios', texto: 'Opiniones' },

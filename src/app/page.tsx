@@ -3,7 +3,7 @@ import { Hero } from '@/components/hero'
 import { Navbar } from '@/components/navbar'
 import { Acreditaciones } from '@/components/acreditaciones'
 import { RevealObserver } from '@/components/reveal'
-import { Problema, Circuitos, Temario } from '@/components/secciones-venta'
+import { Problema, Flujos, Temario } from '@/components/secciones-venta'
 import { Docente, Preguntas, Matricula, Pasos, Testimonios, Encaje } from '@/components/secciones-info'
 import { Pie } from '@/components/pie'
 
@@ -16,7 +16,7 @@ export default function Page() {
       <Acreditaciones />
       <main id="contenido">
         <Problema />
-        <Circuitos />
+        <Flujos />
         <Temario />
         <Docente />
         <Testimonios />

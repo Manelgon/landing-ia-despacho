@@ -6,7 +6,7 @@
 
 export const CURSO = {
   nombre: 'IA para el Despacho',
-  subtitulo: 'De la primera petición a los circuitos que trabajan solos',
+  subtitulo: 'De la primera petición a los flujos que trabajan solos',
   eyebrow: 'Itinerario online · a tu ritmo',
   /**
    * El claim va en dos partes: primero a quién va dirigido, que es lo que
@@ -101,7 +101,7 @@ export const DOLORES = [
 
 export const CIRCUITOS = [
   {
-    n: 'Circuito 1',
+    n: 'Flujo 1',
     titulo: 'El correo',
     texto:
       'Un asistente lee tu bandeja, clasifica cada mensaje en las categorías de tu despacho, lo archiva en su etiqueta y deja escrito el borrador de respuesta.',
@@ -109,7 +109,7 @@ export const CIRCUITOS = [
     imagen: '/circuitos/circuito-01-correo-fondo.webp',
   },
   {
-    n: 'Circuito 2',
+    n: 'Flujo 2',
     titulo: 'Las llamadas',
     texto:
       'Dejas el audio de una llamada en una carpeta y salen el resumen escrito y las tareas repartidas por departamento.',
@@ -117,7 +117,7 @@ export const CIRCUITOS = [
     imagen: '/circuitos/circuito-02-llamadas-fondo.webp',
   },
   {
-    n: 'Circuito 3',
+    n: 'Flujo 3',
     titulo: 'Los documentos',
     texto:
       'De una fila de una hoja salen el certificado y la factura, en PDF, enviados por correo y archivados en su carpeta.',
@@ -125,7 +125,7 @@ export const CIRCUITOS = [
     imagen: '/circuitos/circuito-03-documentos-fondo.webp',
   },
   {
-    n: 'Circuito 4',
+    n: 'Flujo 4',
     titulo: 'Las facturas que llegan',
     texto:
       'Las facturas de proveedor que entran por correo se descargan solas y se guardan con un nombre que dice de quién son.',
@@ -133,7 +133,7 @@ export const CIRCUITOS = [
     imagen: '/circuitos/circuito-04-facturas-fondo.webp',
   },
   {
-    n: 'Circuito 5',
+    n: 'Flujo 5',
     titulo: 'El archivo documental',
     texto:
       'Un flujo abre cada factura en PDF, lee el CIF impreso dentro, reconoce la comunidad y la archiva por comunidad y por proveedor.',
@@ -162,7 +162,7 @@ export const BLOQUES = [
     titulo: 'Las cuentas y las conexiones',
     horas: '5 h',
     texto:
-      'Cinco unidades cortas que preparan el terreno: la cuenta de pruebas, la de la plataforma de automatización y los permisos del correo y de la inteligencia artificial. Se hacen una sola vez y sirven para todos los circuitos que vienen después.',
+      'Cinco unidades cortas que preparan el terreno: la cuenta de pruebas, la de la plataforma de automatización y los permisos del correo y de la inteligencia artificial. Se hacen una sola vez y sirven para todos los flujos que vienen después.',
     unidades: [
       'Crear la cuenta de correo',
       'Crear la cuenta de la plataforma de automatización',
@@ -176,7 +176,7 @@ export const BLOQUES = [
     titulo: 'El correo',
     horas: '8 h',
     texto:
-      'El primer circuito completo: un asistente que lee la bandeja, clasifica, archiva y deja el borrador escrito.',
+      'El primer flujo completo: un asistente que lee la bandeja, clasifica, archiva y deja el borrador escrito.',
     unidades: [
       'Así funciona el asistente de correo',
       'Que la IA clasifique cada correo',
@@ -208,9 +208,9 @@ export const BLOQUES = [
     rango: '22 - 24',
     titulo: 'Vivir con esto',
     horas: '5 h',
-    texto: 'Lo que decide si dentro de seis meses los circuitos siguen encendidos.',
+    texto: 'Lo que decide si dentro de seis meses los flujos siguen encendidos.',
     unidades: [
-      'Leer un circuito y sus errores',
+      'Leer un flujo y sus errores',
       'De quién responde la IA',
       'Que no se caiga: pruebas, averías y rutina',
     ],
@@ -220,7 +220,7 @@ export const BLOQUES = [
     titulo: 'El gestor documental',
     horas: '12 h',
     texto:
-      'El quinto circuito, y el único que no vive en el navegador. Es el bloque con más montaje del itinerario: dos horas y diecisiete minutos de clase grabada, acción por acción.',
+      'El quinto flujo, y el único que no vive en el navegador. Es el bloque con más montaje del itinerario: dos horas y diecisiete minutos de clase grabada, acción por acción.',
     unidades: [
       'Qué vas a montar',
       'Los datos y la interfaz',
@@ -280,24 +280,24 @@ export const ESTUDIO = [
     titulo: 'El cierre',
     dato: 'Un reto, no un examen',
     texto:
-      'Entregar los cinco circuitos funcionando en tus cuentas, con una ejecución real de cada uno.',
+      'Entregar los cinco flujos funcionando en tus cuentas, con una ejecución real de cada uno.',
   },
 ]
 
 /**
  * Lo que hace falta tener, en una línea. Sigue diciendo las dos cosas que
  * pueden acabar en devolución si se callan: que una unidad necesita
- * Microsoft 365 de pago y que el último circuito pide Windows.
+ * Microsoft 365 de pago y que el último flujo pide Windows.
  */
 export const REQUISITOS = {
   texto:
-    'Sin conocimientos previos. Basta un navegador y el correo del despacho: las demás cuentas se crean dentro. Una unidad necesita Microsoft 365 de pago, y el último circuito se monta en Windows con Excel.',
+    'Sin conocimientos previos. Basta un navegador y el correo del despacho: las demás cuentas se crean dentro. Una unidad necesita Microsoft 365 de pago, y el último flujo se monta en Windows con Excel.',
 }
 
 export const FAQ = [
   {
     p: '¿Esto sustituye a alguien del despacho?',
-    r: 'No. Quita de en medio la parte mecánica de cinco tareas. Lo que decide, lo que firma y lo que se manda sigue pasando por una persona: los circuitos están diseñados para pararse justo ahí.',
+    r: 'No. Quita de en medio la parte mecánica de cinco tareas. Lo que decide, lo que firma y lo que se manda sigue pasando por una persona: los flujos están diseñados para pararse justo ahí.',
   },
   {
     p: '¿Y los datos de los propietarios?',
@@ -308,7 +308,7 @@ export const FAQ = [
     r: 'Para los bloques 1 a 6, no: los planes gratuitos bastan para recorrerlos enteros. Las dos excepciones están en el cuadro de arriba.',
   },
   {
-    p: '¿Qué pasa si un circuito se rompe dentro de seis meses?',
+    p: '¿Qué pasa si un flujo se rompe dentro de seis meses?',
     r: 'Para eso está el bloque 6. Aprendes a leer un escenario, a distinguir un error pasajero de uno permanente y a mantener lo montado con cinco minutos a la semana.',
   },
   {
@@ -326,9 +326,9 @@ export const FAQ = [
 ]
 
 export const REGLA = {
-  titulo: 'Una regla para los cinco circuitos',
+  titulo: 'Una regla para los cinco flujos',
   frase: 'La IA prepara; el despacho responde.',
-  texto: 'Antes de activar cada circuito, defines qué puede hacer, qué datos trata y quién revisa sus resultados. El itinerario dedica una unidad a esa cadena de responsabilidad.',
+  texto: 'Antes de activar cada flujo, defines qué puede hacer, qué datos trata y quién revisa sus resultados. El itinerario dedica una unidad a esa cadena de responsabilidad.',
 }
 
 /**
@@ -369,7 +369,7 @@ export const TESTIMONIOS = {
       cita: '[Su testimonio. Va bien que empiece por la duda que tenía antes de entrar.]',
       metricas: [
         { valor: '[0 h/semana]', etiqueta: '[recuperadas]' },
-        { valor: '[0 semana]', etiqueta: '[hasta el primer circuito]' },
+        { valor: '[0 semana]', etiqueta: '[hasta el primer flujo]' },
       ],
     },
     {

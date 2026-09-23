@@ -2,7 +2,7 @@
  * Las siete preguntas del filtro previo.
  *
  * No es un formulario de contacto: es lo que decide si un despacho encaja.
- * La pregunta 2 es la más útil para el despacho, porque dice por qué circuito
+ * La pregunta 2 es la más útil para el despacho, porque dice por qué flujo
  * empieza cada alumno.
  */
 
@@ -115,7 +115,7 @@ export const PASOS = {
  * El filtro, en la página y no solo en el formulario. Sale del modelo que
  * pasó Roberto, adaptado a lo que este itinerario es de verdad: no hay ocho
  * semanas ni sesiones en directo, y no se tocan plantillas de acta porque
- * los circuitos son otros.
+ * los flujos son otros.
  *
  * El corte de 20 comunidades es el mismo que anuncia el hero.
  */

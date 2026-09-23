@@ -128,7 +128,7 @@ export function Matricula() {
 
   const incluye = [
     '30 unidades y 54 horas',
-    'Los cinco circuitos montados',
+    'Los cinco flujos montados',
     'Tutoría por correo con el docente',
     'Certificado al superarlo',
   ]
