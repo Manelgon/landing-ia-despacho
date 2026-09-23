@@ -16,9 +16,14 @@ export const CURSO = {
    * primera pregunta del formulario.
    */
   claim: {
-    para: 'Programa de implementación para administradores que gestionan entre 20 y 120 comunidades.',
+    para: 'Programa de implementación para administradores que gestionan entre 20 y 120 comunidades, sin cambiar de programa de gestión.',
+    // PENDIENTE: las diez horas las puso Manel el 23 de septiembre de 2026.
+    // Van atribuidas al despacho de Roberto a propósito. Sin atribuir serían
+    // una promesa al comprador, y una promesa de resultado hay que poder
+    // acreditarla; atribuidas son un hecho que Roberto confirma o corrige.
+    // Que lo confirme antes de publicar.
     resultado:
-      'Empiezas sin saber nada y terminas con cinco tareas del despacho que ya no toca nadie.',
+      'Empiezas sin saber nada y terminas con cinco tareas del despacho que ya no toca nadie. En el despacho donde nacieron, son diez horas a la semana.',
   },
   bajoBoton: 'Sin plazos · tutoría por correo con el docente · certificado al superarlo',
   respaldo: 'AFCademIA · startup certificada por ENISA',
