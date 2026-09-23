@@ -20,10 +20,25 @@ export const CURSO = {
  * Cada uno va partido en dos: la frase en naranja y la marca en blanco.
  */
 export const SELLOS = [
-  // En el mismo orden que los logos de arriba: ENISA a la izquierda, FUNDAE
-  // a la derecha.
-  { etiqueta: 'Startup certificada por', marca: 'ENISA' },
-  { etiqueta: 'Bonificable por', marca: 'FUNDAE' },
+  // Las webs son las oficiales, comprobadas el 23 de septiembre de 2026.
+  {
+    etiqueta: 'Startup certificada por',
+    marca: 'ENISA',
+    url: 'https://www.enisa.es',
+    logo: '/sello-enisa.png',
+    alt: 'AFCademIA, startup certificada por ENISA. Empresa emergente, Ley 28/2022',
+    ancho: 320,
+    alto: 320,
+  },
+  {
+    etiqueta: 'Bonificable por',
+    marca: 'FUNDAE',
+    url: 'https://www.fundae.es',
+    logo: '/logo-fundae.png',
+    alt: 'Fundación Estatal para la Formación en el Empleo',
+    ancho: 414,
+    alto: 64,
+  },
 ]
 
 export const CIFRAS = [

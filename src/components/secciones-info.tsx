@@ -170,6 +170,11 @@ export function Preguntas() {
   )
 }
 
+const TAMANO_SELLO: Record<string, string> = {
+  ENISA: 'h-[54px] w-[54px]',
+  FUNDAE: 'h-auto w-[140px]',
+}
+
 export function Matricula() {
   const { precio, precioNota } = CONVERSION
 
@@ -227,27 +232,40 @@ export function Matricula() {
                 Acreditaciones
               </p>
               <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 rounded-lg bg-card px-6 py-5">
-                <Image
-                  src="/sello-enisa.png"
-                  alt="AFCademIA, startup certificada por ENISA. Empresa emergente, Ley 28/2022"
-                  width={320}
-                  height={320}
-                  className="h-[54px] w-[54px]"
-                />
-                <Image
-                  src="/logo-fundae.png"
-                  alt="Fundación Estatal para la Formación en el Empleo"
-                  width={414}
-                  height={64}
-                  className="h-auto w-[140px]"
-                />
+                {SELLOS.map((s) => (
+                  // El logo y su leyenda llevan al mismo sitio. Este no entra
+                  // por teclado ni lo lee el lector: basta con el de abajo.
+                  <a
+                    key={s.marca}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                  >
+                    <Image
+                      src={s.logo}
+                      alt={s.alt}
+                      width={s.ancho}
+                      height={s.alto}
+                      className={TAMANO_SELLO[s.marca]}
+                    />
+                  </a>
+                ))}
               </div>
 
               <ul className="mt-5 list-none">
                 {SELLOS.map((s) => (
                   <li key={s.marca} className="mt-1.5 text-[14px] font-bold first:mt-0">
-                    <span className="text-[#FFB36B]">{s.etiqueta}</span>{' '}
-                    <span className="text-white">{s.marca}</span>
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-[2px] underline decoration-white/25 underline-offset-[5px] transition-colors hover:decoration-white/70"
+                    >
+                      <span className="text-[#FFB36B]">{s.etiqueta}</span>{' '}
+                      <span className="text-white">{s.marca}</span>
+                    </a>
                   </li>
                 ))}
               </ul>
