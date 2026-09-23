@@ -42,18 +42,23 @@ export const SELLOS = [
 ]
 
 /**
- * Los cinco circuitos no son un ejercicio de clase: trabajan cada día en la
- * gestión de Roberto, que es de donde salió el itinerario. Es el mismo hecho
- * que cuenta su biografía, dicho en un número.
+ * DOS DE LAS CUATRO ESTÁN PENDIENTES DE UN NÚMERO REAL.
  *
- * PENDIENTE: el 143 lo dijo Manel de memoria el 23 de septiembre de 2026,
- * dudando él mismo. Hay que contarlo en la matrícula de la edición anterior
- * antes de publicar.
+ * El 143 lo dijo Manel de memoria el 23 de septiembre de 2026, dudando él
+ * mismo: hay que contarlo en la matrícula de la edición anterior.
+ *
+ * Las administraciones van en 00 hasta que alguien las cuente. Es un hueco a
+ * la vista a propósito: esa cifra la comprueba cualquiera que llame al
+ * despacho, y si no cuadra no se cae el número, se cae la página entera.
+ *
+ * Los cinco flujos sí son un hecho: trabajan cada día en la gestión de
+ * Roberto, que es de donde salió el itinerario, y así lo cuenta su
+ * biografía.
  */
 export const CIFRAS = [
   { valor: '143', etiqueta: 'matriculados en la edición anterior' },
-  { valor: '5', etiqueta: 'circuitos funcionando en un despacho real' },
-  { valor: '30', etiqueta: 'unidades, a tu ritmo' },
+  { valor: '00', etiqueta: 'administraciones de fincas' },
+  { valor: '5', etiqueta: 'flujos funcionando en un despacho real' },
   { valor: '54 h', etiqueta: 'bonificables por FUNDAE' },
 ]
 
