@@ -15,39 +15,57 @@ export function Problema() {
           <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-amber uppercase">
             El punto de partida
           </p>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(28px,4.4vw,44px)] leading-[1.1] font-extrabold tracking-[-0.025em] text-ink">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(28px,4.4vw,44px)] leading-[1.08] font-extrabold tracking-[-0.025em] text-ink">
             {PARTIDA.titulo}
           </h2>
         </div>
 
-        <ul className="mt-11 grid list-none gap-x-8 gap-y-7 md:grid-cols-3">
+        {/* Filas apiladas con el número en grande: da ritmo de lectura y no
+            repite el patrón de filetes que usan las demás secciones. */}
+        <ol className="mt-12 grid list-none">
           {PARTIDA.casos.map((c, i) => (
-            <li key={c} style={cascada(i, 90)} className="reveal border-l-2 border-amber pl-4">
-              <p className="text-[15.5px] leading-[1.6] text-body">{c}</p>
+            <li
+              key={c}
+              style={cascada(i, 90)}
+              className="reveal flex flex-wrap items-baseline gap-x-7 gap-y-2 border-t border-line py-6 last:border-b"
+            >
+              <span
+                aria-hidden="true"
+                className="w-[2.5ch] shrink-0 font-mono text-[clamp(20px,2.6vw,28px)] leading-none font-bold text-amber tabular-nums"
+              >
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <p className="max-w-[62ch] flex-1 text-[clamp(16px,1.9vw,19px)] leading-[1.5] text-body">
+                {c}
+              </p>
             </li>
           ))}
-        </ul>
+        </ol>
 
-        <p className="reveal mt-11 max-w-[52ch] text-[clamp(17px,2vw,21px)] leading-[1.45] font-bold text-navy">
+        <p className="reveal mt-12 max-w-[26ch] text-[clamp(23px,3.4vw,34px)] leading-[1.15] font-extrabold tracking-[-0.025em] text-navy">
           {PARTIDA.cierre}
         </p>
 
         {/* Lo que ya se ha probado va aquí y no en una sección aparte: es la
-            segunda mitad de la misma idea. */}
-        <div className="reveal mt-14 border-t border-line pt-9">
-          <h3 className="text-[clamp(18px,2.1vw,22px)] font-extrabold tracking-[-0.02em] text-navy">
+            segunda mitad de la misma idea, y en apunte para que no compita
+            con el problema. */}
+        <div className="reveal mt-16 rounded-xl border border-line bg-card px-7 py-7 sm:px-9">
+          <h3 className="font-mono text-[11px] font-semibold tracking-[0.16em] text-muted uppercase">
             {INTENTOS.titulo}
           </h3>
-          <ul className="mt-6 grid list-none gap-x-8 gap-y-5 sm:grid-cols-3">
-            {INTENTOS.lista.map((t, i) => (
-              <li key={t.titulo} style={cascada(i, 80)} className="reveal border-l-2 border-amber pl-4">
-                <b className="block text-[14.5px] font-bold text-ink">{t.titulo}</b>
-                <span className="mt-1 block text-[13.5px] leading-[1.5] text-muted">{t.texto}</span>
+          <ul className="mt-5 grid list-none gap-x-10 gap-y-3.5 lg:grid-cols-3">
+            {INTENTOS.lista.map((t) => (
+              <li key={t.titulo} className="flex gap-3 text-[14.5px] leading-[1.5]">
+                <span aria-hidden="true" className="mt-px shrink-0 font-mono text-amber">
+                  ✕
+                </span>
+                <span className="text-muted">
+                  <b className="font-bold text-ink">{t.titulo}.</b> {t.texto}
+                </span>
               </li>
             ))}
           </ul>
         </div>
-
       </div>
     </section>
   )
