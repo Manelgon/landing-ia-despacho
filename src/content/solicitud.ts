@@ -8,9 +8,9 @@
 
 export const FILTRO = {
   eyebrow: 'Último paso',
-  titulo: 'Solicita tu diagnóstico de despacho',
+  titulo: 'Solicita el diagnóstico de tu despacho',
   entradilla:
-    'Siete preguntas, dos minutos. Si encaja, te escribimos con los siguientes pasos. Si no encaja, te lo decimos igual y no te hacemos perder el tiempo.',
+    'Siete preguntas, dos minutos. Si encaja, te escribimos con los siguientes pasos.',
   boton: 'Enviar la solicitud',
   enviando: 'Enviando…',
   exito: {

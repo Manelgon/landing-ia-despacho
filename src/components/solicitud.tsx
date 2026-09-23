@@ -122,7 +122,7 @@ export function Solicitud() {
       <div
         ref={contenedor}
         key={paso}
-        className="mt-10 min-h-[260px] motion-safe:animate-[aparecer_.35s_ease-out]"
+        className="mt-7 min-h-[260px] motion-safe:animate-[aparecer_.35s_ease-out]"
       >
         {esPrimero ? (
           <>

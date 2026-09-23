@@ -197,7 +197,9 @@ export function Matricula() {
                 <p className="mt-5 text-[clamp(40px,6vw,56px)] leading-none font-extrabold tracking-[-0.035em] text-white">
                   {precio}
                 </p>
-                <p className="mt-3.5 font-mono text-[12.5px] text-white/70">{precioNota}</p>
+                {precioNota ? (
+                  <p className="mt-3.5 font-mono text-[12.5px] text-white/70">{precioNota}</p>
+                ) : null}
               </>
             ) : (
               <p className="mt-5 max-w-[30ch] text-[19px] leading-snug font-bold text-white/60">
@@ -216,6 +218,14 @@ export function Matricula() {
                 </li>
               ))}
             </ul>
+
+            <p className="mt-7 border-t border-white/15 pt-6 text-[14px] leading-[1.6] font-bold text-white">
+              {BONIFICACION.titulo}
+            </p>
+
+            <p className="mt-5 font-mono text-[11.5px] leading-relaxed tracking-[0.02em] text-white/60">
+              {CURSO.bajoBoton}
+            </p>
           </div>
         </div>
 
@@ -229,18 +239,6 @@ export function Matricula() {
           </p>
           <Solicitud />
         </div>
-      </div>
-
-      {/* Pie de la sección: cruza las dos columnas, así que el aviso de FUNDAE
-          se lee entero en una línea en vez de partirse en la media columna. */}
-      <div className="reveal mt-14 border-t border-line pt-7">
-        <p className="text-[14.5px] leading-[1.6]">
-          <b className="font-bold text-ink">{BONIFICACION.titulo}.</b>{' '}
-          <span className="text-muted">{BONIFICACION.texto}</span>
-        </p>
-        <p className="mt-4 font-mono text-[12px] leading-relaxed tracking-[0.02em] text-muted">
-          {CURSO.bajoBoton}
-        </p>
       </div>
     </Seccion>
   )
