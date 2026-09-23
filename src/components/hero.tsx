@@ -34,8 +34,12 @@ export function Hero() {
               {CURSO.nombre}
             </h1>
 
-            <p className="mt-6 max-w-[50ch] text-[clamp(16.5px,2.1vw,20px)] leading-[1.6] text-body">
-              {CURSO.claim}
+            <p className="mt-6 max-w-[46ch] text-[clamp(17px,2.2vw,21px)] leading-[1.5] font-bold text-ink">
+              {CURSO.claim.para}
+            </p>
+
+            <p className="mt-4 max-w-[50ch] text-[clamp(16px,2vw,19px)] leading-[1.6] text-body">
+              {CURSO.claim.resultado}
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-3">

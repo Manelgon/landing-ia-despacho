@@ -8,8 +8,18 @@ export const CURSO = {
   nombre: 'IA para el Despacho',
   subtitulo: 'De la primera petición a los circuitos que trabajan solos',
   eyebrow: 'Itinerario online · a tu ritmo',
-  claim:
-    'De la primera petición a los circuitos que trabajan solos. Empiezas sin saber nada y terminas con cinco tareas del despacho que ya no toca nadie.',
+  /**
+   * El claim va en dos partes: primero a quién va dirigido, que es lo que
+   * pidió Roberto para filtrar antes de que nadie rellene nada, y después
+   * lo que se lleva. El rango de comunidades lo fijó Manel el 23 de
+   * septiembre de 2026 y es el mismo que separa las opciones útiles de la
+   * primera pregunta del formulario.
+   */
+  claim: {
+    para: 'Programa de implementación para administradores que gestionan entre 20 y 120 comunidades.',
+    resultado:
+      'Empiezas sin saber nada y terminas con cinco tareas del despacho que ya no toca nadie.',
+  },
   bajoBoton: 'Sin plazos · tutoría por correo con el docente · certificado al superarlo',
   respaldo: 'AFCademIA · startup certificada por ENISA',
 }
