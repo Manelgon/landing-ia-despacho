@@ -105,8 +105,8 @@ export function Solicitud() {
   }
 
   return (
-    <div className="mt-10">
-      {/* Cuánto queda */}
+    <div className="mt-7">
+      {/* Cuánto queda: el mismo aire arriba y abajo de la barra */}
       <div className="flex items-center gap-4">
         <div className="h-[3px] flex-1 overflow-hidden rounded-full bg-line">
           <div
