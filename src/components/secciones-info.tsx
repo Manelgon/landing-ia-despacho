@@ -172,7 +172,7 @@ const TAMANO_SELLO: Record<string, string> = {
 }
 
 export function Matricula() {
-  const { precio, precioNota } = CONVERSION
+  const { precio, precioNota, plazas } = CONVERSION
 
   const incluye = [
     '30 unidades y 54 horas',
@@ -277,6 +277,18 @@ export function Matricula() {
           <p className="mt-4 max-w-[52ch] text-[16px] leading-[1.6] text-muted">
             {FILTRO.entradilla}
           </p>
+
+          {/* El tope de plazas. Si nadie lleva la cuenta al día, se dice
+              cuántas tiene la tanda y no cuántas quedan. */}
+          {plazas.porTanda ? (
+            <p className="mt-5 inline-flex items-center gap-2.5 rounded-full bg-amber-soft py-2 pr-5 pl-4 text-[14px] font-bold text-aviso-texto">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
+              {plazas.quedan
+                ? `Quedan ${plazas.quedan} plazas en esta tanda`
+                : `${plazas.porTanda} plazas por tanda`}
+            </p>
+          ) : null}
+
           <Solicitud />
         </div>
       </div>

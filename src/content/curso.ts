@@ -71,6 +71,26 @@ export const DOLORES = [
   },
 ]
 
+/**
+ * El único dato de fuera que sale en la página. Leído en la fuente el 23 de
+ * septiembre de 2026, no en un resumen de nadie: blog del Banco Central
+ * Europeo del 26 de agosto de 2026, firmado por António Dias da Silva,
+ * Laura Lebastard y David Sondermann, sobre su Consumer Expectations Survey
+ * (unas 20.000 personas al mes en once países del euro).
+ *
+ * La cifra es la mediana de quien ya usa IA en su trabajo: tres horas a la
+ * semana, un 7,7 % de la jornada. No se promete que sea lo que va a pasar en
+ * un despacho concreto, porque el estudio no dice eso.
+ */
+export const DATO = {
+  cifra: '3 h',
+  unidad: 'a la semana',
+  texto:
+    'Es lo que recupera, de media, quien ya usa inteligencia artificial en su trabajo. En un despacho esas horas están repartidas por el correo, las llamadas y el archivo.',
+  fuente: 'Banco Central Europeo, agosto de 2026',
+  url: 'https://www.ecb.europa.eu/press/blog/date/2026/html/ecb.blog20260826~e1c1a89999.en.html',
+}
+
 export const CIRCUITOS = [
   {
     n: 'Circuito 1',
@@ -101,7 +121,7 @@ export const CIRCUITOS = [
     titulo: 'Las facturas que llegan',
     texto:
       'Las facturas de proveedor que entran por correo se descargan solas y se guardan con un nombre que dice de quién son.',
-    para: 'En Make y en Power Automate',
+    para: 'Cada factura, con su nombre',
     imagen: '/circuitos/circuito-04-facturas-fondo.webp',
   },
   {
@@ -123,10 +143,10 @@ export const BLOQUES = [
       'Qué se le puede pedir a la inteligencia artificial en un despacho y qué no. Sales con una biblioteca de prompts, un proyecto montado y un asistente propio, y sin haber automatizado nada todavía.',
     unidades: [
       'IA práctica para la administración de fincas',
-      'ChatGPT en el despacho',
+      'El asistente de IA en el despacho',
       'Pedir bien: el prompt',
-      'Proyectos de ChatGPT',
-      'Tu propio GPT',
+      'Un espacio de trabajo por tarea',
+      'Tu propio asistente a medida',
     ],
   },
   {
@@ -134,13 +154,13 @@ export const BLOQUES = [
     titulo: 'Las cuentas y las conexiones',
     horas: '5 h',
     texto:
-      'Cinco unidades cortas que preparan el terreno: la cuenta de pruebas, la cuenta de Make y los permisos de Google y de la inteligencia artificial. Se hacen una sola vez y sirven para todos los circuitos que vienen después.',
+      'Cinco unidades cortas que preparan el terreno: la cuenta de pruebas, la de la plataforma de automatización y los permisos del correo y de la inteligencia artificial. Se hacen una sola vez y sirven para todos los circuitos que vienen después.',
     unidades: [
       'Crear la cuenta de correo',
-      'Crear la cuenta de Make',
-      'Conectar la cuenta de Gmail',
-      'Las demás conexiones de Google',
-      'Conectar la IA con una API key',
+      'Crear la cuenta de la plataforma de automatización',
+      'Conectar el correo del despacho',
+      'Conectar el calendario y los documentos',
+      'Dejar la inteligencia artificial conectada',
     ],
   },
   {
@@ -168,7 +188,7 @@ export const BLOQUES = [
     titulo: 'Los documentos y las facturas',
     horas: '8 h',
     texto:
-      'Lo que sale del despacho y lo que entra. La última unidad monta la misma tarea en Power Automate, para poder comparar con criterio.',
+      'Lo que sale del despacho y lo que entra. La última unidad monta la misma tarea con la otra herramienta del mercado, para poder comparar con criterio.',
     unidades: [
       'El generador de documentos por dentro',
       'Las plantillas, los PDF y el correo',
@@ -182,7 +202,7 @@ export const BLOQUES = [
     horas: '5 h',
     texto: 'Lo que decide si dentro de seis meses los circuitos siguen encendidos.',
     unidades: [
-      'Leer un escenario y sus errores',
+      'Leer un circuito y sus errores',
       'De quién responde la IA',
       'Que no se caiga: pruebas, averías y rutina',
     ],
@@ -192,9 +212,9 @@ export const BLOQUES = [
     titulo: 'El gestor documental',
     horas: '12 h',
     texto:
-      'El quinto circuito, y el único que no vive en el navegador. Es el bloque con más montaje del itinerario: dos horas y diecisiete minutos de clase grabada, acción por acción. Necesita Windows con Excel y Power Automate Desktop.',
+      'El quinto circuito, y el único que no vive en el navegador. Es el bloque con más montaje del itinerario: dos horas y diecisiete minutos de clase grabada, acción por acción.',
     unidades: [
-      'Qué vas a montar y con qué',
+      'Qué vas a montar',
       'Los datos y la interfaz',
       'Leer lo que ya tienes',
       'El bucle grande',
@@ -265,19 +285,19 @@ export const REQUISITOS = {
       bloque: 'Bloques 1 a 6',
       detalle: 'unidades 1-24',
       texto:
-        'Un navegador y una cuenta de correo del despacho. Las demás no hay que traerlas hechas: el curso enseña a crear paso a paso la de Gmail de pruebas, la de Make y la clave de la inteligencia artificial, en el bloque 2, y sus planes gratuitos bastan.',
+        'Un navegador y una cuenta de correo del despacho. Las demás no hay que traerlas hechas: el curso enseña a crear paso a paso la de pruebas, la de la plataforma de automatización y la de la inteligencia artificial, y sus planes gratuitos bastan.',
     },
     {
       bloque: 'Unidad 21',
-      detalle: 'Power Automate',
+      detalle: 'la otra herramienta',
       texto:
-        'Microsoft 365 de pago. Sin él la unidad se sigue viendo: lo que te llevas es el criterio para elegir entre Make y Power Automate, no el montaje.',
+        'Microsoft 365 de pago. Sin él la unidad se sigue viendo: lo que te llevas es el criterio para elegir entre una herramienta y otra, no el montaje.',
     },
     {
       bloque: 'Bloque 7',
       detalle: 'unidades 25-30',
       texto:
-        'Windows con Excel instalado y Power Automate Desktop, que es un programa que se instala en el ordenador.',
+        'Windows con Excel instalado, y un programa de Microsoft que se instala en el ordenador. No sirve un Mac para este bloque.',
     },
   ],
 }

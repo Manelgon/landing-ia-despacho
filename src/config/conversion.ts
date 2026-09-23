@@ -24,6 +24,20 @@ export const CONVERSION = {
   /** Lo que va debajo del precio. Vacío para no poner nada. */
   precioNota: '',
 
+  /**
+   * Plazas por tanda. Manel confirmó el 23 de septiembre de 2026 que el tope
+   * es real y que se cuenta por tandas.
+   *
+   * `quedan` solo se escribe si alguien lleva la cuenta de verdad. Mientras
+   * esté en null, la página dice cuántas plazas tiene cada tanda y no
+   * inventa un contador: un "quedan cuatro" que no se corresponde con nada
+   * es publicidad engañosa, y además lo desmiente la propia página.
+   */
+  plazas: {
+    porTanda: 150 as number | null,
+    quedan: null as number | null,
+  },
+
   stripe: {
     enlace: '',
     textoBoton: 'Matricularme ahora',
