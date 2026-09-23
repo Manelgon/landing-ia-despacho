@@ -121,29 +121,6 @@ export const INTENTOS = {
   ],
 }
 
-export const DOLORES = [
-  {
-    titulo: 'El correo',
-    texto: 'Clasificar mensajes, buscar el contexto y redactar respuestas parecidas una y otra vez.',
-  },
-  {
-    titulo: 'Las llamadas',
-    texto: 'Escuchar el audio, resumir lo hablado y repartir las tareas que salen de cada conversación.',
-  },
-  {
-    titulo: 'Los documentos',
-    texto: 'Preparar certificados y facturas, exportarlos a PDF, enviarlos y guardarlos en su carpeta.',
-  },
-  {
-    titulo: 'Las facturas de proveedor',
-    texto: 'Descargar las que llegan por correo, ponerles un nombre útil y archivarlas donde toca.',
-  },
-  {
-    titulo: 'El archivo',
-    texto: 'Abrir archivos como 1776150000242.pdf para averiguar a qué comunidad y proveedor pertenecen.',
-  },
-]
-
 export const CIRCUITOS = [
   {
     n: 'Flujo 1',

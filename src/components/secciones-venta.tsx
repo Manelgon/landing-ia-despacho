@@ -1,4 +1,4 @@
-import { PARTIDA, INTENTOS, DOLORES, CIRCUITOS, REGLA, BLOQUES, ESTUDIO, REQUISITOS } from '@/content/curso'
+import { PARTIDA, INTENTOS, CIRCUITOS, REGLA, BLOQUES, ESTUDIO, REQUISITOS } from '@/content/curso'
 import { Seccion, Titulo } from './ui'
 
 const iconosFlujo = ['correo', 'llamadas', 'documentos', 'facturas', 'archivo']
@@ -32,25 +32,6 @@ export function Problema() {
           {PARTIDA.cierre}
         </p>
 
-        <div className="reveal mt-14 border-t border-line pt-7">
-          <p className="font-mono text-[11px] font-semibold tracking-[0.14em] text-amber uppercase">
-            Cinco puntos donde empezar
-          </p>
-          {/* Los cinco se reparten de extremo a extremo, para que la fila mida
-              lo mismo que el titular y el texto de arriba. */}
-          <p className="mt-4 flex flex-wrap items-baseline justify-center gap-x-5 gap-y-2 text-[clamp(15px,1.7vw,18px)] font-bold text-navy md:justify-between md:gap-x-4">
-            {DOLORES.map((d, i) => (
-              <span key={d.titulo} className="contents">
-                <span>{d.titulo}</span>
-                {i < DOLORES.length - 1 ? (
-                  <span className="text-amber" aria-hidden="true">
-                    /
-                  </span>
-                ) : null}
-              </span>
-            ))}
-          </p>
-        </div>
       </div>
     </section>
   )
