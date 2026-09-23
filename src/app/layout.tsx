@@ -18,7 +18,9 @@ export const metadata: Metadata = {
     locale: 'es_ES',
     type: 'website',
   },
-  icons: { icon: '/icono-afcademia.webp' },
+  // El icono anterior tenía la casa en blanco crema: sobre la pestaña del
+  // navegador solo se veía el trazo naranja suelto.
+  icons: { icon: '/simbolo-afcademia.png' },
 }
 
 export const viewport = {

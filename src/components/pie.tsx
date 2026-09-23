@@ -65,13 +65,25 @@ export function Pie() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.1fr] md:gap-10">
           {/* Marca */}
           <div>
-            <Image
-              src="/logo-afcademia-negativo.png"
-              alt="AFCademIA"
-              width={2092}
-              height={410}
-              className="h-auto w-[168px]"
-            />
+            {/* Símbolo y logotipo juntos: el símbolo solo no dice el nombre,
+                y el logotipo solo pierde la casa, que es lo que se reconoce. */}
+            <div className="flex items-center gap-4">
+              <Image
+                src="/simbolo-afcademia-negativo.png"
+                alt=""
+                width={500}
+                height={500}
+                aria-hidden="true"
+                className="h-[42px] w-[42px] shrink-0"
+              />
+              <Image
+                src="/logo-afcademia-negativo.png"
+                alt="AFCademIA"
+                width={2092}
+                height={410}
+                className="h-auto w-[150px]"
+              />
+            </div>
             <p className="mt-6 max-w-[38ch] text-[14.5px] leading-[1.65] text-white/70">
               La academia tecnológica para administradores de fincas. Aprende a automatizar procesos
               reales, optimizar tu tiempo y liderar la era digital en la gestión de comunidades.
