@@ -196,11 +196,12 @@ export function Temario() {
           ))}
         </ul>
 
-        <h3 className="mt-11 text-[clamp(18px,2.1vw,22px)] font-extrabold tracking-[-0.02em] text-navy">
-          {REQUISITOS.titulo}
-        </h3>
-        <p className="mt-2.5 max-w-[56ch] text-[15px] leading-[1.6] text-body">{REQUISITOS.intro}</p>
-        <ul className="mt-6 grid list-none gap-x-8 gap-y-5 sm:grid-cols-3">
+        {/* Lo que hace falta va debajo del formato y sin titular propio: es
+            la misma respuesta, cómo se estudia esto y con qué. */}
+        <p className="reveal mt-9 border-t border-line pt-7 text-[15px] leading-[1.6] font-bold text-ink">
+          {REQUISITOS.intro}
+        </p>
+        <ul className="mt-5 grid list-none gap-x-8 gap-y-5 sm:grid-cols-3">
           {REQUISITOS.filas.map((f, i) => (
             <li key={f.bloque} style={cascada(i, 70)} className="reveal">
               <p className="font-mono text-[11px] font-semibold tracking-[0.12em] text-navy uppercase">
