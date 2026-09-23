@@ -1,4 +1,4 @@
-import { DOLORES, CIRCUITOS, REGLA, BLOQUES, ESTUDIO, REQUISITOS } from '@/content/curso'
+import { PARTIDA, INTENTOS, DOLORES, CIRCUITOS, REGLA, BLOQUES, ESTUDIO, REQUISITOS } from '@/content/curso'
 import { Seccion, Titulo } from './ui'
 
 const iconosFlujo = ['correo', 'llamadas', 'documentos', 'facturas', 'archivo']
@@ -11,21 +11,28 @@ export function Problema() {
   return (
     <section className="bg-paper py-24 sm:py-28">
       <div className="mx-auto w-full max-w-[1060px] px-5 sm:px-8">
-        <div className="grid gap-8 md:grid-cols-[0.95fr_1.05fr] md:items-end md:gap-14">
-          <div className="reveal">
-            <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-amber uppercase">
-              El punto de partida
-            </p>
-            <h2 className="mt-5 max-w-[18ch] text-[clamp(28px,4.4vw,44px)] leading-[1.1] font-extrabold tracking-[-0.025em] text-ink">
-              El día se va en lo que se repite.
-            </h2>
-          </div>
-          <p className="reveal max-w-[50ch] text-[clamp(17px,2vw,21px)] leading-[1.6] text-body">
-            Correos que clasificar. Llamadas que resumir. Documentos y facturas que preparar o archivar. Cada tarea es pequeña; juntas ocupan el día.
+        <div className="reveal">
+          <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-amber uppercase">
+            El punto de partida
           </p>
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(28px,4.4vw,44px)] leading-[1.1] font-extrabold tracking-[-0.025em] text-ink">
+            {PARTIDA.titulo}
+          </h2>
         </div>
 
-        <div className="reveal mt-16 border-t border-line pt-7">
+        <ul className="mt-11 grid list-none gap-x-8 gap-y-7 md:grid-cols-3">
+          {PARTIDA.casos.map((c, i) => (
+            <li key={c} style={cascada(i, 90)} className="reveal border-l-2 border-amber pl-4">
+              <p className="text-[15.5px] leading-[1.6] text-body">{c}</p>
+            </li>
+          ))}
+        </ul>
+
+        <p className="reveal mt-11 max-w-[52ch] text-[clamp(17px,2vw,21px)] leading-[1.45] font-bold text-navy">
+          {PARTIDA.cierre}
+        </p>
+
+        <div className="reveal mt-14 border-t border-line pt-7">
           <p className="font-mono text-[11px] font-semibold tracking-[0.14em] text-amber uppercase">
             Cinco puntos donde empezar
           </p>
@@ -44,9 +51,37 @@ export function Problema() {
             ))}
           </p>
         </div>
-
       </div>
     </section>
+  )
+}
+
+/**
+ * Las tres salidas que ya se han probado. Va justo después del punto de
+ * partida: primero el problema, después por qué sigue ahí.
+ */
+export function Intentos() {
+  return (
+    <Seccion alterna>
+      <Titulo eyebrow={INTENTOS.eyebrow}>{INTENTOS.titulo}</Titulo>
+
+      <ol className="mt-12 grid list-none gap-x-8 gap-y-9 md:grid-cols-3">
+        {INTENTOS.lista.map((t, i) => (
+          <li key={t.titulo} style={cascada(i, 90)} className="reveal">
+            <span
+              aria-hidden="true"
+              className="font-mono text-[13px] tracking-[0.1em] text-amber tabular-nums"
+            >
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <b className="mt-3 block text-[clamp(17px,2vw,20px)] leading-snug font-extrabold tracking-[-0.015em] text-navy">
+              {t.titulo}
+            </b>
+            <p className="mt-2.5 text-[14.5px] leading-[1.6] text-muted">{t.texto}</p>
+          </li>
+        ))}
+      </ol>
+    </Seccion>
   )
 }
 

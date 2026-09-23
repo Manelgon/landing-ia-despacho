@@ -76,6 +76,51 @@ export const CIFRAS = [
   { valor: '54 h', etiqueta: 'bonificables por FUNDAE' },
 ]
 
+/**
+ * El punto de partida, en el tono que pidió Roberto: no la lista de tareas,
+ * sino el lunes por la mañana de un despacho.
+ *
+ * Los tres casos son los que resuelven los flujos del itinerario. No se
+ * habla de actas ni de morosidad, que están en el modelo que pasó Roberto
+ * pero no en este curso.
+ */
+export const PARTIDA = {
+  titulo: 'Sabes que no es normal vaciar la bandeja un domingo por la noche',
+  casos: [
+    'Correos casi idénticos que se contestan uno a uno: el mismo asunto, otro propietario, otra vez desde cero.',
+    'Llamadas que hay que volver a escuchar para escribir el resumen y repartir lo que salió de ellas.',
+    'Facturas que llegan con nombres como 1776150000242.pdf, y hay que abrirlas una a una para saber de qué comunidad son.',
+  ],
+  cierre: 'Y sabes que si algo se pierde por el camino, la responsabilidad es tuya.',
+}
+
+/**
+ * Las tres salidas que ya ha probado cualquiera que lleve un despacho, y por
+ * qué ninguna cierra el problema. Ninguna menciona marcas: ni el chat que se
+ * probó ni el programa de gestión que se cambió.
+ */
+export const INTENTOS = {
+  eyebrow: 'Lo que ya has probado',
+  titulo: 'Por qué no te ha funcionado hasta ahora',
+  lista: [
+    {
+      titulo: 'Probaste un chat de inteligencia artificial',
+      texto:
+        'Sirve para redactar un párrafo suelto. Se queda corto cuando hay que leer la bandeja entera, decidir qué es cada cosa y dejarla archivada donde toca.',
+    },
+    {
+      titulo: 'Cambiaste de programa',
+      texto:
+        'El programa nuevo hereda el proceso viejo. Alguien sigue copiando datos de una pantalla a otra.',
+    },
+    {
+      titulo: 'Contrataste a alguien',
+      texto:
+        'Mueve el cuello de botella, no lo quita. Vuelve a aparecer en la siguiente punta de trabajo.',
+    },
+  ],
+}
+
 export const DOLORES = [
   {
     titulo: 'El correo',
