@@ -41,11 +41,20 @@ export const SELLOS = [
   },
 ]
 
+/**
+ * PENDIENTE: el 143 lo dijo Manel de memoria el 23 de septiembre de 2026 y
+ * él mismo dudaba. Hay que confirmarlo contra la matrícula de la edición
+ * anterior antes de publicar la página. Si no sale ese número, se cambia por
+ * el que sea; lo que no puede es salir a internet un número a ojo.
+ *
+ * Falta también el número de administraciones distintas, que sería mejor
+ * cifra que las 30 unidades. Cuando se sepa, entra en el hueco 2.
+ */
 export const CIFRAS = [
+  { valor: '143', etiqueta: 'matriculados en la edición anterior' },
   { valor: '5', etiqueta: 'tareas que dejan de pasar por ti' },
   { valor: '30', etiqueta: 'unidades, a tu ritmo' },
   { valor: '54 h', etiqueta: 'bonificables por FUNDAE' },
-  { valor: '6 h 35', etiqueta: 'de montaje en vídeo' },
 ]
 
 export const DOLORES = [
