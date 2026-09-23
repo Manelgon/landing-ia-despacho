@@ -24,3 +24,25 @@ descubre el límite en la unidad 25 pide la devolución, y con razón. El
 requisito sigue escrito en la página, en la fila del bloque 7 del cuadro
 de requisitos ("Windows con Excel instalado y Power Automate Desktop"),
 pero ya no se subraya en un aviso aparte.
+
+## 2. El dato del Banco Central Europeo
+
+Estuvo unas horas al final de la sección "El día se va en lo que se
+repite". Manel lo quitó el 23 de septiembre de 2026.
+
+> **3 h a la semana.** Es lo que recupera, de media, quien ya usa
+> inteligencia artificial en su trabajo. En un despacho esas horas están
+> repartidas por el correo, las llamadas y el archivo.
+>
+> Fuente: Banco Central Europeo, agosto de 2026.
+
+La cifra está comprobada en la fuente, no en un resumen: blog del BCE del
+26 de agosto de 2026, firmado por António Dias da Silva, Laura Lebastard y
+David Sondermann, sobre su Consumer Expectations Survey (unas 20.000
+personas al mes en once países del euro). Dice que el usuario mediano
+ahorra tres horas por semana, un 7,7 % de la jornada.
+
+https://www.ecb.europa.eu/press/blog/date/2026/html/ecb.blog20260826~e1c1a89999.en.html
+
+Sirve si algún día hace falta un dato de fuera para la charla de Roberto,
+un webinar o la ficha del producto.

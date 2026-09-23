@@ -71,26 +71,6 @@ export const DOLORES = [
   },
 ]
 
-/**
- * El único dato de fuera que sale en la página. Leído en la fuente el 23 de
- * septiembre de 2026, no en un resumen de nadie: blog del Banco Central
- * Europeo del 26 de agosto de 2026, firmado por António Dias da Silva,
- * Laura Lebastard y David Sondermann, sobre su Consumer Expectations Survey
- * (unas 20.000 personas al mes en once países del euro).
- *
- * La cifra es la mediana de quien ya usa IA en su trabajo: tres horas a la
- * semana, un 7,7 % de la jornada. No se promete que sea lo que va a pasar en
- * un despacho concreto, porque el estudio no dice eso.
- */
-export const DATO = {
-  cifra: '3 h',
-  unidad: 'a la semana',
-  texto:
-    'Es lo que recupera, de media, quien ya usa inteligencia artificial en su trabajo. En un despacho esas horas están repartidas por el correo, las llamadas y el archivo.',
-  fuente: 'Banco Central Europeo, agosto de 2026',
-  url: 'https://www.ecb.europa.eu/press/blog/date/2026/html/ecb.blog20260826~e1c1a89999.en.html',
-}
-
 export const CIRCUITOS = [
   {
     n: 'Circuito 1',

@@ -1,4 +1,4 @@
-import { DOLORES, DATO, CIRCUITOS, REGLA, BLOQUES } from '@/content/curso'
+import { DOLORES, CIRCUITOS, REGLA, BLOQUES } from '@/content/curso'
 import { Seccion, Titulo } from './ui'
 
 const iconosCircuito = ['correo', 'llamadas', 'documentos', 'facturas', 'archivo']
@@ -45,30 +45,6 @@ export function Problema() {
           </p>
         </div>
 
-        {/* El único dato de fuera de la casa, con su fuente a un clic. */}
-        <div className="reveal mt-14 grid gap-6 border-t border-line pt-10 sm:grid-cols-[auto_1fr] sm:items-baseline sm:gap-10">
-          <p className="text-[clamp(44px,6vw,64px)] leading-none font-extrabold tracking-[-0.04em] text-navy">
-            {DATO.cifra}
-            <span className="mt-2 block font-mono text-[12px] font-semibold tracking-[0.14em] text-muted uppercase">
-              {DATO.unidad}
-            </span>
-          </p>
-          <div>
-            <p className="max-w-[54ch] text-[clamp(16px,1.8vw,19px)] leading-[1.6] text-body">
-              {DATO.texto}
-            </p>
-            <p className="mt-4 font-mono text-[11.5px] tracking-[0.06em] text-muted">
-              <a
-                href={DATO.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline decoration-line underline-offset-[5px] transition-colors hover:decoration-amber"
-              >
-                {DATO.fuente}
-              </a>
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   )
