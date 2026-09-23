@@ -2,6 +2,8 @@ import Image from 'next/image'
 import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, CURSO, BONIFICACION } from '@/content/curso'
 import { CONVERSION } from '@/config/conversion'
 import { Cta } from './cta'
+import { Solicitud } from './solicitud'
+import { FILTRO } from '@/content/solicitud'
 import { Seccion, Titulo, Eyebrow, Filete } from './ui'
 
 const cascada = (i: number, paso = 70) => ({ '--reveal-delay': `${i * paso}ms` }) as React.CSSProperties
@@ -231,6 +233,17 @@ export function Matricula() {
         </p>
         <p className="font-mono text-[12.5px] tracking-[0.02em] text-muted">{CURSO.bajoBoton}</p>
       </div>
+    </Seccion>
+  )
+}
+
+export function SeccionSolicitud() {
+  return (
+    <Seccion id="solicitud" alterna>
+      <Titulo eyebrow={FILTRO.eyebrow} sub={FILTRO.entradilla}>
+        {FILTRO.titulo}
+      </Titulo>
+      <Solicitud />
     </Seccion>
   )
 }

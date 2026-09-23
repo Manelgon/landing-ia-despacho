@@ -16,7 +16,7 @@
 export type ModoConversion = 'pendiente' | 'stripe' | 'lead' | 'externo' | 'contacto'
 
 export const CONVERSION = {
-  modo: 'externo' as ModoConversion,
+  modo: 'lead' as ModoConversion,
 
   /** El precio, tal cual se quiere ver. Ejemplo: '890 €'. Déjalo en null mientras no esté decidido. */
   precio: '1.795 €' as string | null,
@@ -47,7 +47,7 @@ export const CONVERSION = {
   },
 
   lead: {
-    textoBoton: 'Quiero que me llaméis',
+    textoBoton: 'Solicitar mi diagnóstico',
     /** A dónde se envía el formulario. Vacío = todavía no conectado. */
     endpoint: '',
   },
@@ -66,7 +66,7 @@ export function destinoBoton(): string | null {
     case 'contacto':
       return CONVERSION.contacto.email ? `mailto:${CONVERSION.contacto.email}` : null
     case 'lead':
-      return '#matricula'
+      return '#solicitud'
     default:
       return null
   }
