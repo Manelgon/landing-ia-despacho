@@ -42,20 +42,18 @@ export const SELLOS = [
 ]
 
 /**
- * DOS DE ESTAS CUATRO NO SE PUEDEN PUBLICAR TODAVÍA.
+ * Los cinco circuitos no son un ejercicio de clase: trabajan cada día en la
+ * gestión de Roberto, que es de donde salió el itinerario. Es el mismo hecho
+ * que cuenta su biografía, dicho en un número.
  *
- * El 143 lo dijo Manel de memoria el 23 de septiembre de 2026, dudando él
- * mismo: hay que contarlo en la matrícula de la edición anterior.
- *
- * Las administraciones no las sabe nadie aún, así que van en 00. Es un hueco
- * a la vista a propósito: un número puesto a ojo en una landing lo desmonta
- * cualquiera que llame al despacho, y lo que se cae entonces no es la cifra,
- * es el resto de la página.
+ * PENDIENTE: el 143 lo dijo Manel de memoria el 23 de septiembre de 2026,
+ * dudando él mismo. Hay que contarlo en la matrícula de la edición anterior
+ * antes de publicar.
  */
 export const CIFRAS = [
   { valor: '143', etiqueta: 'matriculados en la edición anterior' },
-  { valor: '00', etiqueta: 'administraciones de fincas' },
-  { valor: '5', etiqueta: 'tareas que dejan de pasar por ti' },
+  { valor: '5', etiqueta: 'circuitos funcionando en un despacho real' },
+  { valor: '30', etiqueta: 'unidades, a tu ritmo' },
   { valor: '54 h', etiqueta: 'bonificables por FUNDAE' },
 ]
 
