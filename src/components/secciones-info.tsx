@@ -301,18 +301,16 @@ export function Pasos() {
     <Seccion>
       <Titulo eyebrow={PASOS.eyebrow}>{PASOS.titulo}</Titulo>
 
-      <ol className="mt-14 grid list-none gap-px overflow-hidden rounded-xl bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {/* Mismo patrón que las tres columnas de la sección del docente: filete
+          ámbar a la izquierda y nada más. Ocupa la mitad que en tarjetas. */}
+      <ol className="mt-10 grid list-none gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-4">
         {PASOS.lista.map((p, i) => (
-          <li
-            key={p.cuando}
-            style={cascada(i, 80)}
-            className="reveal flex flex-col bg-paper p-7"
-          >
-            <p className="font-mono text-[11px] font-semibold tracking-[0.16em] text-amber uppercase">
+          <li key={p.cuando} style={cascada(i, 80)} className="reveal border-l-2 border-amber pl-4">
+            <p className="font-mono text-[10.5px] font-semibold tracking-[0.16em] text-amber uppercase">
               {p.cuando}
             </p>
-            <b className="mt-4 block text-[17px] leading-snug font-bold text-ink">{p.titulo}</b>
-            <p className="mt-2.5 text-[14.5px] leading-[1.6] text-muted">{p.texto}</p>
+            <b className="mt-2.5 block text-[15px] leading-snug font-bold text-ink">{p.titulo}</b>
+            <span className="mt-1.5 block text-[13.5px] leading-[1.55] text-muted">{p.texto}</span>
           </li>
         ))}
       </ol>
