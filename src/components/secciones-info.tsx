@@ -319,48 +319,80 @@ export function Pasos() {
 }
 
 /**
- * Los tres despachos. Las fotos son huecos hasta que haya permiso firmado de
- * cada alumno para usar su cara y su nombre.
+ * Prueba social a dos columnas: a la izquierda el rótulo, a la derecha las
+ * citas. Las fotos son huecos hasta que haya permiso firmado de cada alumno
+ * para usar su cara y su nombre.
  */
 export function Testimonios() {
   return (
     <Seccion alterna>
-      <Titulo eyebrow={TESTIMONIOS.eyebrow}>{TESTIMONIOS.titulo}</Titulo>
+      <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+        <div className="reveal lg:sticky lg:top-24 lg:self-start">
+          <Eyebrow>{TESTIMONIOS.eyebrow}</Eyebrow>
+          <h2 className="mt-5 max-w-[16ch] text-[clamp(28px,4vw,42px)] leading-[1.1] font-extrabold tracking-[-0.025em]">
+            {TESTIMONIOS.titulo}
+          </h2>
 
-      <ul className="mt-14 grid list-none gap-7 lg:grid-cols-3">
-        {TESTIMONIOS.lista.map((t, i) => (
-          <li
-            key={i}
-            style={cascada(i, 90)}
-            className="reveal flex flex-col rounded-xl border border-line bg-paper p-7"
-          >
-            <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-dashed border-line bg-card font-mono text-[9.5px] tracking-[0.1em] text-muted uppercase">
-                Foto
-              </div>
-              <div>
-                <b className="block text-[15.5px] font-bold text-ink">{t.nombre}</b>
-                <span className="mt-1 block font-mono text-[11.5px] tracking-[0.04em] text-muted">
-                  {t.despacho}
-                </span>
-              </div>
-            </div>
+          {TESTIMONIOS.verificables.texto ? (
+            <p className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-[14px] text-muted">
+              <span className="text-[15px] tracking-[0.12em] text-amber" aria-hidden="true">
+                ★★★★★
+              </span>
+              {TESTIMONIOS.verificables.url ? (
+                <a
+                  href={TESTIMONIOS.verificables.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline decoration-line underline-offset-[5px] transition-colors hover:decoration-amber"
+                >
+                  {TESTIMONIOS.verificables.texto} →
+                </a>
+              ) : (
+                TESTIMONIOS.verificables.texto
+              )}
+            </p>
+          ) : null}
+        </div>
 
-            <blockquote className="mt-6 text-[15px] leading-[1.6] text-body">{t.cita}</blockquote>
+        <ul className="grid list-none gap-10">
+          {TESTIMONIOS.lista.map((t, i) => (
+            <li
+              key={i}
+              style={cascada(i, 90)}
+              className="reveal border-t border-line pt-9 first:border-t-0 first:pt-0"
+            >
+              <blockquote className="max-w-[46ch] text-[clamp(19px,2.2vw,24px)] leading-[1.35] font-bold tracking-[-0.02em] text-ink">
+                {t.cita}
+              </blockquote>
 
-            <dl className="mt-auto grid grid-cols-2 gap-px overflow-hidden rounded-lg bg-line pt-px">
-              {t.metricas.map((m) => (
-                <div key={m.etiqueta} className="bg-card px-4 py-4 text-center">
-                  <dd className="text-[16px] leading-none font-extrabold tracking-[-0.02em] text-navy">
-                    {m.valor}
-                  </dd>
-                  <dt className="mt-2 text-[12px] leading-snug text-muted">{m.etiqueta}</dt>
+              <div className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-4">
+                <div className="flex items-center gap-3.5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-dashed border-line bg-card font-mono text-[9px] tracking-[0.1em] text-muted uppercase">
+                    Foto
+                  </div>
+                  <div>
+                    <b className="block text-[15px] font-bold text-ink">{t.nombre}</b>
+                    <span className="mt-0.5 block font-mono text-[11.5px] tracking-[0.04em] text-muted">
+                      {t.despacho}
+                    </span>
+                  </div>
                 </div>
-              ))}
-            </dl>
-          </li>
-        ))}
-      </ul>
+
+                <dl className="flex flex-wrap gap-x-7 gap-y-2">
+                  {t.metricas.map((m) => (
+                    <div key={m.etiqueta} className="border-l-2 border-amber pl-3.5">
+                      <dd className="text-[15px] leading-tight font-extrabold text-navy">
+                        {m.valor}
+                      </dd>
+                      <dt className="mt-0.5 text-[11.5px] leading-tight text-muted">{m.etiqueta}</dt>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </Seccion>
   )
 }

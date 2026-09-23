@@ -360,8 +360,15 @@ export const REGLA = {
  * foto y el de su despacho. Con dos que contesten, se dejan dos tarjetas.
  */
 export const TESTIMONIOS = {
-  eyebrow: 'Qué dicen nuestros alumnos',
-  titulo: 'Despachos con nombre, cara y números',
+  eyebrow: 'Testimonios',
+  titulo: 'Lo que dicen quienes ya lo usan',
+  // PENDIENTE: el enlace a las reseñas. Si AFCademIA no tiene ficha de
+  // Google con opiniones, esta línea se borra entera: prometer que son
+  // verificables y que no haya dónde verificarlas es peor que no decirlo.
+  verificables: {
+    texto: 'Opiniones reales, verificables en Google',
+    url: '',
+  },
   lista: [
     {
       nombre: '[Nombre y apellido]',
