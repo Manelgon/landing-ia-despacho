@@ -286,19 +286,22 @@ export const ESTUDIO = [
 
 export const REQUISITOS = {
   titulo: 'Qué necesitas',
-  intro: 'No hace falta ningún conocimiento técnico, y no se programa nada.',
+  intro: 'Sin conocimientos previos.',
+  // Los bloques y las unidades son jerga de dentro: a quien todavía no ha
+  // comprado no le dicen nada. Lo que importa es cuándo hace falta cada
+  // cosa, no en qué unidad.
   filas: [
     {
-      bloque: 'Bloques 1 a 6',
+      bloque: 'Para empezar',
       texto:
         'Un navegador y el correo del despacho. Las demás cuentas se crean dentro del curso, y sus planes gratuitos bastan.',
     },
     {
-      bloque: 'Unidad 21',
-      texto: 'Microsoft 365 de pago para montarla. Sin él la unidad se ve igual, pero no se monta.',
+      bloque: 'Para una unidad',
+      texto: 'Microsoft 365 de pago. Sin él la unidad se ve igual, pero no se monta.',
     },
     {
-      bloque: 'Bloque 7',
+      bloque: 'Para el último circuito',
       texto: 'Windows con Excel y un programa de Microsoft que se instala en el ordenador.',
     },
   ],
