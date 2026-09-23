@@ -18,11 +18,24 @@ const campo =
   'w-full rounded-lg border border-line bg-card px-4 py-3.5 text-[16px] text-ink placeholder:text-muted/70 focus:border-amber focus:outline-none'
 const etiqueta = 'block font-mono text-[11px] font-semibold tracking-[0.14em] text-muted uppercase'
 
+/**
+ * Un correo con arroba no basta: "pepe@gmail" se escribe solo y no existe.
+ * Se pide nombre, arroba, dominio y una extensión de al menos dos letras.
+ */
+const CORREO = /^[^\s@]+@[^\s@]+\.[a-zA-ZÀ-ÿ]{2,}$/
+
+/** Nueve dígitos. Se admite escribirlo con espacios, guiones o con el +34. */
+function telefonoValido(valor: string): boolean {
+  const limpio = valor.replace(/[\s.-]/g, '').replace(/^(\+34|0034)/, '')
+  return /^\d{9}$/.test(limpio)
+}
+
 export function Solicitud() {
   const [paso, setPaso] = useState(0)
   const [datos, setDatos] = useState<Record<string, string>>({})
   const [enviando, setEnviando] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [campoMal, setCampoMal] = useState<string | null>(null)
   const [enviado, setEnviado] = useState(false)
   const contenedor = useRef<HTMLDivElement>(null)
 
@@ -31,7 +44,13 @@ export function Solicitud() {
   const esUltimo = paso === total - 1
   const pregunta = paso > 0 && !esUltimo ? PREGUNTAS[paso - 1] : null
 
-  const poner = (id: string, valor: string) => setDatos((d) => ({ ...d, [id]: valor }))
+  const poner = (id: string, valor: string) => {
+    setDatos((d) => ({ ...d, [id]: valor }))
+    if (campoMal === id) {
+      setCampoMal(null)
+      setError(null)
+    }
+  }
 
   // Al cambiar de paso, el foco va al primer campo para poder seguir tecleando
   useEffect(() => {
@@ -71,16 +90,32 @@ export function Solicitud() {
   }
 
   async function enviar() {
-    if (!datos.email || !datos.email.includes('@')) return setError('Necesitamos un correo válido.')
-    if (datos.consentimiento !== 'si') return setError('Hay que aceptar la política de privacidad.')
+    const correo = (datos.email ?? '').trim()
+    const telefono = (datos.telefono ?? '').trim()
+
+    if (!CORREO.test(correo)) {
+      setCampoMal('email')
+      return setError('Ese correo no parece válido. Revísalo: nombre@dominio.es')
+    }
+    // El teléfono es opcional, pero si se deja escrito tiene que servir para
+    // llamar: una llamada que no entra es un lead perdido sin saberlo.
+    if (telefono && !telefonoValido(telefono)) {
+      setCampoMal('telefono')
+      return setError('El teléfono tiene que tener nueve dígitos.')
+    }
+    if (datos.consentimiento !== 'si') {
+      setCampoMal('consentimiento')
+      return setError('Hay que aceptar la política de privacidad.')
+    }
+    setCampoMal(null)
     setError(null)
     setEnviando(true)
     try {
       await enviarSolicitud({
         nombre: datos.nombre.trim(),
         despacho: datos.despacho?.trim() || null,
-        email: datos.email.trim(),
-        telefono: datos.telefono?.trim() || null,
+        email: correo,
+        telefono: telefono ? telefono.replace(/[\s.-]/g, '') : null,
         consentimiento: true,
         origen: 'landing-ia-despacho',
         ...Object.fromEntries(PREGUNTAS.map((p) => [p.id, datos[p.id]?.trim() || null])),
@@ -169,7 +204,10 @@ export function Solicitud() {
                 <input
                   id="email"
                   type="email"
-                  className={`${campo} mt-2.5`}
+                  inputMode="email"
+                  autoComplete="email"
+                  aria-invalid={campoMal === 'email'}
+                  className={`${campo} mt-2.5 ${campoMal === 'email' ? 'border-aviso-borde' : ''}`}
                   value={datos.email ?? ''}
                   onChange={(e) => poner('email', e.target.value)}
                 />
@@ -181,7 +219,11 @@ export function Solicitud() {
                 <input
                   id="telefono"
                   type="tel"
-                  className={`${campo} mt-2.5`}
+                  inputMode="tel"
+                  autoComplete="tel"
+                  maxLength={17}
+                  aria-invalid={campoMal === 'telefono'}
+                  className={`${campo} mt-2.5 ${campoMal === 'telefono' ? 'border-aviso-borde' : ''}`}
                   value={datos.telefono ?? ''}
                   onChange={(e) => poner('telefono', e.target.value)}
                 />
