@@ -19,7 +19,7 @@ export const CONVERSION = {
   modo: 'externo' as ModoConversion,
 
   /** El precio, tal cual se quiere ver. Ejemplo: '890 €'. Déjalo en null mientras no esté decidido. */
-  precio: '1.975 €' as string | null,
+  precio: '1.795 €' as string | null,
 
   /** Lo que va debajo del precio. Ejemplo: 'IVA incluido · pago único'. */
   precioNota: 'IVA incluido',

@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://afcademia.com'),
+  // La landing vive en el subdominio. Con la raíz aquí, la imagen de vista previa
+  // se pedía a afcademia.com (otro WordPress) y daba 404: WhatsApp no montaba la tarjeta.
+  metadataBase: new URL('https://automatiza.afcademia.com'),
   title: 'IA para el Despacho · Itinerario · AFCademIA',
   description:
     'Itinerario online para administradores de fincas. Treinta unidades, cincuenta y cuatro horas y cinco circuitos funcionando en tus propias cuentas.',
@@ -11,6 +13,8 @@ export const metadata: Metadata = {
     description:
       'De la primera petición a los circuitos que trabajan solos. Cinco tareas del despacho que ya no toca nadie.',
     images: ['/open-graph-1200x630.jpg'],
+    url: 'https://automatiza.afcademia.com',
+    siteName: 'AFCademIA',
     locale: 'es_ES',
     type: 'website',
   },
