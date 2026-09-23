@@ -284,27 +284,14 @@ export const ESTUDIO = [
   },
 ]
 
+/**
+ * Lo que hace falta tener, en una línea. Sigue diciendo las dos cosas que
+ * pueden acabar en devolución si se callan: que una unidad necesita
+ * Microsoft 365 de pago y que el último circuito pide Windows.
+ */
 export const REQUISITOS = {
-  titulo: 'Qué necesitas',
-  intro: 'Sin conocimientos previos.',
-  // Los bloques y las unidades son jerga de dentro: a quien todavía no ha
-  // comprado no le dicen nada. Lo que importa es cuándo hace falta cada
-  // cosa, no en qué unidad.
-  filas: [
-    {
-      bloque: 'Para empezar',
-      texto:
-        'Un navegador y el correo del despacho. Las demás cuentas se crean dentro del curso, y sus planes gratuitos bastan.',
-    },
-    {
-      bloque: 'Para una unidad',
-      texto: 'Microsoft 365 de pago. Sin él la unidad se ve igual, pero no se monta.',
-    },
-    {
-      bloque: 'Para el último circuito',
-      texto: 'Windows con Excel y un programa de Microsoft que se instala en el ordenador.',
-    },
-  ],
+  texto:
+    'Sin conocimientos previos. Basta un navegador y el correo del despacho: las demás cuentas se crean dentro. Una unidad necesita Microsoft 365 de pago, y el último circuito se monta en Windows con Excel.',
 }
 
 export const FAQ = [

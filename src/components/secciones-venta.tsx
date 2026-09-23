@@ -198,19 +198,9 @@ export function Temario() {
 
         {/* Lo que hace falta va debajo del formato y sin titular propio: es
             la misma respuesta, cómo se estudia esto y con qué. */}
-        <p className="reveal mt-9 border-t border-line pt-7 text-[15px] leading-[1.6] font-bold text-ink">
-          {REQUISITOS.intro}
+        <p className="reveal mt-9 max-w-[86ch] border-t border-line pt-7 text-[15px] leading-[1.65] text-body">
+          {REQUISITOS.texto}
         </p>
-        <ul className="mt-5 grid list-none gap-x-8 gap-y-5 sm:grid-cols-3">
-          {REQUISITOS.filas.map((f, i) => (
-            <li key={f.bloque} style={cascada(i, 70)} className="reveal">
-              <p className="font-mono text-[11px] font-semibold tracking-[0.12em] text-navy uppercase">
-                {f.bloque}
-              </p>
-              <p className="mt-2 text-[13.5px] leading-[1.55] text-muted">{f.texto}</p>
-            </li>
-          ))}
-        </ul>
       </div>
     </Seccion>
   )
