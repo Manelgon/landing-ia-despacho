@@ -5,6 +5,7 @@ const ENLACES = [
   { href: '#circuitos', texto: 'Circuitos' },
   { href: '#temario', texto: 'Temario' },
   { href: '#docente', texto: 'Quién está detrás' },
+  { href: '#testimonios', texto: 'Opiniones' },
   { href: '#matricula', texto: 'Precio' },
 ]
 

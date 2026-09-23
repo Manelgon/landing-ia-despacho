@@ -338,7 +338,7 @@ export function Pasos() {
  */
 export function Testimonios() {
   return (
-    <Seccion alterna>
+    <Seccion id="testimonios" alterna>
       <Titulo eyebrow={TESTIMONIOS.eyebrow}>{TESTIMONIOS.titulo}</Titulo>
 
       {TESTIMONIOS.verificables.texto ? (
