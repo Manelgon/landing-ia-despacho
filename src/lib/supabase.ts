@@ -23,8 +23,10 @@ export async function enviarSolicitud(datos: Solicitud): Promise<void> {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      // Solo apikey. Las claves publicables nuevas (sb_publishable_…) no son
+      // un JWT, así que mandarlas además en Authorization hace que Supabase
+      // intente leerlas como token de sesión y responda 401.
       apikey: CLAVE,
-      Authorization: `Bearer ${CLAVE}`,
       Prefer: 'return=minimal',
     },
     body: JSON.stringify(datos),
