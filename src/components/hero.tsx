@@ -60,10 +60,10 @@ export function Hero() {
               >
                 <dt className="sr-only">{c.etiqueta}</dt>
                 <dd>
-                  <b className="block font-mono text-[clamp(24px,3.2vw,31px)] leading-none font-semibold text-navy">
+                  <b className="block font-mono text-[clamp(32px,4.4vw,44px)] leading-none font-bold tracking-[-0.02em] text-navy">
                     {c.valor}
                   </b>
-                  <span className="mt-3 block text-[12.5px] leading-snug text-body">{c.etiqueta}</span>
+                  <span className="mt-3.5 block text-[13px] leading-snug text-body">{c.etiqueta}</span>
                 </dd>
               </div>
             ))}
