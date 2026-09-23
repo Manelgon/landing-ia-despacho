@@ -124,7 +124,7 @@ const TAMANO_SELLO: Record<string, string> = {
 }
 
 export function Matricula() {
-  const { precio, precioNota, plazas } = CONVERSION
+  const { precio, precioNota, plazas, garantia } = CONVERSION
 
   const incluye = [
     '30 unidades y 54 horas',
@@ -178,6 +178,12 @@ export function Matricula() {
                 </li>
               ))}
             </ul>
+
+            {garantia ? (
+              <p className="mt-6 border-t border-white/15 pt-6 text-[13.5px] leading-[1.55] text-white/85">
+                {garantia}
+              </p>
+            ) : null}
 
             {/* Los sellos cierran la tarjeta y le dan el alto del formulario.
                 Van sobre blanco porque el logo de FUNDAE es azul y es marca

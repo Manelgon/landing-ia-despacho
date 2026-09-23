@@ -36,6 +36,19 @@ export const CONVERSION = {
     quedan: 4 as number | null,
   },
 
+  /**
+   * Garantía comercial, elegida por Manel el 23 de septiembre de 2026 entre
+   * tres opciones. Se verifica sola: o han pasado quince días o no.
+   *
+   * Va aparte del desistimiento legal, que en contenidos digitales decae en
+   * cuanto el alumno acepta el acceso inmediato. Esta se da igual, y por eso
+   * hay que poder cumplirla: si alguien la pide el día catorce, se devuelve.
+   * Déjala en null para no enseñar ninguna.
+   */
+  garantia: 'Quince días de garantía. Si ves que no es para ti, te devolvemos el importe.' as
+    | string
+    | null,
+
   stripe: {
     enlace: '',
     textoBoton: 'Matricularme ahora',
