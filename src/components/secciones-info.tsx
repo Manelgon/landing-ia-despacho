@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, SELLOS } from '@/content/curso'
+import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, SELLOS, TESTIMONIOS } from '@/content/curso'
 import { CONVERSION } from '@/config/conversion'
 import { Cta } from './cta'
 import { Solicitud } from './solicitud'
@@ -24,7 +24,7 @@ export function Docente() {
 
           <div className="reveal" style={cascada(1, 120)}>
             <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-amber uppercase">
-              Quién lo da
+              Quién está detrás
             </p>
 
             <h2 className="mt-5 text-[clamp(28px,3.8vw,42px)] font-extrabold tracking-[-0.03em] text-white">
@@ -316,6 +316,53 @@ export function Pasos() {
           </li>
         ))}
       </ol>
+    </Seccion>
+  )
+}
+
+/**
+ * Los tres despachos. Las fotos son huecos hasta que haya permiso firmado de
+ * cada alumno para usar su cara y su nombre.
+ */
+export function Testimonios() {
+  return (
+    <Seccion alterna>
+      <Titulo eyebrow={TESTIMONIOS.eyebrow}>{TESTIMONIOS.titulo}</Titulo>
+
+      <ul className="mt-14 grid list-none gap-7 lg:grid-cols-3">
+        {TESTIMONIOS.lista.map((t, i) => (
+          <li
+            key={i}
+            style={cascada(i, 90)}
+            className="reveal flex flex-col rounded-xl border border-line bg-paper p-7"
+          >
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-dashed border-line bg-card font-mono text-[9.5px] tracking-[0.1em] text-muted uppercase">
+                Foto
+              </div>
+              <div>
+                <b className="block text-[15.5px] font-bold text-ink">{t.nombre}</b>
+                <span className="mt-1 block font-mono text-[11.5px] tracking-[0.04em] text-muted">
+                  {t.despacho}
+                </span>
+              </div>
+            </div>
+
+            <blockquote className="mt-6 text-[15px] leading-[1.6] text-body">{t.cita}</blockquote>
+
+            <dl className="mt-auto grid grid-cols-2 gap-px overflow-hidden rounded-lg bg-line pt-px">
+              {t.metricas.map((m) => (
+                <div key={m.etiqueta} className="bg-card px-4 py-4 text-center">
+                  <dd className="text-[16px] leading-none font-extrabold tracking-[-0.02em] text-navy">
+                    {m.valor}
+                  </dd>
+                  <dt className="mt-2 text-[12px] leading-snug text-muted">{m.etiqueta}</dt>
+                </div>
+              ))}
+            </dl>
+          </li>
+        ))}
+      </ul>
     </Seccion>
   )
 }

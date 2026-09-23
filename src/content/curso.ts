@@ -346,3 +346,49 @@ export const REGLA = {
   frase: 'La IA prepara; el despacho responde.',
   texto: 'Antes de activar cada circuito, defines qué puede hacer, qué datos trata y quién revisa sus resultados. El itinerario dedica una unidad a esa cadena de responsabilidad.',
 }
+
+/**
+ * TESTIMONIOS: ESTO NO SE PUEDE PUBLICAR ASÍ.
+ *
+ * Los corchetes son marcadores para ver el diseño, no contenido. Un
+ * testimonio inventado no es una licencia de redacción: desde la Directiva
+ * Ómnibus, publicar opiniones que no son de clientes reales es una práctica
+ * desleal engañosa (Ley 3/1991 y TRLGDCU), y ahí ya no hay matices.
+ *
+ * Para llenarlo hacen falta tres cosas de cada alumno: su testimonio por
+ * escrito, las cifras que dé él, y permiso firmado para usar su nombre, su
+ * foto y el de su despacho. Con dos que contesten, se dejan dos tarjetas.
+ */
+export const TESTIMONIOS = {
+  eyebrow: 'Qué dicen nuestros alumnos',
+  titulo: 'Despachos con nombre, cara y números',
+  lista: [
+    {
+      nombre: '[Nombre y apellido]',
+      despacho: '[00] comunidades · [Ciudad]',
+      cita: '[Su testimonio, en sus palabras: qué hacía antes, qué hace ahora y cuánto tardó en notarlo.]',
+      metricas: [
+        { valor: '[0 h → 00 min]', etiqueta: '[por tarea]' },
+        { valor: '[0 semanas]', etiqueta: '[hasta notarlo]' },
+      ],
+    },
+    {
+      nombre: '[Nombre y apellido]',
+      despacho: '[00] comunidades · [Ciudad]',
+      cita: '[Su testimonio. Va bien que empiece por la duda que tenía antes de entrar.]',
+      metricas: [
+        { valor: '[0 h/semana]', etiqueta: '[recuperadas]' },
+        { valor: '[0 semana]', etiqueta: '[hasta el primer circuito]' },
+      ],
+    },
+    {
+      nombre: '[Nombre y apellido]',
+      despacho: '[00] comunidades · [Ciudad]',
+      cita: '[Su testimonio. Si lo montó sin ayuda técnica, que lo diga: es lo que más tranquiliza.]',
+      metricas: [
+        { valor: '[00 min]', etiqueta: '[por tarea]' },
+        { valor: '[0 semanas]', etiqueta: '[hasta notarlo]' },
+      ],
+    },
+  ],
+}

@@ -4,7 +4,7 @@ import { Cta } from './cta'
 const ENLACES = [
   { href: '#circuitos', texto: 'Circuitos' },
   { href: '#temario', texto: 'Temario' },
-  { href: '#docente', texto: 'Quién lo da' },
+  { href: '#docente', texto: 'Quién está detrás' },
   { href: '#matricula', texto: 'Precio' },
 ]
 
