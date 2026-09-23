@@ -170,15 +170,16 @@ export function Matricula() {
 
                 {/* Franja a todo el ancho de la tarjeta: los -mx-8 anulan su
                     padding para que llegue a los dos bordes. El texto va en
-                    navy oscuro, que sobre el ámbar da 5,6:1. */}
+                    tinta, que sobre el ámbar da 6:1; el navy oscuro se
+                    quedaba en 5,6 y a este tamaño no se leía bien. */}
                 {plazas.quedan ? (
-                  <p className="-mx-8 mt-6 bg-amber py-2.5 text-center font-mono text-[12px] font-bold tracking-[0.14em] text-navy-deep uppercase">
+                  <p className="-mx-8 mt-6 bg-amber py-3 text-center text-[15px] font-extrabold tracking-[0.01em] text-ink">
                     Quedan {plazas.quedan} plazas
                   </p>
                 ) : null}
 
                 {garantia ? (
-                  <p className="mx-auto mt-4 max-w-[34ch] text-center text-[13px] leading-[1.5] text-white/70">
+                  <p className="mx-auto mt-5 max-w-[32ch] text-center text-[12px] leading-[1.5] text-white/70">
                     {garantia}
                   </p>
                 ) : null}
