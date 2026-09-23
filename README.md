@@ -23,6 +23,19 @@ ninguna pasarela: solo enlaza.
 El destino se configura en `src/config/conversion.ts`.
 
 
+## Dónde está publicada
+
+| | |
+|---|---|
+| Dirección | https://automatiza.afcademia.com |
+| Alojamiento | Vercel, conectado a este repositorio |
+| Despliegue | Automático: cada envío a `main` publica una versión nueva |
+
+El dominio principal, `afcademia.com`, es un WordPress en otro servidor y no
+tiene nada que ver con esta landing. Por eso `metadataBase`, en
+`src/app/layout.tsx`, apunta al subdominio: si apuntara al dominio principal,
+la imagen de previsualización se buscaría en el WordPress y daría 404.
+
 ## Arrancar
 
 ```bash
