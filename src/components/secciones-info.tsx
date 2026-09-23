@@ -153,7 +153,7 @@ export function Matricula() {
           vista mientras se rellenan las preguntas. */}
       <div className="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         <div>
-          <div className="reveal flex h-full flex-col rounded-xl bg-navy p-8 text-white">
+          <div className="reveal flex h-full flex-col overflow-hidden rounded-xl bg-navy p-8 text-white">
             <p className="text-center font-mono text-[11px] font-semibold tracking-[0.18em] text-[#FFB36B] uppercase">
               Precio del itinerario
             </p>
@@ -169,12 +169,12 @@ export function Matricula() {
                 ) : null}
 
                 {/* Franja a todo el ancho de la tarjeta: los -mx-8 anulan su
-                    padding para que llegue a los dos bordes. El texto va en
-                    tinta, que sobre el ámbar da 6:1; el navy oscuro se
-                    quedaba en 5,6 y a este tamaño no se leía bien. */}
+                    padding para que llegue a los dos bordes. Sobre blanco,
+                    porque el naranja no daba contraste suficiente con
+                    ningún color de texto: en tinta son 15,8:1. */}
                 {plazas.quedan ? (
-                  <p className="-mx-8 mt-6 bg-amber py-3 text-center text-[15px] font-extrabold tracking-[0.01em] text-ink">
-                    Quedan {plazas.quedan} plazas
+                  <p className="-mx-8 mt-6 bg-card py-3 text-center text-[15px] font-extrabold tracking-[0.01em] text-ink">
+                    Quedan <span className="text-aviso-texto">{plazas.quedan} plazas</span>
                   </p>
                 ) : null}
 
@@ -209,7 +209,7 @@ export function Matricula() {
               <p className="font-mono text-[10.5px] tracking-[0.18em] text-white/55 uppercase">
                 Acreditaciones
               </p>
-              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 rounded-lg bg-card px-6 py-5">
+              <div className="-mx-8 mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 bg-card px-6 py-5">
                 {SELLOS.map((s) => (
                   // El logo y su leyenda llevan al mismo sitio. Este no entra
                   // por teclado ni lo lee el lector: basta con el de abajo.
