@@ -100,24 +100,14 @@ export const PARTIDA = {
  * probó ni el programa de gestión que se cambió.
  */
 export const INTENTOS = {
-  eyebrow: 'Lo que ya has probado',
-  titulo: 'Por qué no te ha funcionado hasta ahora',
+  titulo: 'Y lo que ya has probado no lo arregla',
   lista: [
     {
-      titulo: 'Probaste un chat de inteligencia artificial',
-      texto:
-        'Sirve para redactar un párrafo suelto. Se queda corto cuando hay que leer la bandeja entera, decidir qué es cada cosa y dejarla archivada donde toca.',
+      titulo: 'Un chat de inteligencia artificial',
+      texto: 'Sirve para un párrafo suelto, no para vaciar la bandeja.',
     },
-    {
-      titulo: 'Cambiaste de programa',
-      texto:
-        'El programa nuevo hereda el proceso viejo. Alguien sigue copiando datos de una pantalla a otra.',
-    },
-    {
-      titulo: 'Contrataste a alguien',
-      texto:
-        'Mueve el cuello de botella, no lo quita. Vuelve a aparecer en la siguiente punta de trabajo.',
-    },
+    { titulo: 'Otro programa', texto: 'El programa nuevo hereda el proceso viejo.' },
+    { titulo: 'Otra persona', texto: 'Mueve el cuello de botella, no lo quita.' },
   ],
 }
 

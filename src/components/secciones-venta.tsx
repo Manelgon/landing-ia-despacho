@@ -32,37 +32,24 @@ export function Problema() {
           {PARTIDA.cierre}
         </p>
 
+        {/* Lo que ya se ha probado va aquí y no en una sección aparte: es la
+            segunda mitad de la misma idea. */}
+        <div className="reveal mt-14 border-t border-line pt-9">
+          <h3 className="text-[clamp(18px,2.1vw,22px)] font-extrabold tracking-[-0.02em] text-navy">
+            {INTENTOS.titulo}
+          </h3>
+          <ul className="mt-6 grid list-none gap-x-8 gap-y-5 sm:grid-cols-3">
+            {INTENTOS.lista.map((t, i) => (
+              <li key={t.titulo} style={cascada(i, 80)} className="reveal border-l-2 border-amber pl-4">
+                <b className="block text-[14.5px] font-bold text-ink">{t.titulo}</b>
+                <span className="mt-1 block text-[13.5px] leading-[1.5] text-muted">{t.texto}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
       </div>
     </section>
-  )
-}
-
-/**
- * Las tres salidas que ya se han probado. Va justo después del punto de
- * partida: primero el problema, después por qué sigue ahí.
- */
-export function Intentos() {
-  return (
-    <Seccion alterna>
-      <Titulo eyebrow={INTENTOS.eyebrow}>{INTENTOS.titulo}</Titulo>
-
-      <ol className="mt-12 grid list-none gap-x-8 gap-y-9 md:grid-cols-3">
-        {INTENTOS.lista.map((t, i) => (
-          <li key={t.titulo} style={cascada(i, 90)} className="reveal">
-            <span
-              aria-hidden="true"
-              className="font-mono text-[13px] tracking-[0.1em] text-amber tabular-nums"
-            >
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <b className="mt-3 block text-[clamp(17px,2vw,20px)] leading-snug font-extrabold tracking-[-0.015em] text-navy">
-              {t.titulo}
-            </b>
-            <p className="mt-2.5 text-[14.5px] leading-[1.6] text-muted">{t.texto}</p>
-          </li>
-        ))}
-      </ol>
-    </Seccion>
   )
 }
 
