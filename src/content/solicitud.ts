@@ -10,13 +10,13 @@ export const FILTRO = {
   eyebrow: 'Último paso',
   titulo: 'Solicita el diagnóstico de tu despacho',
   entradilla:
-    'Siete preguntas, dos minutos. Si encaja, te escribimos con los siguientes pasos.',
+    'Siete preguntas, dos minutos. Si encaja, te escribimos en 24 horas para cuadrar una llamada.',
   boton: 'Enviar la solicitud',
   enviando: 'Enviando…',
   exito: {
     titulo: 'Solicitud recibida',
     texto:
-      'La leemos y te escribimos a ese correo. Si tu despacho encaja, te llegan los siguientes pasos; si no, te lo decimos con la misma claridad.',
+      'La leemos y te escribimos a ese correo en 24 horas. Si tu despacho encaja, cuadramos una llamada; si no, te lo decimos con la misma claridad.',
   },
 }
 
@@ -73,3 +73,40 @@ export const PREGUNTAS = [
     opciones: ['Decido yo', 'Lo decido con mi socio o socia', 'Lo decide otra persona'],
   },
 ] as const
+
+/**
+ * Lo que pasa desde que alguien manda la solicitud. Los plazos y el modo de
+ * dar el acceso los confirmó Manel el 23 de septiembre de 2026: respuesta en
+ * 24 horas, llamada con un comercial y, al matricularse, enlace de matrícula
+ * y credenciales por correo con acceso inmediato.
+ *
+ * No se dice cuánto dura la llamada porque nadie lo ha fijado. Cuando se
+ * fije, entra en el paso 3.
+ */
+export const PASOS = {
+  eyebrow: 'Qué pasa después',
+  titulo: 'Lo que pasa cuando le das a enviar',
+  lista: [
+    {
+      cuando: 'Ahora',
+      titulo: 'Mandas las siete preguntas',
+      texto: 'Dos minutos. No hay que preparar nada ni adjuntar nada.',
+    },
+    {
+      cuando: 'En 24 h',
+      titulo: 'Te escribimos',
+      texto: 'Leemos lo que has contestado y te respondemos al correo que hayas dejado.',
+    },
+    {
+      cuando: 'En la llamada',
+      titulo: 'Vemos si encaja',
+      texto:
+        'Hablamos de tu despacho y de por dónde empezarías tú. Si no encaja, te lo decimos igual.',
+    },
+    {
+      cuando: 'Al matricularte',
+      titulo: 'Entras el mismo día',
+      texto: 'Recibes por correo el enlace de matrícula y tus credenciales. El acceso es inmediato.',
+    },
+  ],
+}

@@ -3,7 +3,7 @@ import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, SELLOS } from '@/content/curso'
 import { CONVERSION } from '@/config/conversion'
 import { Cta } from './cta'
 import { Solicitud } from './solicitud'
-import { FILTRO } from '@/content/solicitud'
+import { FILTRO, PASOS } from '@/content/solicitud'
 import { Seccion, Titulo, Eyebrow, Filete } from './ui'
 
 const cascada = (i: number, paso = 70) => ({ '--reveal-delay': `${i * paso}ms` }) as React.CSSProperties
@@ -288,6 +288,34 @@ export function Matricula() {
           <Solicitud />
         </div>
       </div>
+    </Seccion>
+  )
+}
+
+/**
+ * La línea de tiempo del embudo. Va después del formulario porque contesta
+ * la pregunta que aparece justo al terminar de rellenarlo: y ahora qué.
+ */
+export function Pasos() {
+  return (
+    <Seccion>
+      <Titulo eyebrow={PASOS.eyebrow}>{PASOS.titulo}</Titulo>
+
+      <ol className="mt-14 grid list-none gap-px overflow-hidden rounded-xl bg-line sm:grid-cols-2 lg:grid-cols-4">
+        {PASOS.lista.map((p, i) => (
+          <li
+            key={p.cuando}
+            style={cascada(i, 80)}
+            className="reveal flex flex-col bg-paper p-7"
+          >
+            <p className="font-mono text-[11px] font-semibold tracking-[0.16em] text-amber uppercase">
+              {p.cuando}
+            </p>
+            <b className="mt-4 block text-[17px] leading-snug font-bold text-ink">{p.titulo}</b>
+            <p className="mt-2.5 text-[14.5px] leading-[1.6] text-muted">{p.texto}</p>
+          </li>
+        ))}
+      </ol>
     </Seccion>
   )
 }
