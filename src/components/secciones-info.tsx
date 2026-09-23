@@ -64,10 +64,21 @@ export function Docente() {
  */
 export function Encaje() {
   return (
-    <Seccion>
-      <Titulo eyebrow={ENCAJE.eyebrow}>{ENCAJE.titulo}</Titulo>
+    <section className="relative overflow-hidden bg-paper py-24 sm:py-28">
+      {/* La foto del hero en claro, la que llevaba "Cómo se estudia" antes de
+          juntarla con el temario. Medido con ella: 13:1 en los titulares y
+          7,5:1 en el texto. */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/hero-limpia.jpg')" }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-paper/90" aria-hidden="true" />
 
-      <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-14">
+      <div className="relative z-10 mx-auto w-full max-w-[1060px] px-5 sm:px-8">
+        <Titulo eyebrow={ENCAJE.eyebrow}>{ENCAJE.titulo}</Titulo>
+
+        <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-14">
         {[ENCAJE.si, ENCAJE.no].map((col, c) => (
           <div key={col.titulo} style={cascada(c, 110)} className="reveal">
             <h3
@@ -88,10 +99,11 @@ export function Encaje() {
                 </li>
               ))}
             </ul>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </Seccion>
+    </section>
   )
 }
 
