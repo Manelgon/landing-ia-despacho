@@ -129,7 +129,7 @@ export function Solicitud() {
             <p className="text-[clamp(21px,2.6vw,26px)] font-extrabold tracking-[-0.02em] text-ink">
               Empecemos por lo básico
             </p>
-            <div className="mt-8 grid max-w-[620px] gap-5 sm:grid-cols-2">
+            <div className="mt-8 grid max-w-[480px] gap-5">
               <div>
                 <label htmlFor="nombre" className={etiqueta}>
                   Nombre y apellidos
@@ -161,7 +161,7 @@ export function Solicitud() {
             <p className="text-[clamp(21px,2.6vw,26px)] font-extrabold tracking-[-0.02em] text-ink">
               ¿Dónde te escribimos?
             </p>
-            <div className="mt-8 grid max-w-[620px] gap-5 sm:grid-cols-2">
+            <div className="mt-8 grid max-w-[480px] gap-5">
               <div>
                 <label htmlFor="email" className={etiqueta}>
                   Correo electrónico

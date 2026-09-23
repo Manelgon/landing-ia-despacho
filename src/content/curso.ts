@@ -16,14 +16,12 @@ export const CURSO = {
 
 /**
  * Bonificación por FUNDAE. Confirmado por Manel el 22 de septiembre de 2026.
- * La frase es deliberadamente sobria: dice que es bonificable y a quién
- * aplica, sin prometer importes ni porcentajes, que dependen del crédito
- * de cada despacho.
+ * Va partido en dos porque en la tarjeta del precio "Bonificable por" se
+ * pinta en naranja y la marca en blanco.
  */
 export const BONIFICACION = {
-  titulo: 'Bonificable por FUNDAE',
-  texto:
-    'Si tienes trabajadores por cuenta ajena, se descuenta del crédito de formación de tu despacho. Te lo tramitamos nosotros.',
+  etiqueta: 'Bonificable por',
+  marca: 'FUNDAE',
 }
 
 export const CIFRAS = [

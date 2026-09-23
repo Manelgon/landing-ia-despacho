@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, CURSO, BONIFICACION } from '@/content/curso'
+import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, BONIFICACION } from '@/content/curso'
 import { CONVERSION } from '@/config/conversion'
 import { Cta } from './cta'
 import { Solicitud } from './solicitud'
@@ -187,8 +187,8 @@ export function Matricula() {
       {/* Precio a la izquierda, solicitud a la derecha: el importe queda a la
           vista mientras se rellenan las preguntas. */}
       <div className="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-        <div className="lg:sticky lg:top-24 lg:self-start">
-          <div className="reveal rounded-xl bg-navy p-8 text-white">
+        <div>
+          <div className="reveal flex h-full flex-col rounded-xl bg-navy p-8 text-white">
             <p className="font-mono text-[11px] font-semibold tracking-[0.18em] text-[#FFB36B] uppercase">
               Precio del itinerario
             </p>
@@ -200,6 +200,10 @@ export function Matricula() {
                 {precioNota ? (
                   <p className="mt-3.5 font-mono text-[12.5px] text-white/70">{precioNota}</p>
                 ) : null}
+                <p className="mt-4 text-[14.5px] font-bold">
+                  <span className="text-[#FFB36B]">{BONIFICACION.etiqueta}</span>{' '}
+                  <span className="text-white">{BONIFICACION.marca}</span>
+                </p>
               </>
             ) : (
               <p className="mt-5 max-w-[30ch] text-[19px] leading-snug font-bold text-white/60">
@@ -218,14 +222,6 @@ export function Matricula() {
                 </li>
               ))}
             </ul>
-
-            <p className="mt-7 border-t border-white/15 pt-6 text-[14px] leading-[1.6] font-bold text-white">
-              {BONIFICACION.titulo}
-            </p>
-
-            <p className="mt-5 font-mono text-[11.5px] leading-relaxed tracking-[0.02em] text-white/60">
-              {CURSO.bajoBoton}
-            </p>
           </div>
         </div>
 
