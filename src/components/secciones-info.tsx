@@ -187,8 +187,8 @@ export function Matricula() {
       {/* Precio a la izquierda, solicitud a la derecha: el importe queda a la
           vista mientras se rellenan las preguntas. */}
       <div className="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-        <div>
-          <div className="reveal flex h-full flex-col rounded-xl bg-navy p-8 text-white">
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <div className="reveal rounded-xl bg-navy p-8 text-white">
             <p className="font-mono text-[11px] font-semibold tracking-[0.18em] text-[#FFB36B] uppercase">
               Precio del itinerario
             </p>
