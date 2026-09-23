@@ -168,9 +168,11 @@ export function Matricula() {
                   </p>
                 ) : null}
 
+                {/* Franja a todo el ancho de la tarjeta: los -mx-8 anulan su
+                    padding para que llegue a los dos bordes. El texto va en
+                    navy oscuro, que sobre el ámbar da 5,6:1. */}
                 {plazas.quedan ? (
-                  <p className="mt-4 flex items-center justify-center gap-2.5 text-[14.5px] font-bold text-[#FFB36B]">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
+                  <p className="-mx-8 mt-6 bg-amber py-2.5 text-center font-mono text-[12px] font-bold tracking-[0.14em] text-navy-deep uppercase">
                     Quedan {plazas.quedan} plazas
                   </p>
                 ) : null}
