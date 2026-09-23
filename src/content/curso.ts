@@ -91,7 +91,7 @@ export const PARTIDA = {
     'Llamadas que hay que volver a escuchar para escribir el resumen y repartir lo que salió de ellas.',
     'Facturas que llegan con nombres como 1776150000242.pdf, y hay que abrirlas una a una para saber de qué comunidad son.',
   ],
-  cierre: 'Y sabes que si algo se pierde por el camino, la responsabilidad es tuya.',
+  cierre: 'Y si algo se pierde por el camino, la responsabilidad es tuya.',
 }
 
 /**

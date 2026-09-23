@@ -11,44 +11,44 @@ export function Problema() {
   return (
     <section className="bg-paper py-24 sm:py-28">
       <div className="mx-auto w-full max-w-[1060px] px-5 sm:px-8">
-        <div className="reveal">
-          <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-amber uppercase">
-            El punto de partida
-          </p>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(28px,4.4vw,44px)] leading-[1.08] font-extrabold tracking-[-0.025em] text-ink">
-            {PARTIDA.titulo}
-          </h2>
+        {/* Titular a la izquierda, los tres casos a la derecha. El titular se
+            queda quieto mientras se leen. */}
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <div className="reveal lg:sticky lg:top-24 lg:self-start">
+            <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-amber uppercase">
+              El punto de partida
+            </p>
+            <h2 className="mt-5 max-w-[18ch] text-[clamp(28px,4.2vw,42px)] leading-[1.08] font-extrabold tracking-[-0.025em] text-ink">
+              {PARTIDA.titulo}
+            </h2>
+            <p className="mt-8 max-w-[28ch] border-t border-line pt-7 text-[clamp(18px,2.2vw,22px)] leading-[1.3] font-extrabold tracking-[-0.02em] text-navy">
+              {PARTIDA.cierre}
+            </p>
+          </div>
+
+          <ol className="grid list-none">
+            {PARTIDA.casos.map((c, i) => (
+              <li
+                key={c}
+                style={cascada(i, 90)}
+                className="reveal flex flex-wrap items-baseline gap-x-6 gap-y-2 border-t border-line py-6 first:border-t-0 first:pt-0 last:pb-0"
+              >
+                <span
+                  aria-hidden="true"
+                  className="w-[2.5ch] shrink-0 font-mono text-[clamp(20px,2.6vw,28px)] leading-none font-bold text-amber tabular-nums"
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p className="max-w-[52ch] flex-1 text-[clamp(16px,1.9vw,19px)] leading-[1.5] text-body">
+                  {c}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
 
-        {/* Filas apiladas con el número en grande: da ritmo de lectura y no
-            repite el patrón de filetes que usan las demás secciones. */}
-        <ol className="mt-12 grid list-none">
-          {PARTIDA.casos.map((c, i) => (
-            <li
-              key={c}
-              style={cascada(i, 90)}
-              className="reveal flex flex-wrap items-baseline gap-x-7 gap-y-2 border-t border-line py-6 last:border-b"
-            >
-              <span
-                aria-hidden="true"
-                className="w-[2.5ch] shrink-0 font-mono text-[clamp(20px,2.6vw,28px)] leading-none font-bold text-amber tabular-nums"
-              >
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <p className="max-w-[62ch] flex-1 text-[clamp(16px,1.9vw,19px)] leading-[1.5] text-body">
-                {c}
-              </p>
-            </li>
-          ))}
-        </ol>
-
-        <p className="reveal mt-12 max-w-[26ch] text-[clamp(23px,3.4vw,34px)] leading-[1.15] font-extrabold tracking-[-0.025em] text-navy">
-          {PARTIDA.cierre}
-        </p>
-
-        {/* Lo que ya se ha probado va aquí y no en una sección aparte: es la
-            segunda mitad de la misma idea, y en apunte para que no compita
-            con el problema. */}
+        {/* Lo que ya se ha probado: en apunte, para que no compita con el
+            problema. */}
         <div className="reveal mt-16 rounded-xl border border-line bg-card px-7 py-7 sm:px-9">
           <h3 className="font-mono text-[11px] font-semibold tracking-[0.16em] text-muted uppercase">
             {INTENTOS.titulo}
