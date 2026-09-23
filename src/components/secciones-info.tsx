@@ -139,10 +139,6 @@ export function Requisitos() {
           </li>
         ))}
       </ul>
-
-      <p className="reveal mt-12 max-w-[70ch] border-l-2 border-aviso-borde bg-aviso-fondo px-6 py-5 text-[15px] leading-[1.65] text-aviso-texto">
-        {REQUISITOS.aviso}
-      </p>
     </Seccion>
   )
 }

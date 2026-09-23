@@ -42,10 +42,10 @@ export const SELLOS = [
 ]
 
 export const CIFRAS = [
-  { valor: '30', etiqueta: 'unidades' },
-  { valor: '54', etiqueta: 'horas' },
-  { valor: '5', etiqueta: 'circuitos montados' },
-  { valor: '6 h 35', etiqueta: 'de clase grabada' },
+  { valor: '5', etiqueta: 'tareas que dejan de pasar por ti' },
+  { valor: '30', etiqueta: 'unidades, a tu ritmo' },
+  { valor: '54 h', etiqueta: 'bonificables por FUNDAE' },
+  { valor: '6 h 35', etiqueta: 'de montaje en vídeo' },
 ]
 
 export const DOLORES = [
@@ -280,8 +280,6 @@ export const REQUISITOS = {
         'Windows con Excel instalado y Power Automate Desktop, que es un programa que se instala en el ordenador.',
     },
   ],
-  aviso:
-    'Si trabajas con Mac: los seis primeros bloques los haces enteros, y son 24 de las 30 unidades. El circuito del bloque 7 no lo podrás montar, porque esa herramienta solo existe para Windows. Te lo decimos antes de que te matricules, no después.',
 }
 
 export const FAQ = [
