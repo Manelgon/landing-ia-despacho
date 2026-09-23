@@ -19,14 +19,29 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-40 border-b border-white/10 bg-navy-deep/92 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-[1060px] items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
-        <a href="#contenido" className="shrink-0" aria-label="AFCademIA, ir al contenido">
+        <a
+          href="#contenido"
+          className="flex shrink-0 items-center gap-3"
+          aria-label="AFCademIA, ir al contenido"
+        >
+          {/* El símbolo en su versión negativa: la original lleva la casa en
+              azul y aquí se perdería sobre el navy. */}
+          <Image
+            src="/simbolo-afcademia-negativo.png"
+            alt=""
+            width={500}
+            height={500}
+            priority
+            aria-hidden="true"
+            className="h-[30px] w-[30px] shrink-0 sm:h-[34px] sm:w-[34px]"
+          />
           <Image
             src="/logo-afcademia-negativo.png"
             alt="AFCademIA · Formación para administradores de fincas"
             width={2092}
             height={410}
             priority
-            className="h-auto w-[134px] sm:w-[158px]"
+            className="h-auto w-[122px] sm:w-[144px]"
           />
         </a>
 
