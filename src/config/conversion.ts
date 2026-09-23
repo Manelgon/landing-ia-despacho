@@ -25,17 +25,15 @@ export const CONVERSION = {
   precioNota: '',
 
   /**
-   * Plazas por tanda. Manel confirmó el 23 de septiembre de 2026 que el tope
-   * es real y que se cuenta por tandas.
+   * Plazas de la tanda en curso. El tope es real y lo cuenta Manel, que dio
+   * el 4 el 23 de septiembre de 2026.
    *
-   * `quedan` solo se escribe si alguien lleva la cuenta de verdad. Mientras
-   * esté en null, la página dice cuántas plazas tiene cada tanda y no
-   * inventa un contador: un "quedan cuatro" que no se corresponde con nada
-   * es publicidad engañosa, y además lo desmiente la propia página.
+   * Esta cifra sale en la tarjeta del precio, así que hay que bajarla según
+   * entren matrículas: un número parado que no se corresponde con la
+   * realidad es publicidad engañosa. En null, no se enseña nada.
    */
   plazas: {
-    porTanda: 150 as number | null,
-    quedan: null as number | null,
+    quedan: 4 as number | null,
   },
 
   stripe: {
