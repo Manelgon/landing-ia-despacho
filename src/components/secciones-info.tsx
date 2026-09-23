@@ -319,80 +319,57 @@ export function Pasos() {
 }
 
 /**
- * Prueba social a dos columnas: a la izquierda el rótulo, a la derecha las
- * citas. Las fotos son huecos hasta que haya permiso firmado de cada alumno
- * para usar su cara y su nombre.
+ * Prueba social con el mismo patrón que los cuatro pasos: titular arriba y
+ * una fila de columnas con filete ámbar. Sin fotos: el formato no las pide y
+ * además harían falta permisos firmados.
  */
 export function Testimonios() {
   return (
     <Seccion alterna>
-      <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
-        <div className="reveal lg:sticky lg:top-24 lg:self-start">
-          <Eyebrow>{TESTIMONIOS.eyebrow}</Eyebrow>
-          <h2 className="mt-5 max-w-[16ch] text-[clamp(28px,4vw,42px)] leading-[1.1] font-extrabold tracking-[-0.025em]">
-            {TESTIMONIOS.titulo}
-          </h2>
+      <Titulo eyebrow={TESTIMONIOS.eyebrow}>{TESTIMONIOS.titulo}</Titulo>
 
-          {TESTIMONIOS.verificables.texto ? (
-            <p className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-[14px] text-muted">
-              <span className="text-[15px] tracking-[0.12em] text-amber" aria-hidden="true">
-                ★★★★★
-              </span>
-              {TESTIMONIOS.verificables.url ? (
-                <a
-                  href={TESTIMONIOS.verificables.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-line underline-offset-[5px] transition-colors hover:decoration-amber"
-                >
-                  {TESTIMONIOS.verificables.texto} →
-                </a>
-              ) : (
-                TESTIMONIOS.verificables.texto
-              )}
-            </p>
-          ) : null}
-        </div>
-
-        <ul className="grid list-none gap-10">
-          {TESTIMONIOS.lista.map((t, i) => (
-            <li
-              key={i}
-              style={cascada(i, 90)}
-              className="reveal border-t border-line pt-9 first:border-t-0 first:pt-0"
+      {TESTIMONIOS.verificables.texto ? (
+        <p className="reveal mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-[14px] text-muted">
+          <span className="text-[15px] tracking-[0.12em] text-amber" aria-hidden="true">
+            ★★★★★
+          </span>
+          {TESTIMONIOS.verificables.url ? (
+            <a
+              href={TESTIMONIOS.verificables.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-line underline-offset-[5px] transition-colors hover:decoration-amber"
             >
-              <blockquote className="max-w-[46ch] text-[clamp(19px,2.2vw,24px)] leading-[1.35] font-bold tracking-[-0.02em] text-ink">
-                {t.cita}
-              </blockquote>
+              {TESTIMONIOS.verificables.texto} →
+            </a>
+          ) : (
+            TESTIMONIOS.verificables.texto
+          )}
+        </p>
+      ) : null}
 
-              <div className="mt-6 flex flex-wrap items-center gap-x-7 gap-y-4">
-                <div className="flex items-center gap-3.5">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-dashed border-line bg-card font-mono text-[9px] tracking-[0.1em] text-muted uppercase">
-                    Foto
-                  </div>
-                  <div>
-                    <b className="block text-[15px] font-bold text-ink">{t.nombre}</b>
-                    <span className="mt-0.5 block font-mono text-[11.5px] tracking-[0.04em] text-muted">
-                      {t.despacho}
-                    </span>
-                  </div>
+      <ul className="mt-12 grid list-none gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+        {TESTIMONIOS.lista.map((t, i) => (
+          <li key={i} style={cascada(i, 90)} className="reveal border-l-2 border-amber pl-4">
+            <p className="font-mono text-[10.5px] font-semibold tracking-[0.16em] text-amber uppercase">
+              {t.despacho}
+            </p>
+            <b className="mt-2.5 block text-[15px] leading-snug font-bold text-ink">{t.nombre}</b>
+            <blockquote className="mt-3 text-[13.5px] leading-[1.55] text-muted">
+              {t.cita}
+            </blockquote>
+
+            <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-3.5">
+              {t.metricas.map((m) => (
+                <div key={m.etiqueta}>
+                  <dd className="text-[14.5px] leading-tight font-extrabold text-navy">{m.valor}</dd>
+                  <dt className="mt-0.5 text-[11px] leading-tight text-muted">{m.etiqueta}</dt>
                 </div>
-
-                <dl className="flex flex-wrap gap-x-7 gap-y-2">
-                  {t.metricas.map((m) => (
-                    <div key={m.etiqueta} className="border-l-2 border-amber pl-3.5">
-                      <dd className="text-[15px] leading-tight font-extrabold text-navy">
-                        {m.valor}
-                      </dd>
-                      <dt className="mt-0.5 text-[11.5px] leading-tight text-muted">{m.etiqueta}</dt>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+              ))}
+            </dl>
+          </li>
+        ))}
+      </ul>
     </Seccion>
   )
 }
