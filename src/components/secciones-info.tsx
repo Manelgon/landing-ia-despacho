@@ -187,8 +187,8 @@ export function Matricula() {
       {/* Precio a la izquierda, solicitud a la derecha: el importe queda a la
           vista mientras se rellenan las preguntas. */}
       <div className="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-        <div className="lg:sticky lg:top-24 lg:self-start">
-          <div className="reveal rounded-xl bg-navy p-8 text-white">
+        <div>
+          <div className="reveal flex h-full flex-col rounded-xl bg-navy p-8 text-white">
             <p className="font-mono text-[11px] font-semibold tracking-[0.18em] text-[#FFB36B] uppercase">
               Precio del itinerario
             </p>
@@ -222,6 +222,31 @@ export function Matricula() {
                 </li>
               ))}
             </ul>
+
+            {/* Los sellos cierran la tarjeta y le dan el alto del formulario.
+                Van sobre blanco porque el logo de FUNDAE es azul y es marca
+                de un tercero: no se puede recolorear para el navy. */}
+            <div className="mt-auto pt-9">
+              <p className="font-mono text-[10.5px] tracking-[0.18em] text-white/55 uppercase">
+                Acreditaciones
+              </p>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 rounded-lg bg-card px-6 py-5">
+                <Image
+                  src="/sello-enisa.png"
+                  alt="AFCademIA, startup certificada por ENISA. Empresa emergente, Ley 28/2022"
+                  width={320}
+                  height={320}
+                  className="h-[54px] w-[54px]"
+                />
+                <Image
+                  src="/logo-fundae.png"
+                  alt="Fundación Estatal para la Formación en el Empleo"
+                  width={414}
+                  height={64}
+                  className="h-auto w-[140px]"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
