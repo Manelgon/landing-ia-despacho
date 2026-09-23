@@ -17,13 +17,12 @@ export const CURSO = {
    */
   claim: {
     para: 'Programa de implementación para administradores que gestionan entre 20 y 120 comunidades, sin cambiar de programa de gestión.',
-    // PENDIENTE: las diez horas las puso Manel el 23 de septiembre de 2026.
-    // Van atribuidas al despacho de Roberto a propósito. Sin atribuir serían
-    // una promesa al comprador, y una promesa de resultado hay que poder
-    // acreditarla; atribuidas son un hecho que Roberto confirma o corrige.
-    // Que lo confirme antes de publicar.
+    // Las diez horas las decidió Manel el 23 de septiembre de 2026, sin
+    // atribuirlas a ningún despacho: es una promesa de resultado al
+    // comprador y hay que poder acreditarla si alguien la reclama. Avisado
+    // dos veces; la decisión es suya.
     resultado:
-      'Empiezas sin saber nada y terminas con cinco tareas del despacho que ya no toca nadie. En el despacho donde nacieron, son diez horas a la semana.',
+      'Empiezas sin saber nada y terminas con cinco tareas del despacho que ya no toca nadie. Diez horas a la semana recuperadas de trabajo repetido.',
   },
   bajoBoton: 'Sin plazos · tutoría por correo con el docente · certificado al superarlo',
   respaldo: 'AFCademIA · startup certificada por ENISA',
