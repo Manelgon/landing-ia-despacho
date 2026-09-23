@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, SELLOS, TESTIMONIOS } from '@/content/curso'
+import { DOCENTE, FAQ, SELLOS, TESTIMONIOS } from '@/content/curso'
 import { CONVERSION } from '@/config/conversion'
 import { Cta } from './cta'
 import { Solicitud } from './solicitud'
@@ -52,67 +52,6 @@ export function Docente() {
               ))}
             </ul>
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export function ComoSeEstudia() {
-  return (
-    <section className="relative overflow-hidden bg-paper py-24 sm:py-28">
-      {/* La misma foto del hero, esta vez en claro: se intuye de fondo y el
-          texto va en oscuro. Medido: 13:1 en los titulares, 7,5:1 en el texto. */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/hero-limpia.jpg')" }}
-        aria-hidden="true"
-      />
-      <div className="absolute inset-0 bg-paper/90" aria-hidden="true" />
-
-      <div className="relative z-10 mx-auto w-full max-w-[1060px] px-5 sm:px-8">
-        <div className="reveal">
-          <Eyebrow>El formato</Eyebrow>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(28px,4.4vw,44px)] font-extrabold tracking-[-0.025em]">
-            Cómo se estudia
-          </h2>
-          <p className="mt-5 max-w-[56ch] text-[clamp(16px,1.9vw,18.5px)] leading-[1.65] text-muted">
-            Cuatro cosas que conviene saber antes de entrar, y lo que hace falta tener.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
-          {ESTUDIO.map((e, i) => (
-            <div key={e.titulo} style={cascada(i)} className="reveal border-l-2 border-amber pl-4">
-              <p className="font-mono text-[10.5px] font-semibold tracking-[0.16em] text-amber uppercase">
-                {e.dato}
-              </p>
-              <h3 className="mt-2.5 text-[15px] leading-snug font-bold text-ink">{e.titulo}</h3>
-              <p className="mt-1.5 text-[13.5px] leading-[1.55] text-muted">{e.texto}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Los requisitos ya no son sección aparte: es la misma pregunta,
-            cómo se hace esto y con qué. */}
-        <div className="reveal mt-14 border-t border-line pt-9">
-          <h3 className="text-[clamp(19px,2.2vw,23px)] font-extrabold tracking-[-0.02em] text-navy">
-            {REQUISITOS.titulo}
-          </h3>
-          <p className="mt-2.5 max-w-[56ch] text-[15.5px] leading-[1.6] text-body">
-            {REQUISITOS.intro}
-          </p>
-
-          <ul className="mt-7 grid list-none gap-x-8 gap-y-6 sm:grid-cols-3">
-            {REQUISITOS.filas.map((f, i) => (
-              <li key={f.bloque} style={cascada(i, 80)} className="reveal">
-                <p className="font-mono text-[11px] font-semibold tracking-[0.12em] text-navy uppercase">
-                  {f.bloque}
-                </p>
-                <p className="mt-2 text-[13.5px] leading-[1.55] text-muted">{f.texto}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

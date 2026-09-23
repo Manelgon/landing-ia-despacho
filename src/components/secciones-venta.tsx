@@ -1,4 +1,4 @@
-import { DOLORES, CIRCUITOS, REGLA, BLOQUES } from '@/content/curso'
+import { DOLORES, CIRCUITOS, REGLA, BLOQUES, ESTUDIO, REQUISITOS } from '@/content/curso'
 import { Seccion, Titulo } from './ui'
 
 const iconosCircuito = ['correo', 'llamadas', 'documentos', 'facturas', 'archivo']
@@ -179,6 +179,37 @@ export function Temario() {
             </div>
           </details>
         ))}
+      </div>
+
+      {/* Cómo se estudia y qué hace falta: dos preguntas del mismo sitio que
+          el temario, así que se contestan aquí en vez de en su sección. */}
+      <div className="reveal mt-14 border-t border-line pt-9">
+        <h3 className="text-[clamp(18px,2.1vw,22px)] font-extrabold tracking-[-0.02em] text-navy">
+          Cómo se estudia
+        </h3>
+        <ul className="mt-6 grid list-none gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
+          {ESTUDIO.map((e, i) => (
+            <li key={e.titulo} style={cascada(i, 70)} className="reveal border-l-2 border-amber pl-4">
+              <b className="block text-[14.5px] font-bold text-ink">{e.titulo}</b>
+              <span className="mt-1 block text-[13.5px] leading-[1.5] text-muted">{e.dato}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h3 className="mt-11 text-[clamp(18px,2.1vw,22px)] font-extrabold tracking-[-0.02em] text-navy">
+          {REQUISITOS.titulo}
+        </h3>
+        <p className="mt-2.5 max-w-[56ch] text-[15px] leading-[1.6] text-body">{REQUISITOS.intro}</p>
+        <ul className="mt-6 grid list-none gap-x-8 gap-y-5 sm:grid-cols-3">
+          {REQUISITOS.filas.map((f, i) => (
+            <li key={f.bloque} style={cascada(i, 70)} className="reveal">
+              <p className="font-mono text-[11px] font-semibold tracking-[0.12em] text-navy uppercase">
+                {f.bloque}
+              </p>
+              <p className="mt-2 text-[13.5px] leading-[1.55] text-muted">{f.texto}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </Seccion>
   )

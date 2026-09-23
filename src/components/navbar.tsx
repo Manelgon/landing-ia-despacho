@@ -4,7 +4,7 @@ import { Cta } from './cta'
 const ENLACES = [
   { href: '#circuitos', texto: 'Circuitos' },
   { href: '#temario', texto: 'Temario' },
-  { href: '#docente', texto: 'Quién está detrás' },
+  { href: '#docente', texto: 'El docente' },
   { href: '#testimonios', texto: 'Opiniones' },
   { href: '#matricula', texto: 'Precio' },
 ]
@@ -30,12 +30,12 @@ export function Navbar() {
         </a>
 
         <div className="flex items-center gap-8">
-          <ul className="hidden list-none items-center gap-7 lg:flex">
+          <ul className="hidden list-none items-center gap-6 lg:flex xl:gap-7">
             {ENLACES.map((e) => (
               <li key={e.href}>
                 <a
                   href={e.href}
-                  className="font-mono text-[11.5px] tracking-[0.12em] text-white/75 uppercase no-underline transition-colors hover:text-white"
+                  className="font-mono text-[11.5px] tracking-[0.12em] whitespace-nowrap text-white/75 uppercase no-underline transition-colors hover:text-white"
                 >
                   {e.texto}
                 </a>
