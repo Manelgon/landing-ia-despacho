@@ -172,6 +172,12 @@ export function Matricula() {
                     Quedan {plazas.quedan} plazas
                   </p>
                 ) : null}
+
+                {garantia ? (
+                  <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.5] text-white/70">
+                    {garantia}
+                  </p>
+                ) : null}
               </>
             ) : (
               <p className="mt-5 max-w-[30ch] text-[19px] leading-snug font-bold text-white/60">
@@ -190,12 +196,6 @@ export function Matricula() {
                 </li>
               ))}
             </ul>
-
-            {garantia ? (
-              <p className="mt-6 border-t border-white/15 pt-6 text-[13.5px] leading-[1.55] text-white/85">
-                {garantia}
-              </p>
-            ) : null}
 
             {/* Los sellos cierran la tarjeta y le dan el alto del formulario.
                 Van sobre blanco porque el logo de FUNDAE es azul y es marca
@@ -229,7 +229,7 @@ export function Matricula() {
 
               <ul className="mt-5 list-none">
                 {SELLOS.map((s) => (
-                  <li key={s.marca} className="mt-1.5 text-[14px] font-bold first:mt-0">
+                  <li key={s.marca} className="mt-1 text-[12px] first:mt-0">
                     <a
                       href={s.url}
                       target="_blank"
