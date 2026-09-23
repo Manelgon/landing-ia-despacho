@@ -42,18 +42,20 @@ export const SELLOS = [
 ]
 
 /**
- * PENDIENTE: el 143 lo dijo Manel de memoria el 23 de septiembre de 2026 y
- * él mismo dudaba. Hay que confirmarlo contra la matrícula de la edición
- * anterior antes de publicar la página. Si no sale ese número, se cambia por
- * el que sea; lo que no puede es salir a internet un número a ojo.
+ * DOS DE ESTAS CUATRO NO SE PUEDEN PUBLICAR TODAVÍA.
  *
- * Falta también el número de administraciones distintas, que sería mejor
- * cifra que las 30 unidades. Cuando se sepa, entra en el hueco 2.
+ * El 143 lo dijo Manel de memoria el 23 de septiembre de 2026, dudando él
+ * mismo: hay que contarlo en la matrícula de la edición anterior.
+ *
+ * Las administraciones no las sabe nadie aún, así que van en 00. Es un hueco
+ * a la vista a propósito: un número puesto a ojo en una landing lo desmonta
+ * cualquiera que llame al despacho, y lo que se cae entonces no es la cifra,
+ * es el resto de la página.
  */
 export const CIFRAS = [
   { valor: '143', etiqueta: 'matriculados en la edición anterior' },
+  { valor: '00', etiqueta: 'administraciones de fincas' },
   { valor: '5', etiqueta: 'tareas que dejan de pasar por ti' },
-  { valor: '30', etiqueta: 'unidades, a tu ritmo' },
   { valor: '54 h', etiqueta: 'bonificables por FUNDAE' },
 ]
 
