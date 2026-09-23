@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import { Cta } from './cta'
 
+// "Precio" no está: el botón lleva a la misma sección, donde el importe
+// queda a la izquierda del formulario.
 const ENLACES = [
   { href: '#flujos', texto: 'Flujos' },
   { href: '#temario', texto: 'Temario' },
   { href: '#docente', texto: 'El docente' },
   { href: '#testimonios', texto: 'Opiniones' },
-  { href: '#matricula', texto: 'Precio' },
 ]
 
 /**
