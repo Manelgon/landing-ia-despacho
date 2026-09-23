@@ -110,3 +110,34 @@ export const PASOS = {
     },
   ],
 }
+
+/**
+ * El filtro, en la página y no solo en el formulario. Sale del modelo que
+ * pasó Roberto, adaptado a lo que este itinerario es de verdad: no hay ocho
+ * semanas ni sesiones en directo, y no se tocan plantillas de acta porque
+ * los circuitos son otros.
+ *
+ * El corte de 20 comunidades es el mismo que anuncia el hero.
+ */
+export const ENCAJE = {
+  eyebrow: 'El filtro',
+  titulo: 'Esto no es para todos los despachos',
+  si: {
+    titulo: 'Es para ti si…',
+    lista: [
+      'Gestionas más de 20 comunidades y la carga administrativa ya no cabe en tu semana.',
+      'Tienes programa de fincas, pero el correo, las llamadas y el archivo siguen siendo manuales.',
+      'Puedes sacar un par de horas a la semana para montarlo sobre tus propias cuentas.',
+      'Decides tú, o lo decides con tu socio sin dar tres vueltas.',
+    ],
+  },
+  no: {
+    titulo: 'No es para ti si…',
+    lista: [
+      'Buscas teoría sobre inteligencia artificial: aquí se monta sobre tu correo y tus documentos.',
+      'Gestionas menos de diez comunidades y quieres resolverlo con vídeos gratuitos.',
+      'Esperas que alguien lo monte por ti sin tocar tu forma de trabajar.',
+      'No quieres revisar lo que propone la IA antes de que salga del despacho.',
+    ],
+  },
+}

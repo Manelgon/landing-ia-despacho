@@ -263,49 +263,43 @@ export const ESTUDIO = [
   {
     titulo: 'La unidad',
     dato: '35 pantallas, no un vídeo largo',
-    texto:
-      'Explicación, clase grabada y ejercicios que hay que resolver para avanzar. No se pasa de pantalla sin abrir lo que hay en ella, y los vídeos se ven enteros: no se puede recorrer pulsando Siguiente.',
+    texto: 'Explicación, clase grabada y ejercicios. No se pasa de pantalla sin abrir lo que hay en ella.',
   },
   {
     titulo: 'El ritmo',
     dato: 'Sin plazos',
     texto:
-      'Cada unidad se abre y se cierra sola, el progreso se guarda y se retoma donde lo dejaste. A una unidad por semana, el itinerario ocupa unos siete meses y te deja probar en el despacho entre unidad y unidad.',
+      'El progreso se guarda y se retoma donde lo dejaste. A una unidad por semana son unos siete meses.',
   },
   {
     titulo: 'La nota',
     dato: '70 sobre 100 por unidad',
-    texto:
-      'Prueba de nivel sin nota al empezar y test al terminar. Acertar a la segunda puntúa menos, para que la nota refleje lo que sabías y no lo que fuiste probando.',
+    texto: 'Test al terminar cada una. Acertar a la segunda puntúa menos que acertar a la primera.',
   },
   {
     titulo: 'El cierre',
     dato: 'Un reto, no un examen',
     texto:
-      'Test de 20 preguntas y un reto final: entregar los circuitos funcionando en tus cuentas, con una ejecución real de cada uno y los puntos donde una persona revisa.',
+      'Entregar los cinco circuitos funcionando en tus cuentas, con una ejecución real de cada uno.',
   },
 ]
 
 export const REQUISITOS = {
+  titulo: 'Qué necesitas',
   intro: 'No hace falta ningún conocimiento técnico, y no se programa nada.',
   filas: [
     {
       bloque: 'Bloques 1 a 6',
-      detalle: 'unidades 1-24',
       texto:
-        'Un navegador y una cuenta de correo del despacho. Las demás no hay que traerlas hechas: el curso enseña a crear paso a paso la de pruebas, la de la plataforma de automatización y la de la inteligencia artificial, y sus planes gratuitos bastan.',
+        'Un navegador y el correo del despacho. Las demás cuentas se crean dentro del curso, y sus planes gratuitos bastan.',
     },
     {
       bloque: 'Unidad 21',
-      detalle: 'la otra herramienta',
-      texto:
-        'Microsoft 365 de pago. Sin él la unidad se sigue viendo: lo que te llevas es el criterio para elegir entre una herramienta y otra, no el montaje.',
+      texto: 'Microsoft 365 de pago para montarla. Sin él la unidad se ve igual, pero no se monta.',
     },
     {
       bloque: 'Bloque 7',
-      detalle: 'unidades 25-30',
-      texto:
-        'Windows con Excel instalado, y un programa de Microsoft que se instala en el ordenador. No sirve un Mac para este bloque.',
+      texto: 'Windows con Excel y un programa de Microsoft que se instala en el ordenador.',
     },
   ],
 }

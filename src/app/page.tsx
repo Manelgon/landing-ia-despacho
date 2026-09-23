@@ -4,7 +4,7 @@ import { Navbar } from '@/components/navbar'
 import { Acreditaciones } from '@/components/acreditaciones'
 import { RevealObserver } from '@/components/reveal'
 import { Problema, Circuitos, Temario } from '@/components/secciones-venta'
-import { Docente, ComoSeEstudia, Requisitos, Preguntas, Matricula, Pasos, Testimonios } from '@/components/secciones-info'
+import { Docente, ComoSeEstudia, Preguntas, Matricula, Pasos, Testimonios, Encaje } from '@/components/secciones-info'
 import { Pie } from '@/components/pie'
 
 export default function Page() {
@@ -20,8 +20,8 @@ export default function Page() {
         <Temario />
         <Docente />
         <ComoSeEstudia />
-        <Requisitos />
         <Testimonios />
+        <Encaje />
         <Matricula />
         <Pasos />
         <Preguntas />

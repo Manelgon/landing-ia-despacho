@@ -3,7 +3,7 @@ import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, SELLOS, TESTIMONIOS } from '@/conten
 import { CONVERSION } from '@/config/conversion'
 import { Cta } from './cta'
 import { Solicitud } from './solicitud'
-import { FILTRO, PASOS } from '@/content/solicitud'
+import { FILTRO, PASOS, ENCAJE } from '@/content/solicitud'
 import { Seccion, Titulo, Eyebrow, Filete } from './ui'
 
 const cascada = (i: number, paso = 70) => ({ '--reveal-delay': `${i * paso}ms` }) as React.CSSProperties
@@ -77,68 +77,81 @@ export function ComoSeEstudia() {
             Cómo se estudia
           </h2>
           <p className="mt-5 max-w-[56ch] text-[clamp(16px,1.9vw,18.5px)] leading-[1.65] text-muted">
-            Cuatro cosas que conviene saber antes de entrar.
+            Cuatro cosas que conviene saber antes de entrar, y lo que hace falta tener.
           </p>
         </div>
 
-        <div className="mt-16 grid gap-x-16 gap-y-12 md:grid-cols-2">
+        <div className="mt-12 grid gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
           {ESTUDIO.map((e, i) => (
-            <div key={e.titulo} style={cascada(i)} className="reveal border-t border-line pt-6">
-              <span
-                aria-hidden="true"
-                className="font-mono text-[13px] tracking-[0.1em] text-amber tabular-nums"
-              >
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 className="mt-4 text-[clamp(20px,2.4vw,24px)] font-extrabold tracking-[-0.02em] text-navy">
-                {e.titulo}
-              </h3>
-              <p className="mt-2.5 font-mono text-[11px] font-semibold tracking-[0.12em] text-amber uppercase">
+            <div key={e.titulo} style={cascada(i)} className="reveal border-l-2 border-amber pl-4">
+              <p className="font-mono text-[10.5px] font-semibold tracking-[0.16em] text-amber uppercase">
                 {e.dato}
               </p>
-              <p className="mt-4 max-w-[48ch] text-[15.5px] leading-[1.65]">{e.texto}</p>
+              <h3 className="mt-2.5 text-[15px] leading-snug font-bold text-ink">{e.titulo}</h3>
+              <p className="mt-1.5 text-[13.5px] leading-[1.55] text-muted">{e.texto}</p>
             </div>
           ))}
+        </div>
+
+        {/* Los requisitos ya no son sección aparte: es la misma pregunta,
+            cómo se hace esto y con qué. */}
+        <div className="reveal mt-14 border-t border-line pt-9">
+          <h3 className="text-[clamp(19px,2.2vw,23px)] font-extrabold tracking-[-0.02em] text-navy">
+            {REQUISITOS.titulo}
+          </h3>
+          <p className="mt-2.5 max-w-[56ch] text-[15.5px] leading-[1.6] text-body">
+            {REQUISITOS.intro}
+          </p>
+
+          <ul className="mt-7 grid list-none gap-x-8 gap-y-6 sm:grid-cols-3">
+            {REQUISITOS.filas.map((f, i) => (
+              <li key={f.bloque} style={cascada(i, 80)} className="reveal">
+                <p className="font-mono text-[11px] font-semibold tracking-[0.12em] text-navy uppercase">
+                  {f.bloque}
+                </p>
+                <p className="mt-2 text-[13.5px] leading-[1.55] text-muted">{f.texto}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
   )
 }
 
-export function Requisitos() {
-  const [base, ...excepciones] = REQUISITOS.filas
-
+/**
+ * El filtro, en la página. Dos columnas: quién encaja y quién no. Va justo
+ * antes del precio, que es donde alguien decide si sigue leyendo.
+ */
+export function Encaje() {
   return (
-    <Seccion alterna>
-      <Titulo eyebrow="Antes de empezar" sub={REQUISITOS.intro}>
-        Qué necesitas
-      </Titulo>
+    <Seccion>
+      <Titulo eyebrow={ENCAJE.eyebrow}>{ENCAJE.titulo}</Titulo>
 
-      {/* Primero la respuesta —para casi todo el itinerario no hace falta
-          nada— y después las excepciones, que son solo dos. */}
-      <div className="reveal mt-14 border-l-2 border-amber pl-6 sm:pl-8">
-        <p className="font-mono text-[11px] font-semibold tracking-[0.14em] text-amber uppercase">
-          {base.bloque} · {base.detalle}
-        </p>
-        <p className="mt-4 max-w-[56ch] text-[clamp(17px,2vw,20px)] leading-[1.6] text-ink">
-          {base.texto}
-        </p>
-      </div>
-
-      <p className="reveal mt-14 font-mono text-[11px] font-semibold tracking-[0.14em] text-muted uppercase">
-        Dos excepciones
-      </p>
-
-      <ul className="mt-6 grid list-none gap-x-14 gap-y-8 md:grid-cols-2">
-        {excepciones.map((f, i) => (
-          <li key={f.bloque} style={cascada(i)} className="reveal border-t border-line pt-5">
-            <p className="text-[16px] font-bold text-navy">
-              {f.bloque} <span className="font-mono text-[11px] tracking-[0.1em] text-muted uppercase">· {f.detalle}</span>
-            </p>
-            <p className="mt-2.5 max-w-[46ch] text-[15px] leading-[1.6]">{f.texto}</p>
-          </li>
+      <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-14">
+        {[ENCAJE.si, ENCAJE.no].map((col, c) => (
+          <div key={col.titulo} style={cascada(c, 110)} className="reveal">
+            <h3
+              className={`text-[17px] font-extrabold tracking-[-0.01em] ${c === 0 ? 'text-navy' : 'text-muted'}`}
+            >
+              {col.titulo}
+            </h3>
+            <ul className="mt-5 grid list-none gap-4">
+              {col.lista.map((t) => (
+                <li key={t} className="flex gap-3.5 text-[15px] leading-[1.55]">
+                  <span
+                    aria-hidden="true"
+                    className={`mt-0.5 shrink-0 font-mono text-[14px] ${c === 0 ? 'text-amber' : 'text-muted'}`}
+                  >
+                    {c === 0 ? '✓' : '✕'}
+                  </span>
+                  <span className={c === 0 ? 'text-body' : 'text-muted'}>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
     </Seccion>
   )
 }
