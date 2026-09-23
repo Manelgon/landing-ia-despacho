@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, BONIFICACION } from '@/content/curso'
+import { DOCENTE, ESTUDIO, REQUISITOS, FAQ, SELLOS } from '@/content/curso'
 import { CONVERSION } from '@/config/conversion'
 import { Cta } from './cta'
 import { Solicitud } from './solicitud'
@@ -200,10 +200,6 @@ export function Matricula() {
                 {precioNota ? (
                   <p className="mt-3.5 font-mono text-[12.5px] text-white/70">{precioNota}</p>
                 ) : null}
-                <p className="mt-4 text-[14.5px] font-bold">
-                  <span className="text-[#FFB36B]">{BONIFICACION.etiqueta}</span>{' '}
-                  <span className="text-white">{BONIFICACION.marca}</span>
-                </p>
               </>
             ) : (
               <p className="mt-5 max-w-[30ch] text-[19px] leading-snug font-bold text-white/60">
@@ -246,6 +242,15 @@ export function Matricula() {
                   className="h-auto w-[140px]"
                 />
               </div>
+
+              <ul className="mt-5 list-none">
+                {SELLOS.map((s) => (
+                  <li key={s.marca} className="mt-1.5 text-[14px] font-bold first:mt-0">
+                    <span className="text-[#FFB36B]">{s.etiqueta}</span>{' '}
+                    <span className="text-white">{s.marca}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

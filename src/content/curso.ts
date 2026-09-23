@@ -15,14 +15,16 @@ export const CURSO = {
 }
 
 /**
- * Bonificación por FUNDAE. Confirmado por Manel el 22 de septiembre de 2026.
- * Va partido en dos porque en la tarjeta del precio "Bonificable por" se
- * pinta en naranja y la marca en blanco.
+ * Los dos avales que van al pie de la tarjeta del precio, bajo los logos.
+ * La bonificación por FUNDAE la confirmó Manel el 22 de septiembre de 2026.
+ * Cada uno va partido en dos: la frase en naranja y la marca en blanco.
  */
-export const BONIFICACION = {
-  etiqueta: 'Bonificable por',
-  marca: 'FUNDAE',
-}
+export const SELLOS = [
+  // En el mismo orden que los logos de arriba: ENISA a la izquierda, FUNDAE
+  // a la derecha.
+  { etiqueta: 'Startup certificada por', marca: 'ENISA' },
+  { etiqueta: 'Bonificable por', marca: 'FUNDAE' },
+]
 
 export const CIFRAS = [
   { valor: '30', etiqueta: 'unidades' },
