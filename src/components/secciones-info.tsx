@@ -154,27 +154,29 @@ export function Matricula() {
       <div className="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         <div>
           <div className="reveal flex h-full flex-col rounded-xl bg-navy p-8 text-white">
-            <p className="font-mono text-[11px] font-semibold tracking-[0.18em] text-[#FFB36B] uppercase">
+            <p className="text-center font-mono text-[11px] font-semibold tracking-[0.18em] text-[#FFB36B] uppercase">
               Precio del itinerario
             </p>
             {precio ? (
               <>
-                <p className="mt-5 text-[clamp(40px,6vw,56px)] leading-none font-extrabold tracking-[-0.035em] text-white">
+                <p className="mt-5 text-center text-[clamp(40px,6vw,56px)] leading-none font-extrabold tracking-[-0.035em] text-white">
                   {precio}
                 </p>
                 {precioNota ? (
-                  <p className="mt-3.5 font-mono text-[12.5px] text-white/70">{precioNota}</p>
+                  <p className="mt-3.5 text-center font-mono text-[12.5px] text-white/70">
+                    {precioNota}
+                  </p>
                 ) : null}
 
                 {plazas.quedan ? (
-                  <p className="mt-4 flex items-center gap-2.5 text-[14.5px] font-bold text-[#FFB36B]">
+                  <p className="mt-4 flex items-center justify-center gap-2.5 text-[14.5px] font-bold text-[#FFB36B]">
                     <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
                     Quedan {plazas.quedan} plazas
                   </p>
                 ) : null}
 
                 {garantia ? (
-                  <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.5] text-white/70">
+                  <p className="mx-auto mt-4 max-w-[34ch] text-center text-[13px] leading-[1.5] text-white/70">
                     {garantia}
                   </p>
                 ) : null}
