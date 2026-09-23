@@ -167,7 +167,7 @@ export function Matricula() {
                 ) : null}
 
                 {plazas.quedan ? (
-                  <p className="mt-5 inline-flex w-fit items-center gap-2.5 rounded-full bg-amber-soft py-2 pr-5 pl-4 text-[14px] font-bold text-aviso-texto">
+                  <p className="mt-4 flex items-center gap-2.5 text-[14.5px] font-bold text-[#FFB36B]">
                     <span className="h-1.5 w-1.5 rounded-full bg-amber" aria-hidden="true" />
                     Quedan {plazas.quedan} plazas
                   </p>
