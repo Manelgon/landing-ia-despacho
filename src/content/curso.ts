@@ -23,7 +23,7 @@ export const CURSO = {
 export const BONIFICACION = {
   titulo: 'Bonificable por FUNDAE',
   texto:
-    'El itinerario es bonificable a través de la Fundación Estatal para la Formación en el Empleo. Aplica a despachos con trabajadores por cuenta ajena, y el importe que se recupera depende del crédito de formación que tenga cada empresa.',
+    'Si tienes trabajadores por cuenta ajena, se descuenta del crédito de formación de tu despacho. Te lo tramitamos nosotros.',
 }
 
 export const CIFRAS = [

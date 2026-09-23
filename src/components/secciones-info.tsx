@@ -171,7 +171,7 @@ export function Preguntas() {
 }
 
 export function Matricula() {
-  const { precio, precioNota, modo, contacto } = CONVERSION
+  const { precio, precioNota } = CONVERSION
 
   const incluye = [
     '30 unidades y 54 horas',
@@ -181,69 +181,67 @@ export function Matricula() {
   ]
 
   return (
-    <Seccion id="matricula">
-      <Titulo eyebrow="Matricularte">Lo que cuesta y lo que incluye</Titulo>
+    <Seccion id="matricula" alterna>
+      <Titulo eyebrow="Matricularte">Lo que cuesta y cómo entrar</Titulo>
 
-      <div className="fondo-matricula reveal mt-16 grid gap-10 rounded-xl bg-navy p-8 text-white sm:p-12 md:grid-cols-[1fr_1px_1fr] md:gap-14">
-        <div>
-          <p className="font-mono text-[11px] font-semibold tracking-[0.18em] text-[#FFB36B] uppercase">
-            Precio del itinerario
-          </p>
-          {precio ? (
-            <>
-              <p className="mt-6 text-[clamp(44px,7vw,68px)] leading-none font-extrabold tracking-[-0.035em] text-white">
-                {precio}
-              </p>
-              <p className="mt-4 font-mono text-[12.5px] text-white/70">{precioNota}</p>
-            </>
-          ) : (
-            <p className="mt-6 max-w-[30ch] text-[19px] leading-snug font-bold text-white/60">
-              Pendiente de decidir. Se pone en <code className="font-mono text-[16px]">src/config/conversion.ts</code>
+      {/* Precio a la izquierda, solicitud a la derecha: el importe queda a la
+          vista mientras se rellenan las preguntas. */}
+      <div className="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <div className="reveal rounded-xl bg-navy p-8 text-white">
+            <p className="font-mono text-[11px] font-semibold tracking-[0.18em] text-[#FFB36B] uppercase">
+              Precio del itinerario
             </p>
-          )}
+            {precio ? (
+              <>
+                <p className="mt-5 text-[clamp(40px,6vw,56px)] leading-none font-extrabold tracking-[-0.035em] text-white">
+                  {precio}
+                </p>
+                <p className="mt-3.5 font-mono text-[12.5px] text-white/70">{precioNota}</p>
+              </>
+            ) : (
+              <p className="mt-5 max-w-[30ch] text-[19px] leading-snug font-bold text-white/60">
+                Pendiente de decidir. Se pone en{' '}
+                <code className="font-mono text-[16px]">src/config/conversion.ts</code>
+              </p>
+            )}
 
-          <div className="mt-10 flex flex-col items-start gap-4">
-            <Cta />
-            {modo === 'contacto' && contacto.telefono ? (
-              <a href={`tel:${contacto.telefono}`} className="font-mono text-[13px] text-white/70 underline">
-                o llama al {contacto.telefono}
-              </a>
-            ) : null}
+            <ul className="mt-8 list-none border-t border-white/15 pt-6">
+              {incluye.map((l) => (
+                <li
+                  key={l}
+                  className="relative border-b border-white/10 py-3 pl-6 text-[15px] text-white/85 last:border-b-0 before:absolute before:top-[1.2rem] before:left-0 before:h-1.5 before:w-1.5 before:rounded-[1px] before:bg-amber before:content-['']"
+                >
+                  {l}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="hidden bg-white/15 md:block" aria-hidden="true" />
-
-        <ul className="list-none self-center">
-          {incluye.map((l) => (
-            <li
-              key={l}
-              className="relative border-b border-white/10 py-3.5 pl-6 text-[15.5px] text-white/85 last:border-b-0 before:absolute before:top-[1.35rem] before:left-0 before:h-1.5 before:w-1.5 before:rounded-[1px] before:bg-amber before:content-['']"
-            >
-              {l}
-            </li>
-          ))}
-        </ul>
+        <div id="solicitud" className="reveal scroll-mt-28">
+          <Eyebrow>{FILTRO.eyebrow}</Eyebrow>
+          <h3 className="mt-4 max-w-[24ch] text-[clamp(24px,3.2vw,32px)] font-extrabold tracking-[-0.025em]">
+            {FILTRO.titulo}
+          </h3>
+          <p className="mt-4 max-w-[52ch] text-[16px] leading-[1.6] text-muted">
+            {FILTRO.entradilla}
+          </p>
+          <Solicitud />
+        </div>
       </div>
 
-      <div className="reveal mt-8 flex flex-wrap items-start justify-between gap-x-10 gap-y-5">
-        <p className="max-w-[62ch] text-[15px] leading-[1.65]">
+      {/* Pie de la sección: cruza las dos columnas, así que el aviso de FUNDAE
+          se lee entero en una línea en vez de partirse en la media columna. */}
+      <div className="reveal mt-14 border-t border-line pt-7">
+        <p className="text-[14.5px] leading-[1.6]">
           <b className="font-bold text-ink">{BONIFICACION.titulo}.</b>{' '}
           <span className="text-muted">{BONIFICACION.texto}</span>
         </p>
-        <p className="font-mono text-[12.5px] tracking-[0.02em] text-muted">{CURSO.bajoBoton}</p>
+        <p className="mt-4 font-mono text-[12px] leading-relaxed tracking-[0.02em] text-muted">
+          {CURSO.bajoBoton}
+        </p>
       </div>
-    </Seccion>
-  )
-}
-
-export function SeccionSolicitud() {
-  return (
-    <Seccion id="solicitud" alterna>
-      <Titulo eyebrow={FILTRO.eyebrow} sub={FILTRO.entradilla}>
-        {FILTRO.titulo}
-      </Titulo>
-      <Solicitud />
     </Seccion>
   )
 }
