@@ -216,8 +216,8 @@ export function Matricula() {
 
         <div className="reveal">
           <Eyebrow>{PASOS.eyebrow}</Eyebrow>
-          <h3 className="mt-4 max-w-[24ch] text-[clamp(24px,3.2vw,32px)] font-extrabold tracking-[-0.025em]">
-            {PASOS.titulo}
+          <h3 className="mt-4 max-w-[24ch] text-[clamp(24px,3.2vw,32px)] font-extrabold tracking-[-0.025em] text-ink">
+            <Destaca texto={PASOS.titulo} parte="solicitas tu diagnóstico" />
           </h3>
           <ol className="mt-9 list-none">
             {PASOS.lista.map((p) => (

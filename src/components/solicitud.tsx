@@ -214,7 +214,7 @@ export function Solicitud({ compacto = false }: { compacto?: boolean }) {
         ) : esUltimo ? (
           <>
             <p className={`${k('text-[clamp(21px,2.6vw,26px)]', 'text-[19px]')} font-extrabold tracking-[-0.02em] text-ink`}>
-              ¿Dónde te escribimos?
+              ¿Cómo te contactamos?
             </p>
             <div className={`${k('mt-8 gap-5', 'mt-5 gap-4')} grid max-w-[480px]`}>
               <div>

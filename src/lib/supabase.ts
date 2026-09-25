@@ -36,7 +36,7 @@ export async function enviarSolicitud(datos: Solicitud): Promise<void> {
     const cuerpo = await respuesta.text()
     // 23505 es la clave duplicada: ya envió el formulario hoy con ese correo
     if (respuesta.status === 409 || cuerpo.includes('23505')) {
-      throw new Error('Ya hemos recibido una solicitud con ese correo hoy. Te escribimos en breve.')
+      throw new Error('Ya hemos recibido una solicitud con ese correo hoy. Te llamamos en breve.')
     }
     throw new Error('No hemos podido enviar la solicitud. Inténtalo de nuevo en un momento.')
   }

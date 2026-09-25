@@ -10,13 +10,13 @@ export const FILTRO = {
   eyebrow: 'Último paso',
   titulo: 'Solicita el diagnóstico de tu despacho',
   entradilla:
-    'Siete preguntas, dos minutos. Si encaja, te escribimos en 24 horas para cuadrar una llamada.',
+    'Siete preguntas, dos minutos. Si encaja, te llamamos en 24 horas.',
   boton: 'Enviar la solicitud',
   enviando: 'Enviando…',
   exito: {
     titulo: 'Solicitud recibida',
     texto:
-      'La leemos y te escribimos a ese correo en 24 horas. Si tu despacho encaja, cuadramos una llamada; si no, te lo decimos con la misma claridad.',
+      'La leemos y te llamamos en 24 horas. Si tu despacho encaja, vemos por dónde empezar; si no, te lo decimos con la misma claridad.',
   },
 }
 
@@ -115,7 +115,7 @@ export const PREGUNTAS = [
  */
 export const PASOS = {
   eyebrow: 'Qué pasa después',
-  titulo: 'Lo que pasa cuando le das a enviar',
+  titulo: 'Lo que pasa cuando solicitas tu diagnóstico',
   lista: [
     {
       cuando: 'Ahora',
@@ -124,8 +124,8 @@ export const PASOS = {
     },
     {
       cuando: 'En 24 h',
-      titulo: 'Te escribimos',
-      texto: 'Leemos lo que has contestado y te respondemos al correo que hayas dejado.',
+      titulo: 'Te llamamos',
+      texto: 'Leemos lo que has contestado y te llamamos al teléfono que hayas dejado.',
     },
     {
       cuando: 'En la llamada',
