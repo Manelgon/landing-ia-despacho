@@ -1,19 +1,21 @@
 import Image from 'next/image'
 import { Cta } from './cta'
+import { NavMovil } from './nav-movil'
 
-// "Precio" no está: el botón lleva a la misma sección, donde el importe
-// queda a la izquierda del formulario.
+// Cada enlace se llama igual que el antetítulo de su sección.
 const ENLACES = [
-  { href: '#flujos', texto: 'Flujos' },
+  { href: '#partida', texto: 'Tu despacho hoy' },
+  { href: '#flujos', texto: 'Lo que montas' },
   { href: '#temario', texto: 'Temario' },
-  { href: '#docente', texto: 'El docente' },
-  { href: '#testimonios', texto: 'Opiniones' },
+  { href: '#docente', texto: 'Quién enseña' },
+  { href: '#encaje', texto: 'Para quién es' },
+  { href: '#matricula', texto: 'Precio' },
 ]
 
 /**
  * Barra fija. Va sobre el navy del hero, así que el logo es el negativo.
- * Los enlaces se esconden en móvil: son anclas de la propia página y el
- * botón es lo único que hace falta ahí.
+ * Por debajo de 1280 px los enlaces pasan al menú lateral (nav-movil.tsx).
+ * En el móvil el botón tampoco va en la barra: está al pie de ese menú.
  */
 export function Navbar() {
   return (
@@ -21,20 +23,9 @@ export function Navbar() {
       <div className="mx-auto flex w-full max-w-[1060px] items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
         <a
           href="#contenido"
-          className="flex shrink-0 items-center gap-3"
+          className="flex shrink-0 items-center"
           aria-label="AFCademIA, ir al contenido"
         >
-          {/* El símbolo en su versión negativa: la original lleva la casa en
-              azul y aquí se perdería sobre el navy. */}
-          <Image
-            src="/simbolo-afcademia-negativo.png"
-            alt=""
-            width={500}
-            height={500}
-            priority
-            aria-hidden="true"
-            className="h-[30px] w-[30px] shrink-0 sm:h-[34px] sm:w-[34px]"
-          />
           <Image
             src="/logo-afcademia-negativo.png"
             alt="AFCademIA · Formación para administradores de fincas"
@@ -45,8 +36,8 @@ export function Navbar() {
           />
         </a>
 
-        <div className="flex items-center gap-8">
-          <ul className="hidden list-none items-center gap-6 lg:flex xl:gap-7">
+        <div className="flex items-center gap-3 xl:gap-7">
+          <ul className="hidden list-none items-center gap-6 xl:flex">
             {ENLACES.map((e) => (
               <li key={e.href}>
                 <a
@@ -58,7 +49,10 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <Cta tamano="compacto" />
+          <div className="hidden shrink-0 whitespace-nowrap sm:block">
+            <Cta tamano="compacto" />
+          </div>
+          <NavMovil enlaces={ENLACES} cta={<Cta />} />
         </div>
       </div>
     </nav>

@@ -16,7 +16,7 @@ create table if not exists public.solicitudes_despacho (
   telefono      text,
 
   -- Las siete preguntas del filtro
-  comunidades   text,   -- menos de 10 · 10-20 · 20-60 · 60-120 · más de 120
+  comunidades   text,   -- menos de 10 · 10-20 · 20-60 · 60-120 · 120-500 · más de 500
   horas_tareas  text,   -- lo que le lleva hoy la tarea que más le pesa
   software      text,   -- Gesfincas · Netfincas · TAAF · otro · hojas de cálculo
   intentos      text,   -- qué ha probado ya y qué pasó (texto libre)

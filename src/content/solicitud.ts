@@ -20,18 +20,48 @@ export const FILTRO = {
   },
 }
 
+/**
+ * Primera capa de información de protección de datos, junto a la casilla.
+ *
+ * Es la cláusula que Prodat aprobó para el formulario de afcademia.com
+ * (007. Adecuación legal web, 24 de septiembre de 2026), con la finalidad
+ * adaptada a este formulario, que acaba en una llamada.
+ *
+ * DURACIÓN: sin plazo propio decidido, se usa el mismo criterio que la web
+ * principal. Es un compromiso: las solicitudes que no acaben en matrícula
+ * hay que borrarlas de Supabase una vez respondidas.
+ */
+export const CLAUSULA = {
+  politica: 'https://afcademia.com/politica-de-privacidad/',
+  capa: [
+    { dato: 'Responsable', texto: 'AFcademIA 2025 S.L.' },
+    {
+      dato: 'Finalidad',
+      texto: 'Valorar si el itinerario encaja con tu despacho y contactarte por correo o por teléfono para darte la información.',
+    },
+    {
+      dato: 'Legitimación',
+      texto: 'Finalidad precontractual y tu consentimiento expreso mediante la presente solicitud.',
+    },
+    {
+      dato: 'Duración',
+      texto: 'Los datos se eliminan en cuanto se te da la información, salvo que contrates o que nos pidas que te contactemos a futuro.',
+    },
+    { dato: 'Destinatarios', texto: 'No cedemos tus datos a nadie.' },
+  ],
+}
+
 export const PREGUNTAS = [
   {
     id: 'comunidades',
     numero: '01',
     texto: '¿Cuántas comunidades gestionas?',
-    opciones: ['Menos de 10', 'Entre 10 y 20', 'Entre 20 y 60', 'Entre 60 y 120', 'Más de 120'],
+    opciones: ['Menos de 10', 'Entre 10 y 20', 'Entre 20 y 60', 'Entre 60 y 120', 'Entre 120 y 500', 'Más de 500'],
   },
   {
     id: 'mayor_reto',
     numero: '02',
     texto: '¿Cuál de estas tareas te come más tiempo?',
-    ayuda: 'Es por dónde empezarías.',
     opciones: [
       'El correo',
       'Las llamadas',
@@ -120,7 +150,7 @@ export const PASOS = {
  * El corte de 20 comunidades es el mismo que anuncia el hero.
  */
 export const ENCAJE = {
-  eyebrow: 'El filtro',
+  eyebrow: 'Para quién es',
   titulo: 'Esto no es para todos los despachos',
   si: {
     titulo: 'Es para ti si…',

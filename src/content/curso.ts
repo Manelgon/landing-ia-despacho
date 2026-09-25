@@ -7,25 +7,43 @@
 export const CURSO = {
   nombre: 'IA para el Despacho',
   subtitulo: 'De la primera petición a los flujos que trabajan solos',
-  eyebrow: 'Itinerario online · a tu ritmo',
+  eyebrow: 'IA para el Despacho · Itinerario online',
+  /**
+   * El titular del hero, desde el 25 de septiembre de 2026. El nombre del
+   * curso pasa al eyebrow y el titular dice lo que se lleva. Va en tres
+   * trozos para poder resaltar las horas.
+   */
+  titular: {
+    antes: 'Cómo recuperar ',
+    destacado: '10 horas a la semana',
+    despues: ' en tu despacho con IA',
+  },
   /**
    * El claim va en dos partes: primero a quién va dirigido, que es lo que
    * pidió Roberto para filtrar antes de que nadie rellene nada, y después
    * lo que se lleva. El rango de comunidades lo fijó Manel el 23 de
    * septiembre de 2026 y es el mismo que separa las opciones útiles de la
-   * primera pregunta del formulario.
+   * primera pregunta del formulario. El tope subió de 120 a 500 el 25 de
+   * septiembre de 2026, a propuesta de Roberto: por encima de 500 es otro
+   * tipo de despacho.
    */
   claim: {
-    para: 'Programa de implementación para administradores que gestionan entre 20 y 120 comunidades, sin cambiar de programa de gestión.',
+    para: 'Programa de implementación para administradores que gestionan entre 20 y 500 comunidades, sin cambiar de programa de gestión.',
     // Las diez horas las decidió Manel el 23 de septiembre de 2026, sin
     // atribuirlas a ningún despacho: es una promesa de resultado al
     // comprador y hay que poder acreditarla si alguien la reclama. Avisado
     // dos veces; la decisión es suya.
     resultado:
-      'Empiezas sin saber nada y terminas con cinco tareas del despacho que ya no toca nadie. Diez horas a la semana recuperadas de trabajo repetido.',
+      'Empiezas sin saber nada y terminas con cinco tareas del despacho que ya no toca nadie.',
   },
   bajoBoton: 'Sin plazos · tutoría por correo con el docente · certificado al superarlo',
   respaldo: 'AFCademIA · startup certificada por ENISA',
+}
+
+/** La línea destacada encima de las acreditaciones, en la tarjeta del precio. */
+export const BONIFICABLE = {
+  titulo: 'Bonificable por FUNDAE',
+  texto: 'Del papeleo nos encargamos nosotros.',
 }
 
 /**
@@ -37,6 +55,7 @@ export const SELLOS = [
   // Las webs son las oficiales, comprobadas el 23 de septiembre de 2026.
   {
     etiqueta: 'Startup certificada por',
+    leyenda: 'Empresa certificada por ENISA',
     marca: 'ENISA',
     url: 'https://www.enisa.es',
     logo: '/sello-enisa.png',
@@ -46,6 +65,7 @@ export const SELLOS = [
   },
   {
     etiqueta: 'Bonificable por',
+    leyenda: 'Formación bonificable a través de Fundae',
     marca: 'FUNDAE',
     url: 'https://www.fundae.es',
     logo: '/logo-fundae.png',
@@ -104,16 +124,60 @@ export const INTENTOS = {
   lista: [
     {
       titulo: 'Un chat de inteligencia artificial',
-      texto: 'Sirve para un párrafo suelto, no para vaciar la bandeja.',
+      texto: 'Sirve para un párrafo suelto. No para vaciar una bandeja con 200 correos parecidos.',
     },
     { titulo: 'Otro programa', texto: 'El programa nuevo hereda el proceso viejo.' },
     { titulo: 'Otra persona', texto: 'Mueve el cuello de botella, no lo quita.' },
   ],
 }
 
+/**
+ * Las unidades 1 a 10, antes del primer flujo. Van encima del mosaico para
+ * que «Lo que montas» siga el mismo orden que el temario y se vea que lo
+ * primero ya da algo que usar (lo pidió Javier el 25 de septiembre de 2026).
+ * Los textos salen de las unidades y del resultado de cada bloque.
+ *
+ * PENDIENTE: sus fotos de fondo. Con «imagen» vacío, la tarjeta sale lisa.
+ */
+export const ANTES_DE_LOS_FLUJOS = [
+  {
+    unidades: '1 - 5',
+    icono: 'fundamentos',
+    titulo: 'Tu asistente de IA',
+    texto:
+      'Aprendes a pedirle bien a ChatGPT y montas tu biblioteca de prompts, un proyecto por tarea y tu propio asistente a medida.',
+    imagen: '/circuitos/antes-01-asistente-ia-fondo.webp',
+  },
+  {
+    unidades: '6 - 10',
+    icono: 'conexiones',
+    titulo: 'Las cuentas conectadas',
+    texto: 'Correo, calendario, documentos e IA conectados una sola vez, listos para todos los flujos.',
+    imagen: '/circuitos/antes-02-cuentas-conectadas-fondo.webp',
+  },
+]
+
+/**
+ * Las unidades 22 a 24, que no montan un flujo nuevo: hacen que los que ya
+ * funcionan sigan encendidos. Van en el mosaico, entre el flujo 4 y el 5, en
+ * su sitio del temario.
+ *
+ * PENDIENTE: su foto de fondo. Mientras «imagen» esté vacío, la tarjeta sale
+ * con fondo liso. Cuando esté, se pone aquí, p. ej. '/circuitos/vivir-con-esto-fondo.webp'.
+ */
+export const PARA_QUE_DUREN = {
+  unidades: '22 - 24',
+  icono: 'vivir-con-esto',
+  titulo: 'Vivir con esto',
+  texto:
+    'Aprendes a leer un flujo y sus errores, de quién responde lo que hace la IA y la rutina de cinco minutos a la semana que los mantiene encendidos.',
+  imagen: '/circuitos/vivir-con-esto-fondo.webp',
+}
+
 export const CIRCUITOS = [
   {
     n: 'Flujo 1',
+    unidades: '11 - 14',
     titulo: 'El correo',
     texto:
       'Un asistente lee tu bandeja, clasifica cada mensaje en las categorías de tu despacho, lo archiva en su etiqueta y deja escrito el borrador de respuesta.',
@@ -122,6 +186,7 @@ export const CIRCUITOS = [
   },
   {
     n: 'Flujo 2',
+    unidades: '15 - 17',
     titulo: 'Las llamadas',
     texto:
       'Dejas el audio de una llamada en una carpeta y salen el resumen escrito y las tareas repartidas por departamento.',
@@ -130,6 +195,7 @@ export const CIRCUITOS = [
   },
   {
     n: 'Flujo 3',
+    unidades: '18 - 19',
     titulo: 'Los documentos',
     texto:
       'De una fila de una hoja salen el certificado y la factura, en PDF, enviados por correo y archivados en su carpeta.',
@@ -138,6 +204,7 @@ export const CIRCUITOS = [
   },
   {
     n: 'Flujo 4',
+    unidades: '20 - 21',
     titulo: 'Las facturas que llegan',
     texto:
       'Las facturas de proveedor que entran por correo se descargan solas y se guardan con un nombre que dice de quién son.',
@@ -146,7 +213,8 @@ export const CIRCUITOS = [
   },
   {
     n: 'Flujo 5',
-    titulo: 'El archivo documental',
+    unidades: '25 - 30',
+    titulo: 'El gestor documental',
     texto:
       'Un flujo abre cada factura en PDF, lee el CIF impreso dentro, reconoce la comunidad y la archiva por comunidad y por proveedor.',
     para: 'Nada se borra. Todo se mueve',
@@ -157,10 +225,11 @@ export const CIRCUITOS = [
 export const BLOQUES = [
   {
     rango: '1 - 5',
+    resultado: 'Una biblioteca de prompts, un proyecto montado y tu propio asistente.',
     titulo: 'Fundamentos',
     horas: '10 h',
     texto:
-      'Qué se le puede pedir a la inteligencia artificial en un despacho y qué no. Sales con una biblioteca de prompts, un proyecto montado y un asistente propio, y sin haber automatizado nada todavía.',
+      'Qué se le puede pedir a la inteligencia artificial en un despacho y qué no.',
     unidades: [
       'IA práctica para la administración de fincas',
       'El asistente de IA en el despacho',
@@ -171,6 +240,7 @@ export const BLOQUES = [
   },
   {
     rango: '6 - 10',
+    resultado: 'Correo, calendario, documentos e IA conectados, listos para todos los flujos.',
     titulo: 'Las cuentas y las conexiones',
     horas: '5 h',
     texto:
@@ -185,6 +255,7 @@ export const BLOQUES = [
   },
   {
     rango: '11 - 14',
+    resultado: 'Flujo 1: tu bandeja se clasifica, se archiva y te deja los borradores escritos.',
     titulo: 'El correo',
     horas: '8 h',
     texto:
@@ -198,6 +269,7 @@ export const BLOQUES = [
   },
   {
     rango: '15 - 17',
+    resultado: 'Flujo 2: cada llamada acaba en un resumen y en tareas repartidas.',
     titulo: 'Las llamadas',
     horas: '6 h',
     texto: 'Del audio al resumen, y del resumen a las tareas repartidas por departamento.',
@@ -205,6 +277,7 @@ export const BLOQUES = [
   },
   {
     rango: '18 - 21',
+    resultado: 'Flujos 3 y 4: certificados y facturas que salen solos, y facturas de proveedor que llegan solas a su carpeta.',
     titulo: 'Los documentos y las facturas',
     horas: '8 h',
     texto:
@@ -218,6 +291,7 @@ export const BLOQUES = [
   },
   {
     rango: '22 - 24',
+    resultado: 'Sabrás leer un error y mantener los flujos con cinco minutos a la semana.',
     titulo: 'Vivir con esto',
     horas: '5 h',
     texto: 'Lo que decide si dentro de seis meses los flujos siguen encendidos.',
@@ -229,6 +303,7 @@ export const BLOQUES = [
   },
   {
     rango: '25 - 30',
+    resultado: 'Flujo 5: cada factura archivada por comunidad y por proveedor.',
     titulo: 'El gestor documental',
     horas: '12 h',
     texto:
@@ -285,8 +360,11 @@ export const ESTUDIO = [
   },
   {
     titulo: 'La nota',
-    dato: '70 sobre 100 por unidad',
-    texto: 'Test al terminar cada una. Acertar a la segunda puntúa menos que acertar a la primera.',
+    // Sin la cifra, para que no suene a examen. El dato va corto como los
+    // otros tres y el motivo (FUNDAE) pasa al texto de debajo, que en las
+    // cuatro columnas tiene un largo parecido (25 de septiembre de 2026).
+    dato: 'Un test por unidad',
+    texto: 'Al terminar cada unidad. Lo pide FUNDAE para bonificar el curso y, si fallas una pregunta, puedes repetirla.',
   },
   {
     titulo: 'El cierre',
@@ -302,8 +380,11 @@ export const ESTUDIO = [
  * Microsoft 365 de pago y que el último flujo pide Windows.
  */
 export const REQUISITOS = {
-  texto:
-    'Sin conocimientos previos. Basta un navegador y el correo del despacho: las demás cuentas se crean dentro. Una unidad necesita Microsoft 365 de pago, y el último flujo se monta en Windows con Excel.',
+  // Dos líneas, una por idea: lo que no hace falta y lo que sí.
+  lineas: [
+    'Sin conocimientos previos. Basta un navegador y el correo del despacho: las demás cuentas se crean dentro.',
+    'Una unidad necesita Microsoft 365 de pago, y el último flujo se monta en Windows con Excel.',
+  ],
 }
 
 export const FAQ = [
@@ -356,7 +437,7 @@ export const REGLA = {
  * foto y el de su despacho. Con dos que contesten, se dejan dos tarjetas.
  */
 export const TESTIMONIOS = {
-  eyebrow: 'Testimonios',
+  eyebrow: 'Opiniones',
   titulo: 'Lo que dicen quienes ya lo usan',
   // PENDIENTE: el enlace a las reseñas. Si AFCademIA no tiene ficha de
   // Google con opiniones, esta línea se borra entera: prometer que son

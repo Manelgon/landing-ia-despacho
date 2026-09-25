@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { FILTRO, PREGUNTAS } from '@/content/solicitud'
+import { CLAUSULA, FILTRO, PREGUNTAS } from '@/content/solicitud'
 import { enviarSolicitud } from '@/lib/supabase'
 
 /**
@@ -30,7 +30,14 @@ function telefonoValido(valor: string): boolean {
   return /^\d{9}$/.test(limpio)
 }
 
-export function Solicitud() {
+/**
+ * `compacto`: la misma solicitud metida en la tarjeta del hero. Menos aire y
+ * letra algo más pequeña; los pasos y la validación son los mismos.
+ */
+export function Solicitud({ compacto = false }: { compacto?: boolean }) {
+  const k = (normal: string, peq: string) => (compacto ? peq : normal)
+  // Con las dos solicitudes en la página, los id no pueden repetirse
+  const uid = (x: string) => (compacto ? `hero-${x}` : x)
   const [paso, setPaso] = useState(0)
   const [datos, setDatos] = useState<Record<string, string>>({})
   const [enviando, setEnviando] = useState(false)
@@ -52,8 +59,13 @@ export function Solicitud() {
     }
   }
 
-  // Al cambiar de paso, el foco va al primer campo para poder seguir tecleando
+  // Al cambiar de paso, el foco va al primer campo para poder seguir tecleando.
+  // Al cargar la página no: el formulario está en el hero y en el móvil
+  // abriría el teclado sin que nadie lo haya tocado.
+  const pasoAnterior = useRef(paso)
   useEffect(() => {
+    if (pasoAnterior.current === paso) return
+    pasoAnterior.current = paso
     const primero = contenedor.current?.querySelector<HTMLElement>('input, textarea')
     primero?.focus({ preventScroll: true })
   }, [paso])
@@ -97,9 +109,14 @@ export function Solicitud() {
       setCampoMal('email')
       return setError('Ese correo no parece válido. Revísalo: nombre@dominio.es')
     }
-    // El teléfono es opcional, pero si se deja escrito tiene que servir para
-    // llamar: una llamada que no entra es un lead perdido sin saberlo.
-    if (telefono && !telefonoValido(telefono)) {
+    // El teléfono es obligatorio desde el 25 de septiembre de 2026: después
+    // viene una llamada. Y tiene que servir para llamar: una llamada que no
+    // entra es un lead perdido sin saberlo.
+    if (!telefono) {
+      setCampoMal('telefono')
+      return setError('Déjanos un teléfono: el siguiente paso es una llamada.')
+    }
+    if (!telefonoValido(telefono)) {
       setCampoMal('telefono')
       return setError('El teléfono tiene que tener nueve dígitos.')
     }
@@ -115,7 +132,7 @@ export function Solicitud() {
         nombre: datos.nombre.trim(),
         despacho: datos.despacho?.trim() || null,
         email: correo,
-        telefono: telefono ? telefono.replace(/[\s.-]/g, '') : null,
+        telefono: telefono.replace(/[\s.-]/g, ''),
         consentimiento: true,
         origen: 'landing-ia-despacho',
         ...Object.fromEntries(PREGUNTAS.map((p) => [p.id, datos[p.id]?.trim() || null])),
@@ -140,7 +157,7 @@ export function Solicitud() {
   }
 
   return (
-    <div className="mt-7">
+    <div className={k('mt-7', 'mt-5')}>
       {/* Cuánto queda: el mismo aire arriba y abajo de la barra */}
       <div className="flex items-center gap-4">
         <div className="h-[3px] flex-1 overflow-hidden rounded-full bg-line">
@@ -157,20 +174,23 @@ export function Solicitud() {
       <div
         ref={contenedor}
         key={paso}
-        className="mt-7 min-h-[260px] motion-safe:animate-[aparecer_.35s_ease-out]"
+        className={`${k('mt-7', 'mt-5')} motion-safe:animate-[aparecer_.35s_ease-out]`}
       >
         {esPrimero ? (
           <>
-            <p className="text-[clamp(21px,2.6vw,26px)] font-extrabold tracking-[-0.02em] text-ink">
+            <p className={`${k('text-[clamp(21px,2.6vw,26px)]', 'text-[19px]')} font-extrabold tracking-[-0.02em] text-ink`}>
               Empecemos por lo básico
             </p>
-            <div className="mt-8 grid max-w-[480px] gap-5">
+            <div className={`${k('mt-8 gap-5', 'mt-5 gap-4')} grid max-w-[480px]`}>
               <div>
-                <label htmlFor="nombre" className={etiqueta}>
+                <label htmlFor={uid('nombre')} className={etiqueta}>
                   Nombre y apellidos
+                  <span className="text-amber" aria-hidden="true"> *</span>
                 </label>
                 <input
-                  id="nombre"
+                  id={uid('nombre')}
+                  required
+                  autoComplete="name"
                   className={`${campo} mt-2.5`}
                   value={datos.nombre ?? ''}
                   onChange={(e) => poner('nombre', e.target.value)}
@@ -178,11 +198,11 @@ export function Solicitud() {
                 />
               </div>
               <div>
-                <label htmlFor="despacho" className={etiqueta}>
+                <label htmlFor={uid('despacho')} className={etiqueta}>
                   Despacho <span className="normal-case">(opcional)</span>
                 </label>
                 <input
-                  id="despacho"
+                  id={uid('despacho')}
                   className={`${campo} mt-2.5`}
                   value={datos.despacho ?? ''}
                   onChange={(e) => poner('despacho', e.target.value)}
@@ -193,16 +213,18 @@ export function Solicitud() {
           </>
         ) : esUltimo ? (
           <>
-            <p className="text-[clamp(21px,2.6vw,26px)] font-extrabold tracking-[-0.02em] text-ink">
+            <p className={`${k('text-[clamp(21px,2.6vw,26px)]', 'text-[19px]')} font-extrabold tracking-[-0.02em] text-ink`}>
               ¿Dónde te escribimos?
             </p>
-            <div className="mt-8 grid max-w-[480px] gap-5">
+            <div className={`${k('mt-8 gap-5', 'mt-5 gap-4')} grid max-w-[480px]`}>
               <div>
-                <label htmlFor="email" className={etiqueta}>
+                <label htmlFor={uid('email')} className={etiqueta}>
                   Correo electrónico
+                  <span className="text-amber" aria-hidden="true"> *</span>
                 </label>
                 <input
-                  id="email"
+                  id={uid('email')}
+                  required
                   type="email"
                   inputMode="email"
                   autoComplete="email"
@@ -213,14 +235,16 @@ export function Solicitud() {
                 />
               </div>
               <div>
-                <label htmlFor="telefono" className={etiqueta}>
-                  Teléfono <span className="normal-case">(opcional)</span>
+                <label htmlFor={uid('telefono')} className={etiqueta}>
+                  Teléfono
+                  <span className="text-amber" aria-hidden="true"> *</span>
                 </label>
                 <input
-                  id="telefono"
+                  id={uid('telefono')}
                   type="tel"
                   inputMode="tel"
                   autoComplete="tel"
+                  required
                   maxLength={17}
                   aria-invalid={campoMal === 'telefono'}
                   className={`${campo} mt-2.5 ${campoMal === 'telefono' ? 'border-aviso-borde' : ''}`}
@@ -229,34 +253,52 @@ export function Solicitud() {
                 />
               </div>
             </div>
-            <label className="mt-8 flex max-w-[620px] items-start gap-3 text-[14.5px] leading-[1.6] text-muted">
+            <label className={`${k('mt-8 text-[14.5px]', 'mt-5 text-[13px]')} flex max-w-[620px] items-start gap-3 leading-[1.55] text-ink`}>
               <input
                 type="checkbox"
                 className="mt-1 h-4 w-4 shrink-0 accent-[#FF7A00]"
+                aria-describedby={uid('clausula')}
                 checked={datos.consentimiento === 'si'}
                 onChange={(e) => poner('consentimiento', e.target.checked ? 'si' : '')}
               />
               <span>
-                He leído y acepto la{' '}
-                <a
-                  href="https://afcademia.com/politica-de-privacidad/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-navy underline"
-                >
+                Confirmo que soy mayor de 18 años y que he leído y acepto la{' '}
+                <a href={CLAUSULA.politica} target="_blank" rel="noopener noreferrer" className="text-navy underline">
                   política de privacidad
                 </a>
-                . Usamos tus datos para valorar si el itinerario encaja con tu despacho y
-                responderte.
+                .
               </span>
             </label>
+
+            {/* Primera capa de información, la misma que en afcademia.com */}
+            <dl
+              id={uid('clausula')}
+              className={`${k('mt-4 text-[12.5px]', 'mt-3 text-[11.5px]')} max-w-[620px] space-y-1 border-l-2 border-line pl-3 leading-[1.5] text-muted`}
+            >
+              {CLAUSULA.capa.map((c) => (
+                <div key={c.dato}>
+                  <dt className="inline font-semibold text-navy">{c.dato}: </dt>
+                  <dd className="inline">{c.texto}</dd>
+                </div>
+              ))}
+              <div>
+                <dt className="inline font-semibold text-navy">Derechos: </dt>
+                <dd className="inline">
+                  Acceder, rectificar y suprimir tus datos, y otros derechos explicados en la{' '}
+                  <a href={CLAUSULA.politica} target="_blank" rel="noopener noreferrer" className="text-navy underline">
+                    información adicional
+                  </a>
+                  .
+                </dd>
+              </div>
+            </dl>
           </>
         ) : pregunta ? (
           <>
             <p className="font-mono text-[12px] tracking-[0.14em] text-amber tabular-nums">
               {pregunta.numero}
             </p>
-            <p className="mt-3 max-w-[22ch] text-[clamp(23px,3.2vw,32px)] leading-[1.2] font-extrabold tracking-[-0.025em] text-ink">
+            <p className={`${k('max-w-[22ch] text-[clamp(23px,3.2vw,32px)]', 'text-[20px]')} mt-3 leading-[1.2] font-extrabold tracking-[-0.025em] text-ink`}>
               {pregunta.texto}
             </p>
             {'ayuda' in pregunta && pregunta.ayuda ? (
@@ -267,12 +309,12 @@ export function Solicitud() {
               <textarea
                 rows={4}
                 placeholder={'marcador' in pregunta ? pregunta.marcador : undefined}
-                className={`${campo} mt-8 max-w-[620px] resize-y`}
+                className={`${campo} ${k('mt-8', 'mt-5')} max-w-[620px] resize-y`}
                 value={datos[pregunta.id] ?? ''}
                 onChange={(e) => poner(pregunta.id, e.target.value)}
               />
             ) : (
-              <div className="mt-8 flex max-w-[680px] flex-wrap gap-3">
+              <div className={`${k('mt-8 gap-3', 'mt-5 gap-2')} flex max-w-[680px] flex-wrap`}>
                 {'opciones' in pregunta &&
                   pregunta.opciones.map((o) => {
                     const elegida = datos[pregunta.id] === o
@@ -282,7 +324,7 @@ export function Solicitud() {
                         type="button"
                         aria-pressed={elegida}
                         onClick={() => elegir(pregunta.id, o)}
-                        className={`rounded-lg border px-5 py-3 text-left text-[15.5px] transition-colors ${
+                        className={`flex-[1_1_auto] rounded-lg border text-center whitespace-nowrap transition-colors ${k('px-5 py-3 text-[15.5px] max-sm:px-4 max-sm:text-[14.5px]', 'px-4 py-2.5 text-[14px]')} ${
                           elegida
                             ? 'border-amber bg-amber-soft font-bold text-aviso-texto'
                             : 'border-line bg-card text-body hover:border-amber/60'
@@ -304,7 +346,7 @@ export function Solicitud() {
         </p>
       ) : null}
 
-      <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-line pt-7">
+      <div className={`${k('mt-10 pt-7', 'mt-6 pt-5')} flex flex-wrap items-center gap-4 border-t border-line`}>
         {!esPrimero ? (
           <button
             type="button"
@@ -330,7 +372,7 @@ export function Solicitud() {
             type="button"
             onClick={esUltimo ? enviar : siguiente}
             disabled={enviando}
-            className="rounded-lg bg-amber px-8 py-3.5 text-[15px] font-bold text-white transition-all duration-200 hover:bg-amber-hover active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+            className={`rounded-lg bg-amber ${k('px-8', 'px-6')} py-3.5 text-[15px] font-bold text-white transition-all duration-200 hover:bg-amber-hover active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60`}
           >
             {esUltimo ? (enviando ? FILTRO.enviando : FILTRO.boton) : 'Siguiente →'}
           </button>

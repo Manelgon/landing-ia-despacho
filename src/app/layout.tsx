@@ -1,5 +1,23 @@
 import type { Metadata } from 'next'
+import { Manrope, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+
+// Las tipografías se sirven desde el propio dominio: next/font las descarga al
+// compilar. Pedidas a fonts.googleapis.com, cada visita mandaba la IP a Google
+// antes de ningún consentimiento, y eso obligaba a poner banner de cookies
+// (revisión legal del 25 de septiembre de 2026).
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
+  variable: '--font-manrope',
+  display: 'swap',
+})
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  variable: '--font-jetbrains',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   // La landing vive en el subdominio. Con la raíz aquí, la imagen de vista previa
@@ -29,14 +47,8 @@ export const viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${manrope.variable} ${jetbrains.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
-          rel="stylesheet"
-        />
         {/* Sin JavaScript no hay IntersectionObserver: se enseña todo. */}
         <noscript>
           <style

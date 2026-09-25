@@ -19,8 +19,8 @@
   --color-aviso-texto: #7a4800;
   --color-ok: #2e7d52;
 
-  --font-sans: 'Manrope', -apple-system, 'Segoe UI', Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-sans: var(--font-manrope), -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
 html {

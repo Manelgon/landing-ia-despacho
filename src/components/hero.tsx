@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { CURSO, CIFRAS } from '@/content/curso'
-import { Cta } from './cta'
+import { Solicitud } from './solicitud'
+import { FILTRO } from '@/content/solicitud'
+import { CONVERSION } from '@/config/conversion'
 
 /**
  * El hero no lleva animación de entrada a propósito: es lo primero que se
@@ -10,6 +12,13 @@ import { Cta } from './cta'
  * lleva el fondo blanco incrustado y encima del azul se veía como un recorte
  * pegado. El negativo se genera desde el original respetando el naranja.
  */
+/** Contorno de sello de oferta: 24 picos alrededor de un círculo. */
+const SELLO = `polygon(${Array.from({ length: 48 }, (_, i) => {
+  const a = (i / 48) * 2 * Math.PI - Math.PI / 2
+  const r = i % 2 === 0 ? 50 : 45
+  return `${(50 + r * Math.cos(a)).toFixed(2)}% ${(50 + r * Math.sin(a)).toFixed(2)}%`
+}).join(', ')})`
+
 export function Hero() {
   return (
     <header>
@@ -25,13 +34,19 @@ export function Hero() {
         />
 
         <div className="relative z-10 mx-auto w-full max-w-[1060px] px-5 sm:px-8">
-          <div className="pt-20 pb-16 sm:pt-24 sm:pb-20">
+          {/* La solicitud va en el propio hero y es la única de la página: a la
+              derecha en escritorio, debajo del titular en móvil. Todos los
+              botones naranjas llevan aquí (#solicitud). */}
+          <div className="grid items-start gap-12 pt-20 pb-16 sm:pt-24 sm:pb-20 lg:grid-cols-[minmax(0,1fr)_460px]">
+          <div>
             <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-aviso-texto uppercase">
               {CURSO.eyebrow}
             </p>
 
             <h1 className="mt-6 max-w-[17ch] text-[clamp(34px,6.2vw,60px)] font-extrabold tracking-[-0.035em] text-ink">
-              {CURSO.nombre}
+              {CURSO.titular.antes}
+              <span className="text-amber">{CURSO.titular.destacado}</span>
+              {CURSO.titular.despues}
             </h1>
 
             <p className="mt-6 max-w-[46ch] text-[clamp(17px,2.2vw,21px)] leading-[1.5] font-bold text-ink">
@@ -42,17 +57,41 @@ export function Hero() {
               {CURSO.claim.resultado}
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Cta />
-              <a
-                href="#temario"
-                className="inline-block rounded-lg border border-navy/35 px-7 py-3.5 text-[15px] font-bold text-navy no-underline transition-colors hover:bg-white/60 active:scale-[0.98]"
-              >
-                Ver el temario
-              </a>
-            </div>
-
             <p className="mt-5 text-[13.5px] text-muted">{CURSO.bajoBoton}</p>
+          </div>
+
+          <div id="solicitud" className="relative scroll-mt-28 rounded-2xl border border-navy/10 bg-white/90 p-6 shadow-[0_20px_60px_-20px_rgba(2,33,56,0.35)] backdrop-blur-md">
+            {/* El precio como sello de oferta, con las plazas en una cinta. Todo sale de
+                config/conversion.ts: en null, cada pieza desaparece sola. */}
+            {CONVERSION.precio ? (
+              <div className="absolute -top-[68px] -right-14 hidden rotate-[12deg] lg:block" aria-label={`Precio: ${CONVERSION.precio}`}>
+                <div
+                  className="flex h-[136px] w-[136px] items-center justify-center bg-amber drop-shadow-[0_10px_18px_rgba(255,122,0,0.45)]"
+                  style={{ clipPath: SELLO }}
+                >
+                  <div className="flex h-[104px] w-[104px] flex-col items-center justify-center rounded-full border-2 border-dashed border-white/80 text-white">
+                    <span className="font-mono text-[9px] font-semibold tracking-[0.16em] uppercase">Itinerario</span>
+                    <span className="mt-1 text-[24px] leading-none font-extrabold tracking-[-0.03em]">
+                      {CONVERSION.precio}
+                    </span>
+                    <span className="mt-1 font-mono text-[8.5px] font-semibold tracking-[0.14em] uppercase opacity-90">
+                      Completo
+                    </span>
+                  </div>
+                </div>
+                {CONVERSION.plazas.quedan !== null ? (
+                  <p className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-md bg-navy px-3 py-1.5 font-mono text-[10.5px] font-bold tracking-[0.1em] whitespace-nowrap text-white uppercase shadow-lg">
+                    {CONVERSION.plazas.quedan === 1 ? 'Queda 1 plaza' : `Quedan ${CONVERSION.plazas.quedan} plazas`}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
+            <h2 className="max-w-[300px] pr-2 text-[22px] leading-[1.2] font-extrabold tracking-[-0.02em] text-navy">
+              {FILTRO.titulo}
+            </h2>
+            <p className="mt-2 text-[14px] leading-[1.5] text-muted">{FILTRO.entradilla}</p>
+            <Solicitud compacto />
+          </div>
           </div>
 
           {/* Las cifras cierran el hero como pie de página del bloque. */}

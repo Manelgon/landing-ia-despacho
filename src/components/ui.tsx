@@ -40,6 +40,22 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
  * Cabecera de sección. El titular ocupa todo el contraste tipográfico que
  * puede; el subtítulo se queda en medida de lectura y en gris.
  */
+/**
+ * Resalta en naranja un trozo del titular, como «10 horas a la semana» en el
+ * hero. Si el trozo no está en el texto, se pinta el texto tal cual.
+ */
+export function Destaca({ texto, parte }: { texto: string; parte: string }) {
+  const i = texto.indexOf(parte)
+  if (i < 0) return <>{texto}</>
+  return (
+    <>
+      {texto.slice(0, i)}
+      <span className="text-amber">{parte}</span>
+      {texto.slice(i + parte.length)}
+    </>
+  )
+}
+
 export function Titulo({
   children,
   sub,

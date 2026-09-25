@@ -11,21 +11,22 @@ export function Acreditaciones() {
   return (
     <section aria-label="Acreditaciones" className="border-b border-line bg-card">
       <div className="mx-auto flex w-full max-w-[1060px] flex-wrap items-center justify-center gap-x-10 gap-y-5 px-5 py-8 sm:gap-x-14 sm:px-8">
-        <p className="font-mono text-[10.5px] tracking-[0.18em] text-muted uppercase">
-          Acreditaciones
-        </p>
 
-        <ul className="flex list-none flex-wrap items-center justify-center gap-10 sm:gap-14">
-          <li>
+        <ul className="flex list-none flex-wrap items-start justify-center gap-x-16 gap-y-8 sm:gap-x-24">
+          <li className="flex flex-col items-center">
+            <div className="flex h-[72px] items-center">
             <Image
               src="/sello-enisa.png"
               alt="AFCademIA, startup certificada por ENISA. Empresa emergente, Ley 28/2022"
               width={320}
               height={320}
-              className="h-[62px] w-[62px]"
+              className="h-[70px] w-[70px]"
             />
+            </div>
+            <p className="mt-3 text-center font-mono text-[11px] font-semibold tracking-[0.12em] text-muted uppercase">Empresa certificada por ENISA</p>
           </li>
-          <li>
+          <li className="flex flex-col items-center">
+            <div className="flex h-[72px] items-center">
             <Image
               src="/logo-fundae.png"
               alt="Fundación Estatal para la Formación en el Empleo"
@@ -33,6 +34,8 @@ export function Acreditaciones() {
               height={64}
               className="h-auto w-[172px]"
             />
+            </div>
+            <p className="mt-3 text-center font-mono text-[11px] font-semibold tracking-[0.12em] text-muted uppercase">Formación bonificable a través de Fundae</p>
           </li>
         </ul>
       </div>

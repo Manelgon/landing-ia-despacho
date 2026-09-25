@@ -2,9 +2,8 @@ import Image from 'next/image'
 import { DOCENTE, FAQ, SELLOS, TESTIMONIOS } from '@/content/curso'
 import { CONVERSION } from '@/config/conversion'
 import { Cta } from './cta'
-import { Solicitud } from './solicitud'
-import { FILTRO, PASOS, ENCAJE } from '@/content/solicitud'
-import { Seccion, Titulo, Eyebrow, Filete } from './ui'
+import { PASOS, ENCAJE } from '@/content/solicitud'
+import { Seccion, Titulo, Eyebrow, Filete, Destaca } from './ui'
 
 const cascada = (i: number, paso = 70) => ({ '--reveal-delay': `${i * paso}ms` }) as React.CSSProperties
 
@@ -24,7 +23,7 @@ export function Docente() {
 
           <div className="reveal" style={cascada(1, 120)}>
             <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-amber uppercase">
-              Quién está detrás
+              Quién enseña
             </p>
 
             <h2 className="mt-5 text-[clamp(28px,3.8vw,42px)] font-extrabold tracking-[-0.03em] text-white">
@@ -64,7 +63,7 @@ export function Docente() {
  */
 export function Encaje() {
   return (
-    <section className="relative overflow-hidden bg-paper py-24 sm:py-28">
+    <section id="encaje" className="relative scroll-mt-20 overflow-hidden bg-paper py-24 sm:py-28">
       {/* La foto del hero en claro, la que llevaba "Cómo se estudia" antes de
           juntarla con el temario. Medido con ella: 13:1 en los titulares y
           7,5:1 en el texto. */}
@@ -76,7 +75,9 @@ export function Encaje() {
       <div className="absolute inset-0 bg-paper/90" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1060px] px-5 sm:px-8">
-        <Titulo eyebrow={ENCAJE.eyebrow}>{ENCAJE.titulo}</Titulo>
+        <Titulo eyebrow={ENCAJE.eyebrow}>
+          <Destaca texto={ENCAJE.titulo} parte="no es para todos" />
+        </Titulo>
 
         <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-14">
         {[ENCAJE.si, ENCAJE.no].map((col, c) => (
@@ -110,7 +111,7 @@ export function Encaje() {
 export function Preguntas() {
   return (
     <Seccion alterna>
-      <Titulo eyebrow="Dudas frecuentes">Preguntas que nos hacen</Titulo>
+      <Titulo eyebrow="Preguntas">Preguntas que nos hacen</Titulo>
 
       <div className="mt-16 border-t border-line-soft">
         {FAQ.map((f, i) => (
@@ -147,10 +148,13 @@ export function Matricula() {
 
   return (
     <Seccion id="matricula" alterna>
-      <Titulo eyebrow="Matricularte">Lo que cuesta y cómo entrar</Titulo>
+      <Titulo eyebrow="Precio">
+        Lo que cuesta y <span className="text-amber">cómo entrar</span>
+      </Titulo>
 
-      {/* Precio a la izquierda, solicitud a la derecha: el importe queda a la
-          vista mientras se rellenan las preguntas. */}
+      {/* Precio a la izquierda, con el botón dentro; a la derecha, lo que pasa
+          después de enviar la solicitud y las acreditaciones. El formulario
+          vive solo en el hero. */}
       <div className="mt-14 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         <div>
           <div className="reveal flex h-full flex-col overflow-hidden rounded-xl bg-navy p-8 text-white">
@@ -201,94 +205,60 @@ export function Matricula() {
                 </li>
               ))}
             </ul>
-
-            {/* Los sellos cierran la tarjeta y le dan el alto del formulario.
-                Van sobre blanco porque el logo de FUNDAE es azul y es marca
-                de un tercero: no se puede recolorear para el navy. */}
-            <div className="mt-auto pt-9">
-              <p className="font-mono text-[10.5px] tracking-[0.18em] text-white/55 uppercase">
-                Acreditaciones
-              </p>
-              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 rounded-lg bg-card px-6 py-5">
-                {SELLOS.map((s) => (
-                  // El logo y su leyenda llevan al mismo sitio. Este no entra
-                  // por teclado ni lo lee el lector: basta con el de abajo.
-                  <a
-                    key={s.marca}
-                    href={s.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    tabIndex={-1}
-                    aria-hidden="true"
-                  >
-                    <Image
-                      src={s.logo}
-                      alt={s.alt}
-                      width={s.ancho}
-                      height={s.alto}
-                      className={TAMANO_SELLO[s.marca]}
-                    />
-                  </a>
-                ))}
+            <div className="mt-auto pt-8">
+              {/* El único formulario está en el hero: el botón sube hasta él. */}
+              <div className="text-center">
+                <Cta />
               </div>
-
-              <ul className="mt-5 list-none">
-                {SELLOS.map((s) => (
-                  <li key={s.marca} className="mt-1 text-[12px] first:mt-0">
-                    <a
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-[2px] underline decoration-white/25 underline-offset-[5px] transition-colors hover:decoration-white/70"
-                    >
-                      <span className="text-[#FFB36B]">{s.etiqueta}</span>{' '}
-                      <span className="text-white">{s.marca}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
 
-        <div id="solicitud" className="reveal scroll-mt-28">
-          <Eyebrow>{FILTRO.eyebrow}</Eyebrow>
+        <div className="reveal">
+          <Eyebrow>{PASOS.eyebrow}</Eyebrow>
           <h3 className="mt-4 max-w-[24ch] text-[clamp(24px,3.2vw,32px)] font-extrabold tracking-[-0.025em]">
-            {FILTRO.titulo}
+            {PASOS.titulo}
           </h3>
-          <p className="mt-4 max-w-[52ch] text-[16px] leading-[1.6] text-muted">
-            {FILTRO.entradilla}
-          </p>
-
-          <Solicitud />
+          <ol className="mt-9 list-none">
+            {PASOS.lista.map((p) => (
+              <li key={p.cuando} className="border-l-2 border-amber pb-8 pl-5 last:pb-0">
+                <p className="font-mono text-[10.5px] font-semibold tracking-[0.16em] text-amber uppercase">
+                  {p.cuando}
+                </p>
+                <b className="mt-2 block text-[17px] leading-snug font-bold text-ink">{p.titulo}</b>
+                <span className="mt-1.5 block max-w-[52ch] text-[15px] leading-[1.6] text-muted">{p.texto}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
-    </Seccion>
-  )
-}
-
-/**
- * La línea de tiempo del embudo. Va después del formulario porque contesta
- * la pregunta que aparece justo al terminar de rellenarlo: y ahora qué.
- */
-export function Pasos() {
-  return (
-    <Seccion>
-      <Titulo eyebrow={PASOS.eyebrow}>{PASOS.titulo}</Titulo>
-
-      {/* Mismo patrón que las tres columnas de la sección del docente: filete
-          ámbar a la izquierda y nada más. Ocupa la mitad que en tarjetas. */}
-      <ol className="mt-10 grid list-none gap-x-8 gap-y-7 sm:grid-cols-2 lg:grid-cols-4">
-        {PASOS.lista.map((p, i) => (
-          <li key={p.cuando} style={cascada(i, 80)} className="reveal border-l-2 border-amber pl-4">
-            <p className="font-mono text-[10.5px] font-semibold tracking-[0.16em] text-amber uppercase">
-              {p.cuando}
-            </p>
-            <b className="mt-2.5 block text-[15px] leading-snug font-bold text-ink">{p.titulo}</b>
-            <span className="mt-1.5 block text-[13.5px] leading-[1.55] text-muted">{p.texto}</span>
+      {/* Las acreditaciones, a lo ancho y centradas: mismo patrón que la
+          franja de debajo del hero. */}
+      <ul className="mt-14 flex list-none flex-wrap items-start justify-center gap-x-16 gap-y-8 border-t border-line pt-10 sm:gap-x-24">
+        {SELLOS.map((s) => (
+          <li key={s.marca}>
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center rounded-[2px] no-underline"
+            >
+              <span className="flex h-[64px] items-center">
+                <Image
+                  src={s.logo}
+                  alt={s.alt}
+                  width={s.ancho}
+                  height={s.alto}
+                  className={TAMANO_SELLO[s.marca]}
+                />
+              </span>
+              <span className="mt-3 text-center font-mono text-[10.5px] font-semibold tracking-[0.12em] text-muted uppercase">
+                {s.leyenda}
+              </span>
+            </a>
           </li>
         ))}
-      </ol>
+      </ul>
     </Seccion>
   )
 }
@@ -301,7 +271,9 @@ export function Pasos() {
 export function Testimonios() {
   return (
     <Seccion id="testimonios" alterna>
-      <Titulo eyebrow={TESTIMONIOS.eyebrow}>{TESTIMONIOS.titulo}</Titulo>
+      <Titulo eyebrow={TESTIMONIOS.eyebrow}>
+        <Destaca texto={TESTIMONIOS.titulo} parte="quienes ya lo usan" />
+      </Titulo>
 
       {TESTIMONIOS.verificables.texto ? (
         <p className="reveal mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-[14px] text-muted">
