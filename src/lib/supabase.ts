@@ -41,3 +41,32 @@ export async function enviarSolicitud(datos: Solicitud): Promise<void> {
     throw new Error('No hemos podido enviar la solicitud. Inténtalo de nuevo en un momento.')
   }
 }
+
+/**
+ * Registro de la página /fundadores. Misma forma de enviar, otra tabla:
+ * registros_fundadores, en supabase/fundadores.sql
+ *
+ * Allí el correo es único para siempre (no por día): cada persona se
+ * registra una vez. Si repite, es que ya tiene el correo de confirmación.
+ */
+export async function registrarFundador(datos: Solicitud): Promise<void> {
+  if (!URL_BASE || !CLAVE) {
+    throw new Error('Faltan las variables de Supabase. Ver .env.example')
+  }
+
+  const respuesta = await fetch(`${URL_BASE}/rest/v1/registros_fundadores`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', apikey: CLAVE, Prefer: 'return=minimal' },
+    body: JSON.stringify(datos),
+  })
+
+  if (!respuesta.ok) {
+    const cuerpo = await respuesta.text()
+    if (respuesta.status === 409 || cuerpo.includes('23505')) {
+      throw new Error(
+        'Ese correo ya está registrado. Busca el correo «Confirma tu plaza» en tu bandeja, también en spam, y respóndelo.',
+      )
+    }
+    throw new Error('No hemos podido guardar el registro. Inténtalo de nuevo en un momento.')
+  }
+}

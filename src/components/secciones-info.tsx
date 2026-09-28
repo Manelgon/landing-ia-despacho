@@ -108,13 +108,14 @@ export function Encaje() {
   )
 }
 
-export function Preguntas() {
+/** `lista`: la página de fundadores pasa las suyas, sin la de FUNDAE. */
+export function Preguntas({ lista = FAQ }: { lista?: readonly { p: string; r: string }[] }) {
   return (
     <Seccion alterna>
       <Titulo eyebrow="Preguntas">Preguntas que nos hacen</Titulo>
 
       <div className="mt-16 border-t border-line-soft">
-        {FAQ.map((f, i) => (
+        {lista.map((f, i) => (
           <details key={f.p} style={cascada(i, 50)} className="reveal group border-b border-line-soft">
             <summary className="flex cursor-pointer items-baseline justify-between gap-6 py-6 text-[clamp(16.5px,2vw,19px)] font-bold text-ink transition-colors hover:text-navy">
               <span className="max-w-[54ch]">{f.p}</span>

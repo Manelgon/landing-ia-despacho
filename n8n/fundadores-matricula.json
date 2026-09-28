@@ -1,0 +1,978 @@
+{
+  "name": "AFCademIA · Fundadores · registro y matrícula",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fundadores-alta",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -600,
+        300
+      ],
+      "id": "51d0e001-e951-48e0-98bf-f0f5ecdb4f50",
+      "name": "Registro nuevo (Supabase)",
+      "webhookId": "03c1da83-27bd-411e-93a7-10944d8312bc"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3b6cc44f-d236-4321-a1cb-de4f2c00d382",
+              "name": "palabra_clave",
+              "value": "ALTA",
+              "type": "string"
+            },
+            {
+              "id": "403d4f9e-570b-4934-843a-720256d1f2a9",
+              "name": "asunto",
+              "value": "Confirma tu plaza · AFCademIA",
+              "type": "string"
+            },
+            {
+              "id": "d9f3365a-8088-4db4-8211-c8e2c0a0a0c3",
+              "name": "id",
+              "value": "={{ $json.body.id }}",
+              "type": "string"
+            },
+            {
+              "id": "b22421bb-29da-4baf-be53-4451049dafbf",
+              "name": "nombre",
+              "value": "={{ $json.body.nombre }}",
+              "type": "string"
+            },
+            {
+              "id": "c52c1e31-485e-463d-a75a-3a53d28db8bd",
+              "name": "email",
+              "value": "={{ ($json.body.email || '').toLowerCase().trim() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -380,
+        300
+      ],
+      "id": "253809ea-152c-4056-9cbf-b99c725d7508",
+      "name": "⚙️ Config alta"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Correo de confirmación con la palabra clave. Mismo estilo que el de la clase gratuita.\nconst c = $json;\nconst esc = s => String(s ?? '').replace(/[&<>\"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[ch]));\nconst cabecera = \"https://tfwnekfuqxpnezbjcbpj.supabase.co/storage/v1/object/public/public_images/afcademia_header_email.png\";\n\nconst emailHtml = `<!DOCTYPE html>\n<html lang=\"es\"><head><meta charset=\"UTF-8\"></head>\n<body style=\"margin:0;padding:0;background:#f4f7f9;font-family:'Segoe UI',Tahoma,sans-serif;line-height:1.6;color:#333333\">\n  <div style=\"max-width:600px;margin:20px auto;background:#ffffff;border-radius:8px;overflow:hidden\">\n    <a href=\"https://afcademia.com\" style=\"text-decoration:none\"><img src=\"${cabecera}\" alt=\"AFCademIA\" style=\"width:100%;max-width:600px;display:block;border:0\"></a>\n    <div style=\"padding:40px 30px\">\n      <h2 style=\"color:#003D6B;margin-top:0\">Hola ${esc(c.nombre) || 'y bienvenido'},</h2>\n      <p>Hemos recibido tu registro como fundador de AFCademIA.</p>\n      <p>Antes de darte de alta en el campus queremos comprobar que este correo es tuyo y que está bien escrito.</p>\n      <div style=\"background:#FFF3E6;border-top:4px solid #FF7A00;padding:25px;margin:25px 0;border-radius:4px;text-align:center\">\n        <p style=\"font-size:18px;color:#003D6B;font-weight:600;margin:0 0 10px\">Para activar tu plaza, <strong>responde a este correo</strong> con la palabra:</p>\n        <p style=\"font-size:44px;color:#FF7A00;margin:10px 0;letter-spacing:8px;font-weight:900\">${esc(c.palabra_clave)}</p>\n      </div>\n      <p>En cuanto la recibamos te matriculamos y el campus te manda por correo tu usuario y tu contraseña.</p>\n      <p style=\"margin-top:30px\">Un saludo,<br><strong>El equipo de AFCademIA</strong></p>\n    </div>\n    <div style=\"padding:30px;text-align:center;background:#f9fafb;font-size:14px;color:#9ca3af\">\n      <p>&copy; 2026 AFCademIA. Todos los derechos reservados.</p>\n    </div>\n  </div>\n</body></html>`;\n\nreturn { ...c, emailHtml };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        300
+      ],
+      "id": "09adaebd-9b1b-4d8f-b2e5-c50deeb6cfee",
+      "name": "Prepara correo"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "={{ $json.asunto }}",
+        "message": "={{ $json.emailHtml }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        60,
+        300
+      ],
+      "id": "da72c7ed-0f80-423b-9c7d-41563f030109",
+      "name": "Envía correo con palabra clave",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "LwvqxiRLt71zxAJS",
+          "name": "AFCADEMIA_WEB GMAIL"
+        }
+      },
+      "webhookId": "8f8b008d-75fa-42b2-913d-5092f59e7f9c",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "update public.registros_fundadores\nset estado = 'correo_enviado', correo_enviado_en = now()\nwhere id = $1::uuid and estado = 'registrado'\nreturning id, estado;",
+        "options": {
+          "queryReplacement": "={{ [ $('⚙️ Config alta').item.json.id ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        280,
+        300
+      ],
+      "id": "dabf2437-3da0-4cd5-a0c5-833f714b0330",
+      "name": "Marca correo_enviado",
+      "credentials": {
+        "postgres": {
+          "id": "q9qLq4A6Ai7fogRV",
+          "name": "POSTGRESAFCADEMIA"
+        }
+      },
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "subject:\"Confirma tu plaza\" -from:me"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -600,
+        800
+      ],
+      "id": "d6a00407-f47d-45d5-9c96-04d30606b301",
+      "name": "Respuestas al correo de fundadores",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "LwvqxiRLt71zxAJS",
+          "name": "AFCADEMIA_WEB GMAIL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1bf2ac38-bcd6-4656-beba-2455566dda77",
+              "name": "palabra_clave",
+              "value": "ALTA",
+              "type": "string"
+            },
+            {
+              "id": "8eadffce-37b7-44f9-ad82-1911d1d54768",
+              "name": "grupo_id",
+              "value": 90,
+              "type": "number"
+            },
+            {
+              "id": "7242d825-aa2d-499b-8ad5-9fc5127532e3",
+              "name": "aviso_a",
+              "value": "cursos@afcademia.com",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -380,
+        800
+      ],
+      "id": "3d6d1ab0-7950-48b8-8cda-cafe061327f8",
+      "name": "⚙️ Config respuesta"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Texto propio de la respuesta (sin el correo citado) y comparación con la palabra clave.\nconst cfg = $('⚙️ Config respuesta').first().json;\nif (!cfg.grupo_id) throw new Error('Falta el ID del grupo de fundadores en «⚙️ Config respuesta».');\n\nreturn $input.all().map(item => {\n  const msg = item.json;\n  const propio = (msg.text || '').split(/\\r?\\nEl \\S+, \\d+ \\S+ \\d{4}[\\s\\S]*$/)[0].split(/\\r?\\nOn .+wrote:[\\s\\S]*$/)[0].trim();\n  const keyword = (propio.split(/\\s+/)[0] || '').replace(/[^\\p{L}\\p{N}]/gu, '').toUpperCase();\n  return { json: {\n    email: (msg.from?.value?.[0]?.address || '').toLowerCase(),\n    es_respuesta: Boolean(msg.headers?.['in-reply-to'] || msg.inReplyTo),\n    respuesta: propio.slice(0, 200),\n    keyword,\n    keyword_valida: keyword === String(cfg.palabra_clave).trim().toUpperCase(),\n    grupo_id: cfg.grupo_id,\n    aviso_a: cfg.aviso_a,\n  }};\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        800
+      ],
+      "id": "6510748a-7a6c-402b-9369-679ef85ca204",
+      "name": "Parsea respuesta"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "69fa6378-22ce-4504-94f3-a1bf8693e20c",
+              "leftValue": "={{ $json.keyword_valida }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "2f8a51a5-fe2d-4c4d-918a-884ef3d8cfca",
+              "leftValue": "={{ $json.es_respuesta }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        60,
+        800
+      ],
+      "id": "00b55157-2416-4300-88c8-54199e8af230",
+      "name": "¿Dijo la palabra?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "select id, nombre, apellidos, email, telefono, estado\nfrom public.registros_fundadores\nwhere lower(email) = lower($1)\nlimit 1;",
+        "options": {
+          "queryReplacement": "={{ [ $json.email ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        280,
+        800
+      ],
+      "id": "77de3be2-239e-47f3-9d29-ac4490377956",
+      "name": "Busca registro",
+      "credentials": {
+        "postgres": {
+          "id": "q9qLq4A6Ai7fogRV",
+          "name": "POSTGRESAFCADEMIA"
+        }
+      },
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bd7a67ab-f7e6-4d8b-ab09-551bf4103045",
+                    "leftValue": "={{ $json.id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notExists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "no registrado"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "21514f53-126a-4f20-8e90-eaa1faa5c8da",
+                    "leftValue": "={{ $json.estado }}",
+                    "rightValue": "matriculado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ya matriculado"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "73c3b6e2-f4de-4db2-a851-5e853510dbb7",
+                    "leftValue": "={{ $json.id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  },
+                  {
+                    "id": "831530c0-1e4e-4d54-bd16-788cdd8594f3",
+                    "leftValue": "={{ $json.estado }}",
+                    "rightValue": "matriculado",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "pendiente"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        500,
+        800
+      ],
+      "id": "144e344c-fab4-4cf4-bdfd-e39ec0178cc0",
+      "name": "¿En qué estado está?"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Parsea respuesta').item.json.aviso_a }}",
+        "subject": "Fundadores · respuesta de un correo que no está registrado",
+        "message": "=Ha respondido con la palabra clave un correo que no está en registros_fundadores:<br><br><b>Email:</b> {{ $('Parsea respuesta').item.json.email }}<br><br>Puede que se registrara con otra dirección. Revisar a mano.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        760,
+        580
+      ],
+      "id": "6cec5440-a16c-4c70-9ddc-3de393e0ef14",
+      "name": "Aviso: responde un correo no registrado",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "LwvqxiRLt71zxAJS",
+          "name": "AFCADEMIA_WEB GMAIL"
+        }
+      },
+      "webhookId": "86b27b46-9fb5-4366-ac8a-100d0e6aead8"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.evolcampus.com/api/v1/token",
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "clientid",
+              "value": "PEGAR_CLIENTID"
+            },
+            {
+              "name": "key",
+              "value": "PEGAR_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        800
+      ],
+      "id": "9a4e97ff-6afd-4872-8ac7-b23c73b943ae",
+      "name": "Evolcampus Token",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.evolcampus.com/api/v1/getEnrollments",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Evolcampus Token').item.json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "={{ $('Busca registro').item.json.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        980,
+        800
+      ],
+      "id": "fb6f1437-0532-4daa-8acc-c6ba9367e519",
+      "name": "Evolcampus getEnrollments",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// ¿Ya está en el grupo de fundadores? Si Evolcampus no devuelve matrículas, se da por no matriculado.\nconst grupo = Number($('Parsea respuesta').first().json.grupo_id);\nconst data = $json.data || [];\nconst enGrupo = data.find(m => Number(m.enroll?.groupid) === grupo);\nreturn { json: {\n  en_grupo: Boolean(enGrupo),\n  userid: enGrupo?.person?.userid ?? '',\n  enrollmentid: enGrupo?.person?.enrollmentid ?? '',\n}};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        800
+      ],
+      "id": "46b4ff4a-5ba9-42a4-b450-52babb7e0b66",
+      "name": "Revisa matrículas"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3afd63d6-0934-4a97-bd55-b5a650db8c8b",
+              "leftValue": "={{ $json.en_grupo }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1420,
+        800
+      ],
+      "id": "123ab35a-bade-4394-9776-22a26fc7b465",
+      "name": "¿Ya en el grupo?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.evolcampus.com/api/v1/newEnrollment",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Evolcampus Token').item.json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "enroll[groupid]",
+              "value": "={{ $('Parsea respuesta').item.json.grupo_id }}"
+            },
+            {
+              "name": "enroll[welcomeemail]",
+              "value": "1"
+            },
+            {
+              "name": "person[email]",
+              "value": "={{ $('Busca registro').item.json.email }}"
+            },
+            {
+              "name": "person[name]",
+              "value": "={{ $('Busca registro').item.json.nombre }}"
+            },
+            {
+              "name": "person[lastname]",
+              "value": "={{ $('Busca registro').item.json.apellidos }}"
+            },
+            {
+              "name": "person[phone]",
+              "value": "={{ $('Busca registro').item.json.telefono }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1640,
+        920
+      ],
+      "id": "90a3699c-39ee-41ae-aef5-d1ffa239ca6d",
+      "name": "Evolcampus Matricular fundador",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4de38584-b54c-440f-ab2b-0a9f366d89ec",
+              "leftValue": "={{ $json.result }}",
+              "rightValue": 1,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1860,
+        920
+      ],
+      "id": "0ec4335b-b0c3-4cdb-a71f-deb61580e7ed",
+      "name": "¿Matrícula OK?"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "update public.registros_fundadores\nset estado = 'matriculado',\n    confirmado_en = coalesce(confirmado_en, now()),\n    matriculado_en = now(),\n    evolcampus_userid = nullif($2, '')::integer,\n    evolcampus_enrollmentid = nullif($3, '')::integer\nwhere id = $1::uuid\nreturning id, estado;",
+        "options": {
+          "queryReplacement": "={{ [ $('Busca registro').item.json.id, String($json.userid ?? ''), String($json.enrollmentid ?? '') ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2100,
+        760
+      ],
+      "id": "885bb66c-9131-4972-85de-4e7599d3ee71",
+      "name": "Marca matriculado",
+      "credentials": {
+        "postgres": {
+          "id": "q9qLq4A6Ai7fogRV",
+          "name": "POSTGRESAFCADEMIA"
+        }
+      },
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "update public.registros_fundadores\nset estado = 'error', confirmado_en = coalesce(confirmado_en, now()), notas = $2\nwhere id = $1::uuid\nreturning id, estado;",
+        "options": {
+          "queryReplacement": "={{ [ $('Busca registro').item.json.id, JSON.stringify($('Evolcampus Matricular fundador').item.json).slice(0, 500) ] }}"
+        }
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2100,
+        1060
+      ],
+      "id": "d3134ae1-2d79-45e9-8a0f-fef6e10c41a6",
+      "name": "Marca error",
+      "credentials": {
+        "postgres": {
+          "id": "q9qLq4A6Ai7fogRV",
+          "name": "POSTGRESAFCADEMIA"
+        }
+      },
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Parsea respuesta').item.json.aviso_a }}",
+        "subject": "⚠️ Fundadores · ERROR matriculando en Evolcampus",
+        "message": "=No se pudo matricular a un fundador que ya confirmó su correo:<br><br><b>Nombre:</b> {{ $('Busca registro').item.json.nombre }} {{ $('Busca registro').item.json.apellidos }}<br><b>Email:</b> {{ $('Busca registro').item.json.email }}<br><b>Teléfono:</b> {{ $('Busca registro').item.json.telefono }}<br><b>Respuesta de Evolcampus:</b> {{ JSON.stringify($('Evolcampus Matricular fundador').item.json) }}<br><br>Matricular a mano y cambiar su estado a «matriculado» en registros_fundadores.",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2320,
+        1060
+      ],
+      "id": "947d7445-e3c1-4d21-b920-4d5183cff00b",
+      "name": "Aviso matrícula fallida",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "LwvqxiRLt71zxAJS",
+          "name": "AFCADEMIA_WEB GMAIL"
+        }
+      },
+      "webhookId": "43c23b83-b2d9-45ba-bb4c-d38ce61819ef",
+      "retryOnFail": true,
+      "waitBetweenTries": 5000
+    },
+    {
+      "parameters": {
+        "content": "## 🆕 Alta de fundador\nSupabase avisa al insertar en `registros_fundadores` (trigger de `supabase/fundadores.sql`). El Webhook solo acepta la llamada si trae la cabecera `X-Firma` correcta (credencial Header Auth).\n\nSe le manda el correo con la palabra clave y se marca `correo_enviado`.",
+        "width": 1100,
+        "height": 420,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        60
+      ],
+      "id": "c4794e42-e599-44c9-9e00-386a63cf27b9",
+      "name": "Nota alta"
+    },
+    {
+      "parameters": {
+        "content": "## 📩 Respuesta con la palabra clave\nEl Gmail Trigger solo mira respuestas al asunto «Confirma tu plaza». No choca con el flujo de la clase gratuita: allí la palabra es IA y aquí ALTA.\n\n⚙️ **Config respuesta**: poner el `grupo_id` de fundadores. Con 0 el flujo se para con un error que lo dice.",
+        "width": 1060,
+        "height": 420,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        560
+      ],
+      "id": "fbe15717-a197-4481-87a5-005cdbaf9e68",
+      "name": "Nota respuesta"
+    },
+    {
+      "parameters": {
+        "content": "## 🎓 Evolcampus\nToken → matrículas del correo → si ya está en el grupo, solo se marca en BBDD; si no, se matricula con email de bienvenida (credenciales).\n\n⚠️ En «Evolcampus Token» hay que pegar el clientid y la key.",
+        "width": 880,
+        "height": 420,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        700,
+        560
+      ],
+      "id": "f49bcb0b-6734-4d4f-87eb-82a34d0b2920",
+      "name": "Nota evolcampus"
+    },
+    {
+      "parameters": {
+        "content": "## ✅ Resultado\nOK → `matriculado` con userid y enrollmentid.\nFallo → `error` + aviso a cursos@afcademia.com para hacerlo a mano.",
+        "width": 900,
+        "height": 640,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        560
+      ],
+      "id": "4cdba930-4a2c-4b7b-adee-a06c2c2483f5",
+      "name": "Nota resultado"
+    }
+  ],
+  "connections": {
+    "Registro nuevo (Supabase)": {
+      "main": [
+        [
+          {
+            "node": "⚙️ Config alta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "⚙️ Config alta": {
+      "main": [
+        [
+          {
+            "node": "Prepara correo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepara correo": {
+      "main": [
+        [
+          {
+            "node": "Envía correo con palabra clave",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envía correo con palabra clave": {
+      "main": [
+        [
+          {
+            "node": "Marca correo_enviado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respuestas al correo de fundadores": {
+      "main": [
+        [
+          {
+            "node": "⚙️ Config respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "⚙️ Config respuesta": {
+      "main": [
+        [
+          {
+            "node": "Parsea respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsea respuesta": {
+      "main": [
+        [
+          {
+            "node": "¿Dijo la palabra?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Dijo la palabra?": {
+      "main": [
+        [
+          {
+            "node": "Busca registro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Busca registro": {
+      "main": [
+        [
+          {
+            "node": "¿En qué estado está?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿En qué estado está?": {
+      "main": [
+        [
+          {
+            "node": "Aviso: responde un correo no registrado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "Evolcampus Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolcampus Token": {
+      "main": [
+        [
+          {
+            "node": "Evolcampus getEnrollments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolcampus getEnrollments": {
+      "main": [
+        [
+          {
+            "node": "Revisa matrículas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Revisa matrículas": {
+      "main": [
+        [
+          {
+            "node": "¿Ya en el grupo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Ya en el grupo?": {
+      "main": [
+        [
+          {
+            "node": "Marca matriculado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Evolcampus Matricular fundador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evolcampus Matricular fundador": {
+      "main": [
+        [
+          {
+            "node": "¿Matrícula OK?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Matrícula OK?": {
+      "main": [
+        [
+          {
+            "node": "Marca matriculado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Marca error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marca error": {
+      "main": [
+        [
+          {
+            "node": "Aviso matrícula fallida",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
