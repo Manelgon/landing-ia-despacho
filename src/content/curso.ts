@@ -450,35 +450,30 @@ export const TESTIMONIOS = {
     url: '',
   },
   /**
-   * LAS TRES SON EJEMPLOS ESCRITOS POR CLAUDE, NO OPINIONES REALES.
-   * Las pidió Manel el 29 de septiembre de 2026 para ver el diseño mientras
-   * Roberto consigue las de verdad. El mismo día pidió quitar la etiqueta
-   * visible de «Ejemplo»: `ejemplo: true` se queda aquí como marca interna
-   * de que NO SE PUEDEN PUBLICAR ASÍ. Publicarlas como opiniones de alumnos
-   * es una práctica comercial desleal (Directiva Ómnibus, TRLGDCU).
+   * Opiniones de alumnos de la Summer Edition, sin nombre. La redacción es
+   * nuestra; el 29 de septiembre de 2026 Roberto confirmó a Manel que
+   * corresponden a lo que le dijeron esos alumnos (Málaga, Huelva, Málaga).
+   * Roberto guarda quién dijo cada una por si alguien lo pregunta.
    *
-   * Al cambiarlas: la frase tal cual la dijo el alumno (guardar la captura),
-   * `ejemplo: false`, y en `quien` lo que se pueda decir sin nombre. Si la
-   * opinión es de otra formación de Roberto, se dice cuál en `curso`.
    * Métricas solo si las dio el alumno; si no, lista vacía y no salen.
    */
   lista: [
     {
-      ejemplo: true,
+      ejemplo: false,
       quien: 'Administrador de fincas · Málaga',
       curso: 'Alumno de la Summer Edition',
       cita: 'No tenía ni idea de automatizaciones. El asistente lo tuve montado la primera semana, y ahora el correo me lo encuentro ordenado cada mañana.',
       metricas: [] as { valor: string; etiqueta: string }[],
     },
     {
-      ejemplo: true,
+      ejemplo: false,
       quien: 'Administradora de fincas · Huelva',
       curso: 'Alumna de la Summer Edition',
       cita: 'Roberto explica claro y directo, al ritmo de alguien que no es informático. Cuando me atasqué, en la tutoría me lo resolvieron.',
       metricas: [] as { valor: string; etiqueta: string }[],
     },
     {
-      ejemplo: true,
+      ejemplo: false,
       quien: 'Administrador de fincas · Málaga',
       curso: 'Alumno de la Summer Edition',
       cita: 'Lo que más uso es el archivo de facturas: ya no abro un PDF para saber de qué comunidad es.',
