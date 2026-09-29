@@ -43,7 +43,7 @@ export async function enviarSolicitud(datos: Solicitud): Promise<void> {
 }
 
 /**
- * Registro de la página /fundadores. Misma forma de enviar, otra tabla:
+ * Registro de la página /alumnos-fundadores. Misma forma de enviar, otra tabla:
  * registros_fundadores, en supabase/fundadores.sql
  *
  * Allí el correo es único para siempre (no por día): cada persona se

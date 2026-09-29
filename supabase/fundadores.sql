@@ -1,4 +1,4 @@
--- Registros de fundadores · página /fundadores
+-- Registros de fundadores · página /alumnos-fundadores
 -- Pegar en Supabase → SQL Editor y ejecutar. Es el mismo proyecto que usa
 -- n8n con la credencial POSTGRESAFCADEMIA.
 --
@@ -35,7 +35,7 @@ create table if not exists public.registros_fundadores (
 );
 
 comment on table public.registros_fundadores is
-  'Registro de la página /fundadores. Lo inserta el formulario con la clave anon; n8n lo lee y lo actualiza con la credencial de Postgres.';
+  'Registro de la página /alumnos-fundadores. Lo inserta el formulario con la clave anon; n8n lo lee y lo actualiza con la credencial de Postgres.';
 
 -- Un registro por persona, para siempre. Si repite, la página le dice que
 -- busque el correo de confirmación.
@@ -80,22 +80,28 @@ declare
   destino text := 'https://CAMBIAR.app.n8n.cloud/webhook/fundadores-alta';  -- CAMBIAR
   secreto text := 'CAMBIAR-POR-UNA-CADENA-LARGA-Y-ALEATORIA';                 -- CAMBIAR
 begin
-  perform net.http_post(
-    url     := destino,
-    headers := jsonb_build_object(
-                 'Content-Type', 'application/json',
-                 'X-Firma',      secreto
-               ),
-    body    := jsonb_build_object(
-                 'id',        new.id,
-                 'nombre',    new.nombre,
-                 'apellidos', new.apellidos,
-                 'despacho',  new.despacho,
-                 'email',     new.email,
-                 'telefono',  new.telefono
-               ),
-    timeout_milliseconds := 5000
-  );
+  -- Si el aviso falla (URL mal pegada, n8n caído...), el registro se guarda
+  -- igual: sin esto, el alumno veía un error 500 y no quedaba nada guardado.
+  begin
+    perform net.http_post(
+      url     := destino,
+      headers := jsonb_build_object(
+                   'Content-Type', 'application/json',
+                   'X-Firma',      secreto
+                 ),
+      body    := jsonb_build_object(
+                   'id',        new.id,
+                   'nombre',    new.nombre,
+                   'apellidos', new.apellidos,
+                   'despacho',  new.despacho,
+                   'email',     new.email,
+                   'telefono',  new.telefono
+                 ),
+      timeout_milliseconds := 5000
+    );
+  exception when others then
+    raise warning 'notify_n8n_fundador: no se pudo avisar a n8n: %', sqlerrm;
+  end;
   return new;
 end;
 $$;
@@ -106,6 +112,10 @@ create trigger fundador_notify_n8n
   for each row
   execute function public.notify_n8n_fundador();
 
+-- Para ver qué dirección tiene guardada la función (no enseña el secreto):
+--   select substring(prosrc from 'destino text := ''([^'']*)''') as destino
+--   from pg_proc where proname = 'notify_n8n_fundador';
+--
 -- Para comprobar que las llamadas salen:
 --   select id, status_code, created from net._http_response order by created desc limit 10;
 --

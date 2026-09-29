@@ -9,7 +9,7 @@ import { Docente, Preguntas } from '@/components/secciones-info'
 import { Pie } from '@/components/pie'
 
 /**
- * /fundadores · el mismo itinerario que la landing principal, gratis y con
+ * /alumnos-fundadores · el mismo itinerario que la landing principal, gratis y con
  * matrícula directa. Ver src/content/fundadores.ts
  *
  * Las secciones del curso (Flujos, Temario, Docente, Preguntas) son las de la

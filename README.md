@@ -90,10 +90,10 @@ Queda desactualizado el aviso de la carpeta comercial del itinerario
 marcando el uso como pendiente de comprobar. Conviene corregirlo allí para que
 no contradiga a esta página.
 
-## Página de fundadores · /fundadores
+## Página de alumnos fundadores · /alumnos-fundadores
 
 Registro gratis con matrícula en Evolcampus. Misma web, ruta oculta:
-**https://automatiza.afcademia.com/fundadores**. No se enlaza desde ningún sitio
+**https://automatiza.afcademia.com/alumnos-fundadores** (la antigua `/fundadores` redirige aquí). No se enlaza desde ningún sitio
 y lleva `noindex`: solo entra quien tenga el enlace.
 
 Recorrido, igual que la clase gratuita:
@@ -106,7 +106,7 @@ Recorrido, igual que la clase gratuita:
 | Archivo | Qué contiene |
 |---|---|
 | `src/content/fundadores.ts` | Textos, palabra clave y cláusula de datos |
-| `src/app/fundadores/page.tsx` | La página |
+| `src/app/alumnos-fundadores/page.tsx` | La página |
 | `src/components/registro-fundador.tsx` | El formulario |
 | `supabase/fundadores.sql` | Tabla, permisos y aviso a n8n |
 | `n8n/fundadores-matricula.json` | El flujo de n8n, para importar |
@@ -116,7 +116,7 @@ Recorrido, igual que la clase gratuita:
 - [ ] n8n: importar `n8n/fundadores-matricula.json`.
 - [ ] n8n, nodo «Registro nuevo (Supabase)»: crear credencial *Header Auth* con nombre `X-Firma` y un secreto largo.
 - [ ] n8n, nodo «Evolcampus Token»: pegar `clientid` y `key`.
-- [x] n8n, nodo «⚙️ Config respuesta»: `grupo_id` = 90 («GRUPO FUNDADOR», curso «Automatización inteligente AFC», 999 días de acceso).
+- [x] n8n, nodo «⚙️ Config respuesta»: `grupo_id` = 93 («GRUPO FUNDADORES - SEPT», curso «AFC - IA PARA EL DESPACHO», 999 días de acceso).
 - [ ] Supabase: en `supabase/fundadores.sql` cambiar la URL del webhook y el mismo secreto, y ejecutarlo.
 - [ ] Activar el flujo en n8n y hacer una prueba de principio a fin con un correo propio.
 - [ ] Decidir qué incluye ser fundador (`incluye` en `fundadores.ts`). Mientras esté vacío, no se enseña.

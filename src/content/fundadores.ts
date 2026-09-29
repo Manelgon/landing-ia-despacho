@@ -1,5 +1,5 @@
 /**
- * Página de registro de fundadores: /fundadores
+ * Página de registro de fundadores: /alumnos-fundadores (y /fundadores redirige ahí)
  *
  * No está enlazada desde ningún sitio y lleva noindex. Solo entra quien tenga
  * el enlace. El registro es gratis y termina en matrícula en Evolcampus.
@@ -11,7 +11,7 @@
  *   4. Evolcampus le manda sus credenciales.
  *
  * «Fundadores» es un nombre provisional. Si cambia, se cambia en NOMBRE y en
- * los textos de abajo; la ruta /fundadores es la carpeta src/app/fundadores.
+ * los textos de abajo; la ruta /alumnos-fundadores es la carpeta src/app/alumnos-fundadores.
  *
  * LA PALABRA CLAVE está en tres sitios que tienen que coincidir:
  *   - aquí (PALABRA_CLAVE), que es lo que ve el alumno en la página,
