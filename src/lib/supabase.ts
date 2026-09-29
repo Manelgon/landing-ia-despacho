@@ -12,7 +12,7 @@
 const URL_BASE = process.env.NEXT_PUBLIC_SUPABASE_URL
 const CLAVE = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-export type Solicitud = Record<string, string | boolean | null>
+export type Solicitud = Record<string, string | boolean | null | Record<string, string>>
 
 export async function enviarSolicitud(datos: Solicitud): Promise<void> {
   if (!URL_BASE || !CLAVE) {

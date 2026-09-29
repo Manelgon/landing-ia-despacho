@@ -13,6 +13,15 @@ export const FILTRO = {
     'Siete preguntas, dos minutos. Si encaja, te llamamos en 24 horas.',
   boton: 'Enviar la solicitud',
   enviando: 'Enviando…',
+  /**
+   * Código del partner que le ha pasado el enlace. Se rellena solo si entra
+   * con ?ref=codigo; si vuelve otro día por otro sitio, lo puede escribir.
+   * Así se reconoce al partner sin cookies (decidido por Manel el 29-09-2026).
+   */
+  recomienda: {
+    etiqueta: '¿Te recomienda alguien?',
+    ayuda: 'Si te han pasado un código de colaborador, escríbelo aquí.',
+  },
   exito: {
     titulo: 'Solicitud recibida',
     texto:

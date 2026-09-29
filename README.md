@@ -125,6 +125,51 @@ Recorrido, igual que la clase gratuita:
 La palabra clave está en tres sitios que tienen que coincidir: `fundadores.ts`
 y los dos nodos «⚙️ Config» del flujo.
 
+## Clasificador de solicitudes de diagnóstico
+
+Cada solicitud del formulario llega a n8n, que le pone una prioridad y avisa
+al equipo por correo. **El `estado` no lo toca: lo decidís vosotros.**
+
+- **Reglas (código, acordadas el 29-09-2026):** fuera de 20-500 comunidades →
+  descartada. Dentro, decide él o con socio y lo quiere en tres meses → alta.
+  Resto → media.
+- **IA (OpenAI):** recibe solo las respuestas, nunca nombre, correo ni teléfono.
+  Escribe un resumen, por dónde empezar la llamada, preguntas y alertas.
+- Si OpenAI falla, sale como `sin_clasificar` y el aviso llega igual.
+
+| Archivo | Qué contiene |
+|---|---|
+| `supabase/clasificador.sql` | Columnas nuevas: `prioridad`, `resumen_ia`, `enfoque_ia`, `alertas_ia` |
+| `n8n/solicitudes-clasificador.json` | El flujo, con el prompt en el nodo «⚙️ Config» |
+
+### Para ponerlo en marcha
+
+- [ ] Supabase: ejecutar `supabase/clasificador.sql`.
+- [ ] n8n: importar `n8n/solicitudes-clasificador.json`.
+- [ ] Webhook: credencial *Header Auth* `X-Firma` con el mismo secreto que `webhook-n8n.sql`. La ruta es `solicitud-despacho`.
+- [ ] Nodo «OpenAI»: credencial OpenAI de AFCademIA.
+- [ ] «Guarda clasificación»: la credencial Postgres de Supabase (la de fundadores).
+- [ ] «Avisa al equipo»: la credencial de Gmail.
+- [ ] «⚙️ Config» → `avisar_a`: los correos del equipo, separados por comas.
+- [ ] Activar y hacer una prueba con un correo propio.
+- [ ] Que Prodat confirme que usar OpenAI como encargado encaja con la cláusula del formulario.
+
+## De dónde viene cada solicitud (partners y redes)
+
+Cada partner y cada red usa su propio enlace:
+
+- Partner: `https://automatiza.afcademia.com/?ref=juan` → el código aparece
+  escrito en el campo «¿Te recomienda alguien?». Si vuelve otro día por otro
+  sitio, lo puede escribir él. Sin cookies.
+- Redes: `?utm_source=linkedin`, `instagram`, `facebook`, `whatsapp`.
+
+Se guarda en las columnas `partner` y `utm` de `solicitudes_despacho`.
+`supabase/origen.sql` crea la columna y trae la consulta para contar
+solicitudes y matrículas por partner y por red.
+
+**`origen.sql` se ejecuta antes de publicar la landing**: si no, Supabase
+rechaza el formulario porque no conoce la columna `partner`.
+
 ## Stack
 
 Next.js 16, React 19, TypeScript y Tailwind CSS 4. Sin base de datos: la página

@@ -30,6 +30,24 @@ function telefonoValido(valor: string): boolean {
   return /^\d{9}$/.test(limpio)
 }
 
+/** El código de partner, siempre igual: minúsculas, sin espacios ni símbolos raros. */
+function limpiaCodigo(valor: string): string {
+  return valor.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9ñ_-]/g, '').slice(0, 40)
+}
+
+/**
+ * De dónde viene la visita: ?utm_source=linkedin y compañía. Se lee de la
+ * dirección al cargar y no se guarda en ningún sitio más: sin cookies.
+ */
+const CLAVES_UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'] as const
+
+function leeUtm(params: URLSearchParams): Record<string, string> | null {
+  const utm = Object.fromEntries(
+    CLAVES_UTM.map((c) => [c, (params.get(c) ?? '').trim().slice(0, 80)]).filter(([, v]) => v),
+  )
+  return Object.keys(utm).length ? utm : null
+}
+
 /**
  * `compacto`: la misma solicitud metida en la tarjeta del hero. Menos aire y
  * letra algo más pequeña; los pasos y la validación son los mismos.
@@ -44,7 +62,16 @@ export function Solicitud({ compacto = false }: { compacto?: boolean }) {
   const [error, setError] = useState<string | null>(null)
   const [campoMal, setCampoMal] = useState<string | null>(null)
   const [enviado, setEnviado] = useState(false)
+  const [utm, setUtm] = useState<Record<string, string> | null>(null)
   const contenedor = useRef<HTMLDivElement>(null)
+
+  // El enlace del partner (?ref=juan) deja el código escrito en el formulario
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    setUtm(leeUtm(params))
+    const ref = limpiaCodigo(params.get('ref') ?? '')
+    if (ref) setDatos((d) => ({ ...d, partner: d.partner ?? ref }))
+  }, [])
 
   const total = PASOS.length
   const esPrimero = paso === 0
@@ -135,6 +162,8 @@ export function Solicitud({ compacto = false }: { compacto?: boolean }) {
         telefono: telefono.replace(/[\s.-]/g, ''),
         consentimiento: true,
         origen: 'landing-ia-despacho',
+        partner: limpiaCodigo(datos.partner ?? '') || null,
+        utm,
         ...Object.fromEntries(PREGUNTAS.map((p) => [p.id, datos[p.id]?.trim() || null])),
       })
       setEnviado(true)
@@ -251,6 +280,23 @@ export function Solicitud({ compacto = false }: { compacto?: boolean }) {
                   value={datos.telefono ?? ''}
                   onChange={(e) => poner('telefono', e.target.value)}
                 />
+              </div>
+              <div>
+                <label htmlFor={uid('partner')} className={etiqueta}>
+                  {FILTRO.recomienda.etiqueta} <span className="normal-case">(opcional)</span>
+                </label>
+                <input
+                  id={uid('partner')}
+                  maxLength={40}
+                  autoComplete="off"
+                  aria-describedby={uid('partner-ayuda')}
+                  className={`${campo} mt-2.5`}
+                  value={datos.partner ?? ''}
+                  onChange={(e) => poner('partner', e.target.value)}
+                />
+                <p id={uid('partner-ayuda')} className="mt-1.5 text-[13px] text-muted">
+                  {FILTRO.recomienda.ayuda}
+                </p>
               </div>
             </div>
             <label className={`${k('mt-8 text-[14.5px]', 'mt-5 text-[13px]')} flex max-w-[620px] items-start gap-3 leading-[1.55] text-ink`}>
