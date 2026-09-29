@@ -33,7 +33,7 @@ export const FUNDADORES = {
    * página reutiliza las secciones de la landing: lo que montas, el temario,
    * el docente y las preguntas. No lleva precio ni el filtro de «para quién es».
    */
-  eyebrow: 'Acceso fundadores · IA para el Despacho',
+  eyebrow: 'Acceso alumnos fundadores · IA para el Despacho',
   titular: {
     antes: 'El itinerario completo, ',
     destacado: 'gratis',
