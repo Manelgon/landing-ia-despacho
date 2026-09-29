@@ -157,7 +157,7 @@ export const ENCAJE = {
     lista: [
       'Gestionas más de 20 comunidades y la carga administrativa ya no cabe en tu semana.',
       'Tienes programa de fincas, pero el correo, las llamadas y el archivo siguen siendo manuales.',
-      'Puedes sacar un par de horas a la semana para montarlo sobre tus propias cuentas.',
+      'Puedes sacar entre tres y cuatro horas a la semana para montarlo sobre tus propias cuentas.',
       'Decides tú, o lo decides con tu socio sin dar tres vueltas.',
     ],
   },

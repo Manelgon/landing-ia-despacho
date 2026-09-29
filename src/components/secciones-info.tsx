@@ -300,21 +300,24 @@ export function Testimonios() {
         {TESTIMONIOS.lista.map((t, i) => (
           <li key={i} style={cascada(i, 90)} className="reveal border-l-2 border-amber pl-4">
             <p className="font-mono text-[10.5px] font-semibold tracking-[0.16em] text-amber uppercase">
-              {t.despacho}
+              {t.curso}
             </p>
-            <b className="mt-2.5 block text-[15px] leading-snug font-bold text-ink">{t.nombre}</b>
             <blockquote className="mt-3 text-[13.5px] leading-[1.55] text-muted">
-              {t.cita}
+              «{t.cita}»
             </blockquote>
+            {/* La firma, debajo de la cita. */}
+            <p className="mt-3 text-[14px] leading-snug font-bold text-ink">— {t.quien}</p>
 
-            <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-3.5">
-              {t.metricas.map((m) => (
-                <div key={m.etiqueta}>
-                  <dd className="text-[14.5px] leading-tight font-extrabold text-navy">{m.valor}</dd>
-                  <dt className="mt-0.5 text-[11px] leading-tight text-muted">{m.etiqueta}</dt>
-                </div>
-              ))}
-            </dl>
+            {t.metricas.length ? (
+              <dl className="mt-4 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-3.5">
+                {t.metricas.map((m) => (
+                  <div key={m.etiqueta}>
+                    <dd className="text-[14.5px] leading-tight font-extrabold text-navy">{m.valor}</dd>
+                    <dt className="mt-0.5 text-[11px] leading-tight text-muted">{m.etiqueta}</dt>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
           </li>
         ))}
       </ul>

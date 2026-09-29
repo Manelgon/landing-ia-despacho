@@ -356,7 +356,7 @@ export const ESTUDIO = [
     titulo: 'El ritmo',
     dato: 'Sin plazos',
     texto:
-      'El progreso se guarda y se retoma donde lo dejaste. A una unidad por semana son unos siete meses.',
+      'El progreso se guarda y se retoma donde lo dejaste. Al ritmo que recomendamos, entre noventa y ciento veinte días.',
   },
   {
     titulo: 'La nota',
@@ -409,6 +409,10 @@ export const FAQ = [
     r: 'Sí. No hay plazos ni sesiones en directo. El progreso se guarda por unidad y se retoma donde lo dejaste.',
   },
   {
+    p: '¿Cómo funciona la garantía?',
+    r: 'Tienes ocho semanas desde que entras. Si en ese tiempo has seguido las unidades, has consultado tus dudas en la tutoría y aun así no has conseguido tener ningún flujo funcionando en tus cuentas, te devolvemos el importe. No es una garantía de «si no te convence»: responde al miedo de no estar preparado para seguir el curso. Si te pasa eso, no pierdes el dinero.',
+  },
+  {
     p: '¿Y si somos varios del mismo despacho?',
     r: 'Escríbenos y lo vemos. Cada persona necesita su propia matrícula porque el progreso y la nota son individuales.',
   },
@@ -439,40 +443,46 @@ export const REGLA = {
 export const TESTIMONIOS = {
   eyebrow: 'Opiniones',
   titulo: 'Lo que dicen quienes ya lo usan',
-  // PENDIENTE: el enlace a las reseñas. Si AFCademIA no tiene ficha de
-  // Google con opiniones, esta línea se borra entera: prometer que son
-  // verificables y que no haya dónde verificarlas es peor que no decirlo.
+  // Sin ficha de Google no hay dónde verificarlas: la línea queda vacía y no
+  // sale. Si algún día hay enlace, se pone texto y url.
   verificables: {
-    texto: 'Opiniones reales, verificables en Google',
+    texto: '',
     url: '',
   },
+  /**
+   * LAS TRES SON EJEMPLOS ESCRITOS POR CLAUDE, NO OPINIONES REALES.
+   * Las pidió Manel el 29 de septiembre de 2026 para ver el diseño mientras
+   * Roberto consigue las de verdad. El mismo día pidió quitar la etiqueta
+   * visible de «Ejemplo»: `ejemplo: true` se queda aquí como marca interna
+   * de que NO SE PUEDEN PUBLICAR ASÍ. Publicarlas como opiniones de alumnos
+   * es una práctica comercial desleal (Directiva Ómnibus, TRLGDCU).
+   *
+   * Al cambiarlas: la frase tal cual la dijo el alumno (guardar la captura),
+   * `ejemplo: false`, y en `quien` lo que se pueda decir sin nombre. Si la
+   * opinión es de otra formación de Roberto, se dice cuál en `curso`.
+   * Métricas solo si las dio el alumno; si no, lista vacía y no salen.
+   */
   lista: [
     {
-      nombre: '[Nombre y apellido]',
-      despacho: '[00] comunidades · [Ciudad]',
-      cita: '[Su testimonio, en sus palabras: qué hacía antes, qué hace ahora y cuánto tardó en notarlo.]',
-      metricas: [
-        { valor: '[0 h → 00 min]', etiqueta: '[por tarea]' },
-        { valor: '[0 semanas]', etiqueta: '[hasta notarlo]' },
-      ],
+      ejemplo: true,
+      quien: 'Administrador de fincas · Málaga',
+      curso: 'Alumno de la Summer Edition',
+      cita: 'No tenía ni idea de automatizaciones. El asistente lo tuve montado la primera semana, y ahora el correo me lo encuentro ordenado cada mañana.',
+      metricas: [] as { valor: string; etiqueta: string }[],
     },
     {
-      nombre: '[Nombre y apellido]',
-      despacho: '[00] comunidades · [Ciudad]',
-      cita: '[Su testimonio. Va bien que empiece por la duda que tenía antes de entrar.]',
-      metricas: [
-        { valor: '[0 h/semana]', etiqueta: '[recuperadas]' },
-        { valor: '[0 semana]', etiqueta: '[hasta el primer flujo]' },
-      ],
+      ejemplo: true,
+      quien: 'Administradora de fincas · Huelva',
+      curso: 'Alumna de la Summer Edition',
+      cita: 'Roberto explica claro y directo, al ritmo de alguien que no es informático. Cuando me atasqué, en la tutoría me lo resolvieron.',
+      metricas: [] as { valor: string; etiqueta: string }[],
     },
     {
-      nombre: '[Nombre y apellido]',
-      despacho: '[00] comunidades · [Ciudad]',
-      cita: '[Su testimonio. Si lo montó sin ayuda técnica, que lo diga: es lo que más tranquiliza.]',
-      metricas: [
-        { valor: '[00 min]', etiqueta: '[por tarea]' },
-        { valor: '[0 semanas]', etiqueta: '[hasta notarlo]' },
-      ],
+      ejemplo: true,
+      quien: 'Administrador de fincas · Málaga',
+      curso: 'Alumno de la Summer Edition',
+      cita: 'Lo que más uso es el archivo de facturas: ya no abro un PDF para saber de qué comunidad es.',
+      metricas: [] as { valor: string; etiqueta: string }[],
     },
   ],
 }

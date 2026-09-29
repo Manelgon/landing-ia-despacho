@@ -203,9 +203,9 @@ export function Temario() {
     <Seccion id="temario" alterna>
       <Titulo
         eyebrow="Temario"
-        sub="30 unidades en siete bloques. El orden importa: cada unidad da por montado lo de la anterior. Pincha en cada bloque para ver las unidades."
+        sub="Cincuenta y cuatro horas en total. Al ritmo que recomendamos, entre noventa y ciento veinte días: menos de una hora al día. Y no hay plazos: si una semana te come la temporada de juntas, retomas donde lo dejaste sin perder nada."
       >
-        <span className="text-amber">Treinta unidades</span> que se cursan en orden
+        Siete bloques. Al final de cada uno, <span className="text-amber">algo funcionando</span>
       </Titulo>
 
       <div className="mt-16 border-t border-line-soft">

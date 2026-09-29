@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { CURSO, CIFRAS } from '@/content/curso'
 import { Solicitud } from './solicitud'
 import { FILTRO } from '@/content/solicitud'
-import { CONVERSION } from '@/config/conversion'
 
 /**
  * El hero no lleva animación de entrada a propósito: es lo primero que se
@@ -12,13 +11,6 @@ import { CONVERSION } from '@/config/conversion'
  * lleva el fondo blanco incrustado y encima del azul se veía como un recorte
  * pegado. El negativo se genera desde el original respetando el naranja.
  */
-/** Contorno de sello de oferta: 24 picos alrededor de un círculo. */
-const SELLO = `polygon(${Array.from({ length: 48 }, (_, i) => {
-  const a = (i / 48) * 2 * Math.PI - Math.PI / 2
-  const r = i % 2 === 0 ? 50 : 45
-  return `${(50 + r * Math.cos(a)).toFixed(2)}% ${(50 + r * Math.sin(a)).toFixed(2)}%`
-}).join(', ')})`
-
 export function Hero() {
   return (
     <header>
@@ -61,31 +53,9 @@ export function Hero() {
           </div>
 
           <div id="solicitud" className="relative scroll-mt-28 rounded-2xl border border-navy/10 bg-white/90 p-6 shadow-[0_20px_60px_-20px_rgba(2,33,56,0.35)] backdrop-blur-md">
-            {/* El precio como sello de oferta, con las plazas en una cinta. Todo sale de
-                config/conversion.ts: en null, cada pieza desaparece sola. */}
-            {CONVERSION.precio ? (
-              <div className="absolute -top-[68px] -right-14 hidden rotate-[12deg] lg:block" aria-label={`Precio: ${CONVERSION.precio}`}>
-                <div
-                  className="flex h-[136px] w-[136px] items-center justify-center bg-amber drop-shadow-[0_10px_18px_rgba(255,122,0,0.45)]"
-                  style={{ clipPath: SELLO }}
-                >
-                  <div className="flex h-[104px] w-[104px] flex-col items-center justify-center rounded-full border-2 border-dashed border-white/80 text-white">
-                    <span className="font-mono text-[9px] font-semibold tracking-[0.16em] uppercase">Itinerario</span>
-                    <span className="mt-1 text-[24px] leading-none font-extrabold tracking-[-0.03em]">
-                      {CONVERSION.precio}
-                    </span>
-                    <span className="mt-1 font-mono text-[8.5px] font-semibold tracking-[0.14em] uppercase opacity-90">
-                      Completo
-                    </span>
-                  </div>
-                </div>
-                {CONVERSION.plazas.quedan !== null ? (
-                  <p className="absolute -bottom-2 left-1/2 -translate-x-1/2 rounded-md bg-navy px-3 py-1.5 font-mono text-[10.5px] font-bold tracking-[0.1em] whitespace-nowrap text-white uppercase shadow-lg">
-                    {CONVERSION.plazas.quedan === 1 ? 'Queda 1 plaza' : `Quedan ${CONVERSION.plazas.quedan} plazas`}
-                  </p>
-                ) : null}
-              </div>
-            ) : null}
+            {/* Sin precio ni plazas a propósito (29 de septiembre de 2026): se
+                quiere que lean la página antes de ver el precio, que sigue en
+                la sección de matrícula. */}
             <h2 className="max-w-[300px] pr-2 text-[22px] leading-[1.2] font-extrabold tracking-[-0.02em] text-navy">
               {FILTRO.titulo}
             </h2>

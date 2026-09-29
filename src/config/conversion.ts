@@ -37,15 +37,21 @@ export const CONVERSION = {
   },
 
   /**
-   * Garantía comercial, elegida por Manel el 23 de septiembre de 2026 entre
-   * tres opciones. Se verifica sola: o han pasado quince días o no.
+   * Garantía comercial. Desde el 29 de septiembre de 2026 son ocho semanas y
+   * la condición es objetiva: no haber conseguido ningún flujo funcionando,
+   * habiendo seguido las unidades y consultado en la tutoría (esto último,
+   * añadido por Manel el 29 de septiembre para evitar devoluciones sin intento).
+   * Así "recuperar horas" se mide con algo que se ve, y la devolución no
+   * depende de la satisfacción. Se explica en la pregunta frecuente
+   * "¿Cómo funciona la garantía?", en content/curso.ts.
    *
    * Va aparte del desistimiento legal, que en contenidos digitales decae en
    * cuanto el alumno acepta el acceso inmediato. Esta se da igual, y por eso
-   * hay que poder cumplirla: si alguien la pide el día catorce, se devuelve.
+   * hay que poder cumplirla: si alguien la pide dentro del plazo y no tiene
+   * ningún flujo funcionando, se devuelve.
    * Déjala en null para no enseñar ninguna.
    */
-  garantia: 'Quince días de garantía. Si ves que no es para ti, te devolvemos el importe.' as
+  garantia: 'Ocho semanas de garantía. Si sigues las unidades, consultas en la tutoría y no consigues montar ningún flujo, te devolvemos el importe.' as
     | string
     | null,
 
@@ -72,7 +78,7 @@ export const CONVERSION = {
   },
 
   lead: {
-    textoBoton: 'Solicitar mi diagnóstico',
+    textoBoton: 'Solicitar mi diagnóstico gratuito',
     /** A dónde se envía el formulario. Vacío = todavía no conectado. */
     endpoint: '',
   },
