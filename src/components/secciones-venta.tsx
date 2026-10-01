@@ -211,12 +211,14 @@ export function Temario() {
       <div className="mt-16 border-t border-line-soft">
         {BLOQUES.map((b, i) => (
           <details key={b.rango} style={cascada(i, 50)} className="reveal group border-b border-line-soft">
-            <summary className="flex cursor-pointer flex-wrap items-baseline gap-x-6 gap-y-2 py-6 transition-colors hover:text-navy">
-              <span className="w-[68px] shrink-0 font-mono text-[11.5px] tracking-[0.1em] text-amber tabular-nums">
+            {/* En móvil la fila no se parte: el título encoge y el «+» se
+                queda a la derecha, con las horas. */}
+            <summary className="flex cursor-pointer flex-wrap items-baseline gap-x-4 gap-y-2 py-6 transition-colors hover:text-navy sm:gap-x-6">
+              <span className="w-[60px] shrink-0 font-mono text-[11.5px] tracking-[0.04em] whitespace-nowrap text-amber tabular-nums sm:w-[68px] sm:tracking-[0.1em]">
                 {b.rango}
               </span>
               <img src={`/recursos-web/iconos/${iconosBloque[i]}.svg`} alt="" width="26" height="26" aria-hidden="true" className="hidden shrink-0 sm:block" />
-              <h3 className="flex-[1_1_200px] text-[clamp(18px,2.2vw,22px)] font-bold tracking-[-0.015em] text-navy">
+              <h3 className="min-w-0 flex-1 text-[clamp(18px,2.2vw,22px)] font-bold tracking-[-0.015em] text-navy">
                 {b.titulo}
               </h3>
               <span className="shrink-0 font-mono text-[12.5px] text-muted">{b.horas}</span>

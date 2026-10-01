@@ -91,7 +91,9 @@ export const SELLOS = [
  */
 export const CIFRAS = [
   { valor: '143', etiqueta: 'matriculados en la edición anterior' },
-  { valor: '00', etiqueta: 'administraciones de fincas' },
+  // Cifra dada por Manel el 1 de octubre de 2026, en lugar del hueco de las
+  // administraciones. Hay que poder justificar de dónde sale si alguien pregunta.
+  { valor: '+100 h', etiqueta: 'de tiempo ahorrado' },
   { valor: '5', etiqueta: 'flujos funcionando en un despacho real' },
   { valor: '54 h', etiqueta: 'bonificables por FUNDAE' },
 ]
