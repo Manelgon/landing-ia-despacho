@@ -231,15 +231,35 @@ export function Temario() {
                 {b.resultado}
               </p>
             </summary>
-            <div className="pb-8 sm:pl-[92px]">
-              <p className="max-w-[62ch] text-[15px] text-muted">{b.texto}</p>
-              <ol className="mt-4 ml-5 max-w-[62ch] list-decimal text-[15px] marker:font-mono marker:text-muted">
-                {b.unidades.map((u) => (
-                  <li key={u} className="mb-1.5 pl-1">
-                    {u}
-                  </li>
-                ))}
-              </ol>
+            {/* Con vídeo, dos columnas en escritorio: el texto a la izquierda y
+                la demo a la derecha. En móvil, el vídeo va debajo. */}
+            <div
+              className={`pb-8 sm:pl-[92px] ${'video' in b && b.video ? 'grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start' : ''}`}
+            >
+              <div>
+                <p className="max-w-[62ch] text-[15px] text-muted">{b.texto}</p>
+                <ol className="mt-4 ml-5 max-w-[62ch] list-decimal text-[15px] marker:font-mono marker:text-muted">
+                  {b.unidades.map((u) => (
+                    <li key={u} className="mb-1.5 pl-1">
+                      {u}
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              {'video' in b && b.video ? (
+                <video
+                  src={b.video.src}
+                  poster={b.video.poster}
+                  title={b.video.titulo}
+                  aria-label={b.video.titulo}
+                  controls
+                  playsInline
+                  preload="none"
+                  width={1280}
+                  height={720}
+                  className="aspect-video w-full rounded-[10px] border border-line-soft bg-navy shadow-[0_14px_40px_-18px_rgba(2,33,56,0.45)]"
+                />
+              ) : null}
             </div>
           </details>
         ))}

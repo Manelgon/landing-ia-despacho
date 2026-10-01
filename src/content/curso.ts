@@ -256,6 +256,13 @@ export const BLOQUES = [
   {
     rango: '11 - 14',
     resultado: 'Flujo 1: tu bandeja se clasifica, se archiva y te deja los borradores escritos.',
+    // La demo del flujo, a la derecha al abrir el bloque (1 de octubre de 2026).
+    // Lleva voz: no arranca sola, se le da al play.
+    video: {
+      src: '/videos/demo-02-el-borrador-ya-escrito.mp4',
+      poster: '/videos/demo-02-el-borrador-ya-escrito-poster.webp',
+      titulo: 'Demostración: el flujo del correo deja las respuestas escritas en Borradores',
+    },
     titulo: 'El correo',
     horas: '8 h',
     texto:
