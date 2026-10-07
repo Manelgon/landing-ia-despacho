@@ -23,14 +23,15 @@ export const metadata: Metadata = {
   // La landing vive en el subdominio. Con la raíz aquí, la imagen de vista previa
   // se pedía a afcademia.com (otro WordPress) y daba 404: WhatsApp no montaba la tarjeta.
   metadataBase: new URL('https://automatiza.afcademia.com'),
-  title: 'IA para el Despacho · Itinerario · AFCademIA',
+  // Lo de aquí vale para la portada (el catálogo). Cada curso pone el suyo en su página.
+  title: 'Cursos para el despacho · AFCademIA',
   description:
-    'Itinerario online para administradores de fincas. Treinta unidades, cincuenta y cuatro horas y cinco flujos funcionando en tus propias cuentas.',
+    'Cursos online de AFCademIA para administradores de fincas: la Ley de Propiedad Horizontal, el fraude, la IA en el despacho y el despacho como empresa.',
   openGraph: {
-    title: 'IA para el Despacho · AFCademIA',
+    title: 'Cursos para el despacho · AFCademIA',
     description:
-      'De la primera petición a los flujos que trabajan solos. Cinco tareas del despacho que ya no toca nadie.',
-    images: ['/open-graph-1200x630.jpg'],
+      'Cursos online para administradores de fincas: propiedad horizontal, ciberseguridad, inteligencia artificial y gestión de la empresa.',
+    images: ['/open-graph-catalogo-1200x630.jpg'],
     url: 'https://automatiza.afcademia.com',
     siteName: 'AFCademIA',
     locale: 'es_ES',

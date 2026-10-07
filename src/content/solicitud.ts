@@ -1,3 +1,40 @@
+/** Una opción: el texto que se ve, o texto y el valor que se guarda si son distintos. */
+export type Opcion = string | { texto: string; valor: string }
+
+export type Pregunta = {
+  id: string
+  numero: string
+  texto: string
+  ayuda?: string
+  libre?: boolean
+  marcador?: string
+  opciones?: readonly Opcion[]
+  /** Las opciones en un desplegable en vez de botones. Para listas largas. */
+  desplegable?: boolean
+}
+
+/**
+ * Lo que cambia de un formulario a otro. El de IA para el Despacho es el de
+ * este archivo; los de los cursos y el catálogo, src/content/solicitud-cursos.ts.
+ */
+export type ConfigSolicitud = {
+  preguntas: readonly Pregunta[]
+  textos: {
+    titulo: string
+    entradilla: string
+    boton: string
+    enviando: string
+    recomienda: { etiqueta: string; ayuda: string }
+    exito: { titulo: string; texto: string }
+  }
+  /** Columna `origen` de la solicitud. */
+  origen: string
+  /** Columnas que se guardan siempre igual, como `curso`. */
+  fijos?: Record<string, string>
+  /** Finalidad de la cláusula de datos, si no es la del itinerario. */
+  finalidad?: string
+}
+
 /**
  * Las siete preguntas del filtro previo.
  *

@@ -31,6 +31,48 @@ El destino se configura en `src/config/conversion.ts`.
 | Alojamiento | Vercel, conectado a este repositorio |
 | Despliegue | Automático: cada envío a `main` publica una versión nueva |
 
+### Las páginas de la web (desde el 7 de octubre de 2026)
+
+| Dirección | Qué es | Archivo |
+|---|---|---|
+| `/` | **Catálogo de cursos de pago.** Cada curso con su página (si la tiene) y su ficha en la tienda. Las clases gratuitas son gancho de campaña: solo salen en una franja discreta al final | `src/app/page.tsx`, textos y precios en `src/content/catalogo.ts` |
+| `/curso/ia-para-el-despacho` | La página de venta del itinerario. Antes estaba en la portada | `src/app/curso/ia-para-el-despacho/page.tsx` |
+| `/curso/<slug>` | La página de cada curso suelto, con la misma plantilla. Hoy N1 (`/curso/propiedad-horizontal-al-dia-con-ia`) S8 (`/curso/ciberseguridad-en-el-despacho-de-administracion-de-fincas`) y A7 (`/curso/documentos-del-despacho-con-ia`). Todas llevan «← Todos los cursos» encima del antetítulo, y el logo de la barra lleva al catálogo, también en IA para el Despacho | Plantilla en `src/components/curso-suelto.tsx`, textos en `src/content/cursos/<curso>.ts`, lista en `src/content/cursos/index.ts` |
+| `/gratis/<slug>` | Las clases gratuitas (N0 y S0): vídeo de campaña, «Empezar gratis» a su ficha de 0 € en la tienda y el paso al curso de pago. Son el destino de los anuncios de la campaña de WhatsApp | `src/components/pagina-gratis.tsx`, textos en `src/content/gratis.ts`, vídeos comprimidos en `public/videos/gratis/` |
+| `/alumnos-fundadores` | Registro de fundadores, oculta | `src/app/alumnos-fundadores/page.tsx` |
+
+Redirecciones, en `next.config.ts`:
+
+- `/?ref=codigo` → `/curso/ia-para-el-despacho?ref=codigo`. Son los enlaces de
+  partner que se dieron cuando el curso estaba en la portada.
+- `/curso` → `/`.
+
+Los precios del catálogo son los de la campaña de otoño
+(`014. Catalogo y campaña WhatsApp/_genera-campana.py`). Si cambian allí, se
+cambian también en `src/content/catalogo.ts`. El precio de lanzamiento se deja
+de enseñar solo al pasar la fecha de `FIN_LANZAMIENTO`: la portada se regenera
+cada hora.
+
+### Formularios del catálogo y de los cursos
+
+La portada y cada página de curso llevan en el hero el mismo formulario que
+IA para el Despacho (`src/components/solicitud.tsx`), con menos preguntas
+(`src/content/solicitud-cursos.ts`). Todo va a la misma tabla,
+`solicitudes_despacho`:
+
+- `curso`: el código del curso (`N1`, `S8`…). En la portada lo elige la
+  persona; `sin-decidir` si no lo sabe. Las de IA para el Despacho, `P1`.
+- `origen`: `automatiza-catalogo` o `automatiza-curso`.
+
+**Antes de publicar, ejecutar `supabase/curso.sql`.** Sin las columnas
+`curso` y `personas`, Supabase rechaza estos formularios.
+
+Para que otro curso tenga su página: se copia `src/content/cursos/n1.ts` con
+los textos de su programa (`Evolmind - Scroms/cursos/<curso>/3-Programa-y-guia`),
+se añade a `src/content/cursos/index.ts` y se pone `pagina: '/curso/<slug>'` en
+su ficha de `src/content/catalogo.ts`. El botón de estas páginas lleva a la
+ficha del curso en la tienda.
+
 El dominio principal, `afcademia.com`, es un WordPress en otro servidor y no
 tiene nada que ver con esta landing. Por eso `metadataBase`, en
 `src/app/layout.tsx`, apunta al subdominio: si apuntara al dominio principal,
@@ -75,7 +117,11 @@ Por el README de la carpeta comercial:
 
 ### FUNDAE
 
-**Confirmado por Manel el 22 de septiembre de 2026: el itinerario es bonificable.**
+**Desde el 7 de octubre de 2026, en toda la web (también en este curso) FUNDAE
+se dice como en las fichas de la tienda: posibilidad de gestión cuando se
+cumplan los requisitos.** Lo decidió Manel. Lo de abajo es el histórico.
+
+Confirmado por Manel el 22 de septiembre de 2026: el itinerario es bonificable.
 
 Por eso la página lo dice. Están el logo de la Fundación Estatal en la franja de
 acreditaciones y el texto de `BONIFICACION`, en `src/content/curso.ts`, debajo

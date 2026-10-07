@@ -7,7 +7,16 @@ import Image from 'next/image'
  * puede recolorear para ponerlo sobre el navy, porque es marca de un tercero.
  * De los dos archivos solo se ha quitado el fondo; los colores están intactos.
  */
-export function Acreditaciones() {
+/**
+ * `fundae`: la frase bajo el logo. En toda la web, también en IA para el
+ * Despacho, la de las fichas de la tienda: posibilidad de gestión cuando se
+ * cumplan los requisitos (decidido por Manel el 07/10/2026).
+ */
+export function Acreditaciones({
+  fundae = 'Posibilidad de gestión mediante Fundae',
+}: {
+  fundae?: string
+}) {
   return (
     <section aria-label="Acreditaciones" className="border-b border-line bg-card">
       <div className="mx-auto flex w-full max-w-[1060px] flex-wrap items-center justify-center gap-x-10 gap-y-5 px-5 py-8 sm:gap-x-14 sm:px-8">
@@ -35,7 +44,7 @@ export function Acreditaciones() {
               className="h-auto w-[172px]"
             />
             </div>
-            <p className="mt-3 text-center font-mono text-[11px] font-semibold tracking-[0.12em] text-muted uppercase">Formación bonificable a través de Fundae</p>
+            <p className="mt-3 text-center font-mono text-[11px] font-semibold tracking-[0.12em] text-muted uppercase">{fundae}</p>
           </li>
         </ul>
       </div>

@@ -29,7 +29,7 @@ export function Hero() {
           {/* La solicitud va en el propio hero y es la única de la página: a la
               derecha en escritorio, debajo del titular en móvil. Todos los
               botones naranjas llevan aquí (#solicitud). */}
-          <div className="grid items-start gap-12 pt-20 pb-16 sm:pt-24 sm:pb-20 lg:grid-cols-[minmax(0,1fr)_460px]">
+          <div className="grid items-stretch gap-12 pt-20 pb-16 sm:pt-24 sm:pb-20 lg:grid-cols-[minmax(0,1fr)_460px]">
           <div>
             <p className="font-mono text-[11.5px] font-semibold tracking-[0.18em] text-aviso-texto uppercase">
               {CURSO.eyebrow}

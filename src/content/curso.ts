@@ -42,13 +42,14 @@ export const CURSO = {
 
 /** La línea destacada encima de las acreditaciones, en la tarjeta del precio. */
 export const BONIFICABLE = {
-  titulo: 'Bonificable por FUNDAE',
+  titulo: 'Gestión por FUNDAE, si se cumplen los requisitos',
   texto: 'Del papeleo nos encargamos nosotros.',
 }
 
 /**
  * Los dos avales que van al pie de la tarjeta del precio, bajo los logos.
- * La bonificación por FUNDAE la confirmó Manel el 22 de septiembre de 2026.
+ * FUNDAE: desde el 07/10/2026 se dice como en las fichas de la tienda,
+ * posibilidad de gestión cuando se cumplan los requisitos (decisión de Manel).
  * Cada uno va partido en dos: la frase en naranja y la marca en blanco.
  */
 export const SELLOS = [
@@ -64,8 +65,8 @@ export const SELLOS = [
     alto: 320,
   },
   {
-    etiqueta: 'Bonificable por',
-    leyenda: 'Formación bonificable a través de Fundae',
+    etiqueta: 'Gestión mediante',
+    leyenda: 'Posibilidad de gestión mediante Fundae',
     marca: 'FUNDAE',
     url: 'https://www.fundae.es',
     logo: '/logo-fundae.png',
@@ -95,7 +96,9 @@ export const CIFRAS = [
   // administraciones. Hay que poder justificar de dónde sale si alguien pregunta.
   { valor: '+100 h', etiqueta: 'de tiempo ahorrado' },
   { valor: '5', etiqueta: 'flujos funcionando en un despacho real' },
-  { valor: '54 h', etiqueta: 'bonificables por FUNDAE' },
+  // Antes «bonificables por FUNDAE»: desde el 07/10/2026 FUNDAE se dice con
+  // el matiz de los requisitos, y en una cifra no cabe.
+  { valor: '54 h', etiqueta: 'de formación online' },
 ]
 
 /**
@@ -427,7 +430,7 @@ export const FAQ = [
   },
   {
     p: '¿Me tramitáis vosotros la bonificación de FUNDAE?',
-    r: 'Sí, del papeleo nos encargamos nosotros. Escríbenos antes de matricularte: la formación bonificada hay que comunicarla antes de empezarla, no después, y necesitamos los datos de la empresa para presentarla.',
+    r: 'Hay posibilidad de gestión mediante FUNDAE cuando se cumplan los requisitos aplicables, y del papeleo nos encargamos nosotros. Escríbenos antes de matricularte: la formación bonificada hay que comunicarla antes de empezarla, no después, y necesitamos los datos de la empresa para presentarla.',
   },
 ]
 
