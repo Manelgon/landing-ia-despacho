@@ -140,10 +140,12 @@ export type Codigo = keyof typeof CURSOS
 export const DESTACADO: Codigo = 'P1'
 
 /**
- * El resto del mosaico, en este orden. Filas de 2 y 3 en escritorio, como
- * el mosaico de flujos de la página del despacho.
+ * Los demás cursos de la portada, en segundo plano y sin precio: un embudo por
+ * curso, no un escaparate (decidido el 08/10/2026 tras la revisión del grupo).
+ * Los dos de pyme ya no salen en la portada: con su precio al lado de IA para
+ * el Despacho, se iban al barato. Siguen en CURSOS para el formulario y n8n.
  */
-export const MOSAICO: Codigo[] = ['A7', 'N1', 'S8', '01B04C01', '01B03C01']
+export const MOSAICO: Codigo[] = ['N1', 'S8', 'A7']
 
 /** Las clases gratuitas: solo en el aviso del final. */
 export const LIBRES: Codigo[] = ['N0', 'S0']
@@ -153,14 +155,15 @@ export const PORTADA = {
   titular: { antes: 'Formación para el ', destacado: 'despacho de fincas', despues: '' },
   para: 'Cursos online para administradores de fincas y su equipo.',
   resultado:
-    'Propiedad horizontal, ciberseguridad, inteligencia artificial y gestión de la empresa. A tu ritmo y pensados para el trabajo de cada día en el despacho.',
+    'Propiedad horizontal, ciberseguridad e inteligencia artificial. A tu ritmo y pensados para el trabajo de cada día en el despacho.',
   boton: 'Ver los cursos',
 }
 
 export const SECCION_CURSOS = {
   eyebrow: 'Los cursos',
-  titular: { antes: 'Elige por dónde ', destacado: 'empezar' },
-  sub: 'Del curso concreto que resuelve un tema al itinerario que lleva la IA a todo el despacho.',
+  titular: { antes: 'Empieza por ', destacado: 'el itinerario completo' },
+  /** Encima de los demás cursos, en pequeño. */
+  otros: 'O, si buscas algo concreto',
 }
 
 export const SECCION_LIBRES = {

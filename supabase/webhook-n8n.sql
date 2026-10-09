@@ -43,7 +43,9 @@ begin
                  'intentos',     new.intentos,
                  'plazo',        new.plazo,
                  'decide',       new.decide,
-                 'origen',       new.origen
+                 'origen',       new.origen,
+                 'curso',        new.curso,
+                 'personas',     new.personas
                ),
     timeout_milliseconds := 5000
   );

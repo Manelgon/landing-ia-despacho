@@ -9,7 +9,6 @@ import {
   CIERRE,
   CURSOS,
   DESTACADO,
-  FIN_LANZAMIENTO,
   LIBRES,
   MOSAICO,
   PORTADA,
@@ -17,8 +16,6 @@ import {
   SECCION_LIBRES,
   cifras,
   enlaceTienda,
-  eur,
-  lanzamientoVigente,
   type Codigo,
   type Curso,
 } from '@/content/catalogo'
@@ -50,7 +47,6 @@ const botonSolido = `${boton} bg-amber text-white hover:bg-amber-hover`
 const cascada = (i: number, paso = 80) => ({ '--reveal-delay': `${i * paso}ms` }) as React.CSSProperties
 
 export default function Catalogo() {
-  const vigente = lanzamientoVigente()
 
   return (
     <>
@@ -60,27 +56,21 @@ export default function Catalogo() {
 
       <main id="contenido">
         <Seccion id="cursos" alterna>
-          <Titulo eyebrow={SECCION_CURSOS.eyebrow} sub={SECCION_CURSOS.sub}>
+          <Titulo eyebrow={SECCION_CURSOS.eyebrow}>
             {SECCION_CURSOS.titular.antes}
             <span className="text-amber">{SECCION_CURSOS.titular.destacado}</span>
           </Titulo>
 
+          {/* IA para el Despacho es la protagonista. Los demás, debajo y en
+              pequeño, sin precio: cada uno se vende en su página (08/10/2026). */}
           <Destacado cod={DESTACADO} />
 
-          {/* Filas de 2 y 3, como el mosaico de flujos: las dos primeras, más anchas.
-              Si cambia el número de cursos, hay que revisar los col-span para no
-              dejar huecos (DESIGN.md, rejillas). */}
-          <ul className="mt-px grid list-none grid-cols-1 gap-px overflow-hidden rounded-b-[10px] bg-line-soft sm:grid-cols-2 lg:grid-cols-6">
+          <p className="reveal mt-16 font-mono text-[11.5px] font-semibold tracking-[0.18em] text-muted uppercase">
+            {SECCION_CURSOS.otros}
+          </p>
+          <ul className="mt-6 grid list-none gap-6 md:grid-cols-3">
             {MOSAICO.map((c, i) => (
-              <Tarjeta
-                key={c}
-                cod={c}
-                ancha={i < 2}
-                // En tableta (2 columnas) la última, si queda sola, ocupa la fila entera.
-                sola={MOSAICO.length % 2 === 1 && i === MOSAICO.length - 1}
-                pos={i}
-                vigente={vigente}
-              />
+              <Otro key={c} cod={c} pos={i} />
             ))}
           </ul>
         </Seccion>
@@ -173,13 +163,13 @@ function Hero() {
   )
 }
 
-/** El itinerario completo, a todo el ancho y en navy, como el bloque de precio del despacho. */
+/** El itinerario completo, a todo el ancho y en navy. Sin precio: lo ve en su página. */
 function Destacado({ cod }: { cod: Codigo }) {
   const c: Curso = CURSOS[cod]
   const pagina = c.pagina
 
   return (
-    <article className="reveal relative mt-16 overflow-hidden rounded-t-[10px] bg-navy-deep text-white">
+    <article className="reveal relative mt-14 overflow-hidden rounded-[10px] bg-navy-deep text-white">
       {c.imagen ? (
         <>
           <div
@@ -206,122 +196,61 @@ function Destacado({ cod }: { cod: Codigo }) {
         </div>
 
         <div className="lg:text-right">
-          <p className="text-[clamp(36px,5vw,48px)] leading-none font-extrabold tracking-[-0.035em] text-white">
-            {eur(c.precio)}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3 lg:justify-end">
-            {pagina ? (
-              <a href={pagina} className={`${botonSolido} px-6 py-3.5 text-[15px]`}>
-                Ver el curso
-              </a>
-            ) : null}
-            <a
-              href={enlaceTienda(cod)}
-              className={`${boton} border border-white/35 px-6 py-3.5 text-[15px] text-white hover:bg-white/10`}
-            >
-              Ir a la tienda
+          {pagina ? (
+            <a href={pagina} className={`${botonSolido} px-7 py-4 text-[16px]`}>
+              Ver el curso
             </a>
-          </div>
+          ) : null}
         </div>
       </div>
     </article>
   )
 }
 
-/** Tarjeta del mosaico. Foto de ambiente a la derecha y veladura de papel, como las de los flujos. */
-function Tarjeta({
-  cod,
-  ancha,
-  sola,
-  pos,
-  vigente,
-}: {
-  cod: Codigo
-  ancha: boolean
-  sola: boolean
-  pos: number
-  vigente: boolean
-}) {
+/**
+ * Los demás cursos: tarjeta clara con la foto arriba, para que no compita con
+ * el bloque navy de IA para el Despacho. Sin precio: llevan a su página.
+ */
+function Otro({ cod, pos }: { cod: Codigo; pos: number }) {
   const c: Curso = CURSOS[cod]
-  const rebaja = vigente ? c.lanzamiento : undefined
-  const pagina = c.pagina
-
   return (
     <li
-      style={cascada(pos)}
-      className={`reveal relative flex min-h-[380px] flex-col overflow-hidden bg-paper ${
-        ancha ? 'lg:col-span-3' : 'lg:col-span-2'
-      } ${sola ? 'sm:col-span-2' : ''}`}
+      style={cascada(pos, 80)}
+      className="reveal flex flex-col overflow-hidden rounded-[10px] border border-line bg-paper"
     >
       {c.imagen ? (
-        <>
-          <div
-            className="absolute inset-0 bg-cover bg-right"
-            style={{ backgroundImage: `url('${c.imagen}')` }}
-            aria-hidden="true"
-          />
-          <div
-            className="absolute inset-0 bg-linear-to-r from-paper from-30% via-paper/92 to-paper/40 max-sm:bg-paper/90"
-            aria-hidden="true"
-          />
-        </>
+        <div
+          className="aspect-[16/9] w-full bg-cover bg-center"
+          style={{ backgroundImage: `url('${c.imagen}')` }}
+          aria-hidden="true"
+        />
       ) : null}
-
-      <div className="relative flex flex-1 flex-col p-6 sm:p-7">
+      <div className="flex flex-1 flex-col p-6">
         <p className="font-mono text-[10.5px] font-semibold tracking-[0.08em] text-amber uppercase">
           {c.area} · {c.horas} h
         </p>
-
-        <div className="mt-3 flex items-start gap-3">
+        <div className="mt-2.5 flex items-start gap-3">
           {c.icono ? (
             <img
               src={`/recursos-web/iconos/${c.icono}.svg`}
               alt=""
-              width="28"
-              height="28"
+              width="26"
+              height="26"
               aria-hidden="true"
               className="mt-0.5 shrink-0"
             />
           ) : null}
-          <h3
-            className={`leading-[1.2] font-extrabold tracking-[-0.02em] text-navy ${ancha ? 'text-[clamp(22px,2.6vw,26px)]' : 'text-[21px]'}`}
+          <h3 className="text-[19px] leading-[1.25] font-extrabold tracking-[-0.015em] text-navy">{c.nombre}</h3>
+        </div>
+        <p className="mt-3 text-[15px] leading-[1.55] text-body">{c.texto}</p>
+        {c.pagina ? (
+          <a
+            href={c.pagina}
+            className="mt-auto inline-block self-start pt-5 font-bold text-navy underline decoration-amber decoration-2 underline-offset-4 hover:text-amber"
           >
-            {c.nombre}
-          </h3>
-        </div>
-
-        <p className={`mt-3 text-[15px] leading-[1.6] ${ancha ? 'max-w-[42ch]' : 'max-w-[34ch]'}`}>{c.texto}</p>
-
-        <div className="mt-auto pt-7">
-          <p className="flex items-baseline gap-2.5">
-            {rebaja ? (
-              <>
-                <s className="text-[15px] text-muted">{eur(c.precio)}</s>
-                <b className="font-mono text-[26px] font-bold tracking-[-0.02em] text-navy">{eur(rebaja)}</b>
-              </>
-            ) : (
-              <b className="font-mono text-[26px] font-bold tracking-[-0.02em] text-navy">{eur(c.precio)}</b>
-            )}
-          </p>
-          {rebaja ? (
-            <p className="mt-1.5 font-mono text-[10.5px] tracking-[0.06em] text-aviso-texto uppercase">
-              Precio de lanzamiento hasta el {FIN_LANZAMIENTO.texto}
-            </p>
-          ) : null}
-          <div className="mt-4 flex flex-wrap gap-2.5">
-            {pagina ? (
-              <a
-                href={pagina}
-                className={`${boton} border border-navy/25 px-5 py-3 text-[14.5px] text-navy hover:border-navy hover:bg-navy/5`}
-              >
-                Ver el curso
-              </a>
-            ) : null}
-            <a href={enlaceTienda(cod)} className={`${botonSolido} px-5 py-3 text-[14.5px]`}>
-              Ir a la tienda
-            </a>
-          </div>
-        </div>
+            Ver el curso
+          </a>
+        ) : null}
       </div>
     </li>
   )

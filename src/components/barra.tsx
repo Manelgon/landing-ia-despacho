@@ -13,7 +13,12 @@ export function Barra({
 }: {
   enlaces: { href: string; texto: string }[]
   cta: { href: string; texto: string }
-  /** En las páginas de curso: «Todos los cursos» encabeza el menú del móvil. */
+  /**
+   * En las páginas de curso: «Todos los cursos» encabeza el menú del móvil.
+   * La franja «Ver todos los cursos» de encima de la barra se quitó el
+   * 08/10/2026: sacaba a la gente del embudo de cada curso. El logo sigue
+   * llevando al catálogo.
+   */
   volver?: boolean
 }) {
   const boton =
@@ -21,7 +26,6 @@ export function Barra({
 
   return (
     <>
-    {volver ? <VolverCatalogo /> : null}
     <nav className="sticky top-0 z-40 border-b border-white/10 bg-navy-deep/92 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-[1060px] items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
         <a href="/" className="flex shrink-0 items-center" aria-label="AFCademIA, ir al catálogo de cursos">
@@ -62,32 +66,5 @@ export function Barra({
       </div>
     </nav>
     </>
-  )
-}
-
-/**
- * Vuelta al catálogo: una franja fina encima de la barra, en las páginas de
- * curso y de clase gratuita (no en la portada, que es el catálogo). Va fuera
- * de la barra porque dentro no cabe: logo, seis enlaces y el botón ya la
- * llenan. No es fija: se ve al entrar; después, el logo también lleva al
- * catálogo y en el móvil es la primera opción del menú.
- */
-export function VolverCatalogo() {
-  return (
-    <div className="border-b border-white/10 bg-navy">
-      <div className="mx-auto w-full max-w-[1060px] px-5 sm:px-8">
-        <a
-          href="/"
-          className="group inline-flex items-center gap-2.5 py-2.5 text-[13.5px] font-semibold text-white no-underline"
-        >
-          <span aria-hidden="true" className="text-amber transition-transform duration-200 group-hover:-translate-x-0.5">
-            ←
-          </span>
-          <span className="underline decoration-white/30 underline-offset-4 group-hover:decoration-amber">
-            Ver todos los cursos de AFCademIA
-          </span>
-        </a>
-      </div>
-    </div>
   )
 }

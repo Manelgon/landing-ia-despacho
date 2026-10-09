@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { Cta } from './cta'
 import { NavMovil } from './nav-movil'
-import { VolverCatalogo } from './barra'
 
 // Cada enlace se llama igual que el antetítulo de su sección.
 const ENLACES = [
@@ -21,7 +20,6 @@ const ENLACES = [
 export function Navbar() {
   return (
     <>
-    <VolverCatalogo />
     <nav className="sticky top-0 z-40 border-b border-white/10 bg-navy-deep/92 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-[1060px] items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
         <a href="/" className="flex shrink-0 items-center" aria-label="AFCademIA, ir al catálogo de cursos">
