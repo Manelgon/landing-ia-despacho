@@ -110,7 +110,7 @@ export const CURSOS = {
     icono: 'conexiones',
     imagen: '/recursos-web/fondos/matricula-despacho-azul.webp',
     texto:
-      'El itinerario completo: el uso de ChatGPT en el despacho y cuatro casos montados de principio a fin: el correo, las llamadas, los documentos y las facturas.',
+      'El itinerario completo: el uso de ChatGPT en el despacho y cinco flujos montados de principio a fin: el correo, las llamadas, los documentos, las facturas y el gestor documental.',
   },
   '01B04C01': {
     nombre: 'Inteligencia Artificial en la Pyme',
