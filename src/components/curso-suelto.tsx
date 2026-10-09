@@ -45,14 +45,14 @@ const boton =
 const botonSolido = `${boton} bg-amber text-white hover:bg-amber-hover`
 /**
  * Lo que pasa cuando se solicita el diagnóstico, como «Qué pasa después» del despacho.
- * Sin plazos: los de 24 h y «el mismo día» están confirmados solo para IA para
- * el Despacho. Lo del correo de acceso es lo que hace el flujo de compra de
+ * Las 24 h valen para todos los cursos (confirmado por Manel el 09/10/2026).
+ * «El mismo día» del despacho no se dice: no está confirmado para la tienda. Lo del correo de acceso es lo que hace el flujo de compra de
  * n8n (015. Flujo compra WooCommerce): matricula y manda la bienvenida.
  */
 const PASOS_INFO = [
-  { cuando: 'Ahora', titulo: 'Mandas cuatro preguntas', texto: 'Un minuto. No hay que preparar nada ni adjuntar nada.' },
+  { cuando: 'Ahora', titulo: 'Mandas las siete preguntas', texto: 'Dos minutos. No hay que preparar nada ni adjuntar nada.' },
   {
-    cuando: 'Después',
+    cuando: 'En 24 h',
     titulo: 'Te llamamos',
     texto: 'Leemos lo que has contestado y te llamamos al teléfono que hayas dejado.',
   },

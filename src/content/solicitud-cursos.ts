@@ -1,93 +1,36 @@
-import { CURSOS, DESTACADO, MOSAICO, type Codigo } from './catalogo'
+import type { Codigo } from './catalogo'
 import { FILTRO, PREGUNTAS, type ConfigSolicitud, type Pregunta } from './solicitud'
 
 /**
- * Formularios del catálogo y de las páginas de curso suelto.
+ * Formularios de la portada y de las páginas de curso suelto.
  *
- * Es la misma solicitud que la de IA para el Despacho (mismo componente,
- * misma tabla `solicitudes_despacho`), con menos preguntas: las del despacho
- * hablan de automatizar tareas y no sirven para un curso de ley o de
- * ciberseguridad. La columna `curso` dice por qué curso pregunta cada uno.
- *
- * Antes de publicar: ejecutar supabase/curso.sql, que crea las columnas
- * `curso` y `personas`. Sin ellas Supabase rechaza estos formularios.
+ * Desde el 09/10/2026 son el mismo diagnóstico que el de IA para el Despacho:
+ * las mismas siete preguntas y los mismos textos, para que todo el embudo
+ * empuje hacia una sola cosa (decisión de Manel). Lo único que cambia es lo
+ * que se guarda para saber desde dónde lo pidió:
+ *   - `curso`:  el curso de la página (N1, S8, A7) o «sin-decidir» en la portada.
+ *   - `origen`: automatiza-curso o automatiza-catalogo.
+ * Misma tabla, `solicitudes_despacho`, y mismo aviso a n8n.
  */
 
-/** Las tres preguntas del despacho que valen para cualquier curso. */
-const COMUNES = Object.fromEntries(
-  PREGUNTAS.filter((p) => ['comunidades', 'plazo', 'decide'].includes(p.id)).map((p) => [p.id, p]),
-) as Record<'comunidades' | 'plazo' | 'decide', Pregunta>
+const PREGUNTAS_DIAGNOSTICO = PREGUNTAS as unknown as Pregunta[]
 
-const PERSONAS: Pregunta = {
-  id: 'personas',
-  numero: '',
-  texto: '¿Para cuántas personas del despacho sería?',
-  opciones: ['Solo para mí', '2 o 3 personas', 'Entre 4 y 10', 'Más de 10'],
-}
-
-const PLAZO: Pregunta = {
-  ...COMUNES.plazo,
-  texto: '¿Para cuándo querrías empezar?',
-}
-
-/** Numera las preguntas en el orden en que salen: 01, 02… */
-const numera = (lista: Pregunta[]) =>
-  lista.map((p, i) => ({ ...p, numero: String(i + 1).padStart(2, '0') }))
-
-const TEXTOS = {
-  ...FILTRO,
-  boton: FILTRO.boton,
-  recomienda: FILTRO.recomienda,
-}
-
-const FINALIDAD =
-  'Valorar qué formación encaja con tu despacho y contactarte por correo o por teléfono para darte la información.'
-
-/** El formulario de la página de un curso: el curso ya se sabe. */
+/** El formulario de la página de un curso: el curso ya se sabe por la página. */
 export function solicitudCurso(cod: Codigo): ConfigSolicitud {
-  const preguntas = numera([PERSONAS, COMUNES.comunidades, PLAZO, COMUNES.decide])
   return {
-    preguntas,
-    textos: {
-      ...TEXTOS,
-      titulo: 'Solicita el diagnóstico de tu despacho',
-      entradilla: `${preguntas.length} preguntas, un minuto. Te llamamos y resolvemos tus dudas, también sobre FUNDAE.`,
-      exito: {
-        titulo: 'Solicitud recibida',
-        texto: `Te llamamos para hablar de «${CURSOS[cod].nombre}» y resolver lo que necesites antes de matricularte.`,
-      },
-    },
+    preguntas: PREGUNTAS_DIAGNOSTICO,
+    textos: FILTRO,
     origen: 'automatiza-curso',
     fijos: { curso: cod },
-    finalidad: FINALIDAD,
   }
 }
 
-/** El formulario de la portada: primero, qué curso le interesa. */
+/** El formulario de la portada: no viene de ningún curso en concreto. */
 export function solicitudCatalogo(): ConfigSolicitud {
-  const curso: Pregunta = {
-    id: 'curso',
-    numero: '',
-    texto: '¿Qué formación te interesa?',
-    desplegable: true,
-    opciones: [
-      ...[DESTACADO, ...MOSAICO].map((c) => ({ texto: CURSOS[c].nombre, valor: c })),
-      { texto: 'Aún no lo sé', valor: 'sin-decidir' },
-    ],
-  }
-  const preguntas = numera([curso, PERSONAS, COMUNES.comunidades, PLAZO, COMUNES.decide])
   return {
-    preguntas,
-    textos: {
-      ...TEXTOS,
-      titulo: 'Solicita el diagnóstico de tu despacho',
-      entradilla: `${preguntas.length} preguntas, un minuto. Te llamamos y te decimos qué curso encaja con tu despacho.`,
-      exito: {
-        titulo: 'Solicitud recibida',
-        texto: 'Te llamamos para ver qué formación encaja con tu despacho y resolver tus dudas, también sobre FUNDAE.',
-      },
-    },
+    preguntas: PREGUNTAS_DIAGNOSTICO,
+    textos: FILTRO,
     origen: 'automatiza-catalogo',
-    finalidad: FINALIDAD,
+    fijos: { curso: 'sin-decidir' },
   }
 }
